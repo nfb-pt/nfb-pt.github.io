@@ -1,9 +1,7 @@
 ---
-{
-  "title": "Créditos e licenças",
-  "translationKey": "credits",
-  "description": "Créditos e condições de reutilização."
-}
+title: Créditos e licenças
+translationKey: credits
+description: Créditos e condições de reutilização.
 ---
 
 Este site adapta o trabalho do [TODO Group](https://github.com/todogroup/todogroup.org), sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/), para uma nova identidade, conteúdos e localização. Usa o [Dot Org Theme](https://github.com/cncf/dot-org-hugo-theme), © 2023 CNCF, sob licença MIT.

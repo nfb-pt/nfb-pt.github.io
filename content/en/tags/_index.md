@@ -1,6 +1,4 @@
 ---
-{
-  "title": "Topics",
-  "translationKey": "tags"
-}
+title: Topics
+translationKey: tags
 ---

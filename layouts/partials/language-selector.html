@@ -1,7 +1,16 @@
 <nav class="nfb-languages" aria-label="{{ i18n "language" }}">
-{{ range .Sites }}
-  {{ $target := .Home }}{{ $lang := .Language.Lang }}
-  {{ range $.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}{{ end }}
-  <a href="{{ $target.RelPermalink }}" lang="{{ .Language.Locale }}" hreflang="{{ .Language.Locale }}" aria-label="{{ .Language.Label }}"{{ if eq $.Language.Lang $lang }} aria-current="true"{{ end }}>{{ upper $lang }}</a>
-{{ end }}
+  {{ range hugo.Sites }}
+    {{ $target := .Home }}{{ $lang := .Language.Lang }}
+    {{ range $.AllTranslations }}
+      {{ if eq .Language.Lang $lang }}{{ $target = . }}{{ end }}
+    {{ end }}
+    <a
+      href="{{ $target.RelPermalink }}"
+      lang="{{ .Language.Locale }}"
+      hreflang="{{ .Language.Locale }}"
+      aria-label="{{ .Language.Label }}"
+      {{ if eq $.Language.Lang $lang }}aria-current="true"{{ end }}
+      >{{ upper $lang }}</a
+    >
+  {{ end }}
 </nav>

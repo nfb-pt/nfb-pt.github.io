@@ -1,5 +1,7 @@
 # Set logo to images/brand/logo.svg (or .png) when an approved logo is available.
 logo: ""
+# Optional light version for the dark footer.
+logo_footer: ""
 images: [images/brand/nfb-social.png]
 sticky_header: true
 show_search: true

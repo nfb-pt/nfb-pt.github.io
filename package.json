@@ -2,7 +2,7 @@
   "name": "nucleo-filatelico-braga-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Bilingual Hugo website for N\u00facleo Filat\u00e9lico de Braga",
+  "description": "Bilingual Hugo website for Núcleo Filatélico de Braga",
   "license": "CC-BY-4.0",
   "engines": {
     "node": ">=22"
@@ -14,8 +14,10 @@
     "preview": "npm run build && python3 -m http.server 4173 --bind 127.0.0.1 --directory public",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "check": "python3 scripts/check-site.py",
-    "test": "npm run build && npm run check"
+    "check": "node scripts/check-content.mjs && python3 scripts/check-site.py",
+    "test": "npm run build && npm run check && npm run check:translations && npm run test:features",
+    "check:translations": "node scripts/check-content.mjs --strict-translations",
+    "test:features": "node scripts/check-features.mjs"
   },
   "dependencies": {
     "autoprefixer": "10.5.6",
@@ -26,7 +28,8 @@
   },
   "devDependencies": {
     "prettier": "3.9.6",
-    "prettier-plugin-go-template": "0.0.15"
+    "prettier-plugin-go-template": "0.0.15",
+    "yaml": "2.8.3"
   },
   "overrides": {
     "hugo-extended": {

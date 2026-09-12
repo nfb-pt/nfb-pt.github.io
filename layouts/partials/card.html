@@ -1,10 +1,41 @@
-<article class="card nfb-card{{ if .Params.image }} has-image{{ end }}">
-{{ with .Params.image }}<div class="card-image">{{ partial "image.html" (dict "page" $ "src" .) }}</div>{{ end }}
-<div class="card-body">
-{{ if .Params.demo }}<span class="badge">{{ i18n "demo" }}</span>{{ else }}{{ if and (eq .Type "news") (not .Date.IsZero) }}<time class="eyebrow" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>{{ end }}{{ end }}
-<h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-<p>{{ .Params.summary | default .Description | default (.Summary | plainify) }}</p>
-{{ if eq .Type "activities" }}{{ with .Params.starts }}<time class="card-meta" datetime="{{ . }}">{{ time.AsTime . | time.Format ":date_long" }}</time>{{ else }}<span class="card-meta">{{ i18n "unscheduled" }}</span>{{ end }}{{ end }}
-{{ if eq .Type "publications" }}<span class="card-meta">{{ with .Params.year }}{{ if ne . "[A COMPLETAR]" }}{{ i18n "year" }} {{ . }}{{ end }}{{ end }}{{ with .Params.issue }}{{ if ne . "[A COMPLETAR]" }} · {{ i18n "issue" }} {{ . }}{{ end }}{{ end }}</span>{{ end }}
-<span class="card-arrow" aria-hidden="true">↗</span>
-</div></article>
+<article class="card nfb-card{{ if .Params.image }}has-image{{ end }}">
+  {{ with .Params.image }}
+    <div class="card-image">
+      {{ partial "image.html" (dict "page" $ "src" .) }}
+    </div>
+  {{ end }}
+  <div class="card-body">
+    {{ if .Params.demo }}
+      <span class="badge">{{ i18n "demo" }}</span>
+    {{ else }}
+      {{ if and (eq .Type "news") (not .Date.IsZero) }}
+        <time class="eyebrow" datetime="{{ .Date.Format "2006-01-02" }}"
+          >{{ .Date | time.Format ":date_long" }}</time
+        >
+      {{ end }}
+    {{ end }}
+    <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    <p>
+      {{ .Params.summary | default .Description | default (.Summary | plainify) }}
+    </p>
+    {{ if eq .Type "activities" }}
+      {{ with .Params.starts }}
+        <time class="card-meta" datetime="{{ . }}"
+          >{{ time.AsTime . | time.Format ":date_long" }}</time
+        >
+      {{ else }}
+        <span class="card-meta">{{ i18n "unscheduled" }}</span>
+      {{ end }}
+    {{ end }}
+    {{ if eq .Type "publications" }}
+      <span class="card-meta"
+        >{{ with .Params.year }}
+          {{ if ne . "[A COMPLETAR]" }}{{ i18n "year" }} {{ . }}{{ end }}
+        {{ end }}{{ with .Params.issue }}
+          {{ if ne . "[A COMPLETAR]" }}· {{ i18n "issue" }} {{ . }}{{ end }}
+        {{ end }}</span
+      >
+    {{ end }}
+    <span class="card-arrow" aria-hidden="true">↗</span>
+  </div>
+</article>

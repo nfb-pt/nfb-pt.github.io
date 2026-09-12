@@ -1,8 +1,68 @@
 {{ if in (slice "activities" "exhibitions") .Type }}
-<dl class="contact-grid"><div><dt>{{ i18n "date" }}</dt><dd>{{ with .Params.starts }}<time datetime="{{ . }}">{{ time.AsTime . | time.Format ":date_long" }} · {{ time.AsTime . | time.Format "15:04 MST" }}</time>{{ with $.Params.ends }} – <time datetime="{{ . }}">{{ time.AsTime . | time.Format ":date_long" }} · {{ time.AsTime . | time.Format "15:04 MST" }}</time>{{ end }}{{ else }}{{ i18n "pending" }}{{ end }}</dd></div><div><dt>{{ i18n "location" }}</dt><dd>{{ if and .Params.location (ne .Params.location "[A COMPLETAR]") }}{{ .Params.location }}{{ else }}{{ i18n "pending" }}{{ end }}</dd></div></dl>
+  <dl class="contact-grid">
+    <div>
+      <dt>{{ i18n "date" }}</dt>
+      <dd>
+        {{ with .Params.starts }}
+          <time datetime="{{ . }}"
+            >{{ time.AsTime . | time.Format ":date_long" }} ·
+            {{ time.AsTime . | time.Format "15:04 MST" }}</time
+          >{{ with $.Params.ends }}
+            –
+            <time datetime="{{ . }}"
+              >{{ time.AsTime . | time.Format ":date_long" }} ·
+              {{ time.AsTime . | time.Format "15:04 MST" }}</time
+            >
+          {{ end }}
+        {{ else }}
+          {{ i18n "pending" }}
+        {{ end }}
+      </dd>
+    </div>
+    <div>
+      <dt>{{ i18n "location" }}</dt>
+      <dd>
+        {{ if and .Params.location (ne .Params.location "[A COMPLETAR]") }}
+          {{ .Params.location }}
+        {{ else }}
+          {{ i18n "pending" }}
+        {{ end }}
+      </dd>
+    </div>
+  </dl>
 {{ end }}
 {{ if eq .Type "publications" }}
-<dl class="contact-grid">{{ range slice "year" "issue" }}<div><dt>{{ i18n . }}</dt><dd>{{ $v := index $.Params . }}{{ if and $v (ne $v "[A COMPLETAR]") }}{{ $v }}{{ else }}{{ i18n "pending" }}{{ end }}</dd></div>{{ end }}</dl>
-{{ with .Params.download }}<a class="button" href="{{ . | relURL }}">{{ i18n "download" }}{{ with $.Params.file_size }} ({{ . }}){{ end }}</a>{{ else }}<p>{{ i18n "file_pending" }}</p>{{ end }}
+  <dl class="contact-grid">
+    {{ range slice "year" "issue" }}
+      <div>
+        <dt>{{ i18n . }}</dt>
+        <dd>
+          {{ $v := index $.Params . }}{{ if and $v (ne $v "[A COMPLETAR]") }}
+            {{ $v }}
+          {{ else }}
+            {{ i18n "pending" }}
+          {{ end }}
+        </dd>
+      </div>
+    {{ end }}
+  </dl>
+  {{ with .Params.download }}
+    <a class="button" href="{{ . | relURL }}"
+      >{{ i18n "download" }}{{ with $.Params.file_size }}({{ . }}){{ end }}</a
+    >
+  {{ else }}
+    <p>{{ i18n "file_pending" }}</p>
+  {{ end }}
 {{ end }}
-{{ with .Params.gallery }}<h2>{{ i18n "gallery" }}</h2><div class="gallery">{{ range . }}<figure>{{ partial "image.html" (dict "page" $ "src" .image "alt" .alt) }}{{ with .caption }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>{{ end }}</div>{{ end }}
+{{ with .Params.gallery }}
+  <h2>{{ i18n "gallery" }}</h2>
+  <div class="gallery">
+    {{ range . }}
+      <figure>
+        {{ partial "image.html" (dict "page" $ "src" .image "alt" .alt) }}{{ with .caption }}
+          <figcaption>{{ . }}</figcaption>
+        {{ end }}
+      </figure>
+    {{ end }}
+  </div>
+{{ end }}

@@ -1,19 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="{{ .Language.Locale }}">
-{{ partial "head.html" . }}
-<body class="nfb page-{{ .Kind }} type-{{ .Type }}">
-<a class="skip-link" href="#main">{{ i18n "skip" }}</a>
-{{ partial "header.html" . }}
-<main id="main"{{ if and .IsPage (ne .Layout "search") (not .Params.demo) }} data-pagefind-body{{ end }}{{ if .Params.demo }} data-pagefind-ignore="all"{{ end }}>
-{{ if not .IsHome }}<header class="page-heading container wrap">
-  <a class="eyebrow breadcrumb" href="{{ .Site.Home.RelPermalink }}">{{ i18n "home" }} <span aria-hidden="true">/</span></a>
-  <h1 data-pagefind-meta="title">{{ .Title }}</h1>
-  {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
-</header>{{ end }}
-{{ block "main" . }}{{ end }}
-</main>
-{{ partial "footer.html" . }}
-{{ $js := resources.Get "js/nfb.js" | minify | fingerprint }}
-<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
-</body>
+  {{ partial "head.html" . }}
+  <body class="nfb page-{{ .Kind }} type-{{ .Type }}">
+    <a class="skip-link" href="#main">{{ i18n "skip" }}</a>
+    {{ partial "header.html" . }}
+    <main
+      id="main"
+      {{ if and .IsPage (ne .Layout "search") (not .Params.demo) }}
+        data-pagefind-body
+      {{ end }}{{ if .Params.demo }}data-pagefind-ignore="all"{{ end }}
+    >
+      {{ if not .IsHome }}
+        <header class="page-heading container wrap">
+          <a class="eyebrow breadcrumb" href="{{ .Site.Home.RelPermalink }}"
+            >{{ i18n "home" }} <span aria-hidden="true">/</span></a
+          >
+          <h1 data-pagefind-meta="title">
+            {{ if eq .Kind "404" }}
+              {{ i18n "not_found" }}
+            {{ else }}
+              {{ .Title }}
+            {{ end }}
+          </h1>
+          {{ with .Description }}<p class="lead">{{ . }}</p>{{ end }}
+        </header>
+      {{ end }}
+      {{ block "main" . }}{{ end }}
+    </main>
+    {{ partial "footer.html" . }}
+    {{ $js := resources.Get "js/nfb.js" | minify | fingerprint }}
+    <script
+      src="{{ $js.RelPermalink }}"
+      integrity="{{ $js.Data.Integrity }}"
+      defer
+    ></script>
+  </body>
 </html>

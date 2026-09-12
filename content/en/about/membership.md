@@ -1,11 +1,13 @@
 ---
-{
-  "title": "Membership",
-  "translationKey": "membership",
-  "editorial_notes": "[A COMPLETAR] Texto institucional, cronologia, titulares e mandatos ou condições de adesão, conforme a página.",
-  "weight": 4,
-  "description": "Share your interest in stamps, collections and the stories behind them. Beginners and experienced collectors alike can find new perspectives in philately."
-}
+title: Membership
+translationKey: membership
+editorial_notes:
+  "[A COMPLETAR] Texto institucional, cronologia, titulares e mandatos ou condições
+  de adesão, conforme a página."
+weight: 4
+description:
+  Share your interest in stamps, collections and the stories behind them. Beginners and
+  experienced collectors alike can find new perspectives in philately.
 ---
 
 Share your interest in stamps, collections and the stories behind them. Beginners and experienced collectors alike can find new perspectives in philately.

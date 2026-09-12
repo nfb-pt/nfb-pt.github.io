@@ -1,13 +1,8 @@
 ---
-{
-  "title": "Publicações",
-  "translationKey": "publications",
-  "description": "Conhecimento para consultar, guardar e partilhar.",
-  "type": "publications",
-  "cascade": {
-    "type": "publications"
-  }
-}
+title: Publicações
+translationKey: publications
+description: Conhecimento para consultar, guardar e partilhar.
+type: publications
+cascade:
+  type: publications
 ---
-
-

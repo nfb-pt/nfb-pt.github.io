@@ -1,182 +1,127 @@
-{
-  "home": {
-    "other": "Início"
-  },
-  "menu": {
-    "other": "Menu"
-  },
-  "navigation": {
-    "other": "Navegação principal"
-  },
-  "language": {
-    "other": "Idioma"
-  },
-  "search": {
-    "other": "Pesquisar"
-  },
-  "skip": {
-    "other": "Saltar para o conteúdo"
-  },
-  "discover": {
-    "other": "Conhecer o Núcleo"
-  },
-  "explore": {
-    "other": "Explorar a filatelia"
-  },
-  "all_news": {
-    "other": "Todas as notícias"
-  },
-  "all_activities": {
-    "other": "Ver atividades"
-  },
-  "all_exhibitions": {
-    "other": "Ver exposições"
-  },
-  "all_publications": {
-    "other": "Ver publicações"
-  },
-  "read": {
-    "other": "Ler mais"
-  },
-  "demo": {
-    "other": "DEMO · Exemplo de conteúdo"
-  },
-  "demo_notice": {
-    "other": "Este é um exemplo de apresentação. Não anuncia uma notícia, evento ou publicação real do Núcleo."
-  },
-  "upcoming": {
-    "other": "Próximas atividades"
-  },
-  "previous": {
-    "other": "Atividades anteriores"
-  },
-  "unscheduled": {
-    "other": "Datas a anunciar"
-  },
-  "examples": {
-    "other": "Exemplos de apresentação"
-  },
-  "no_activities": {
-    "other": "Novos encontros, novas descobertas."
-  },
-  "agenda_copy": {
-    "other": "A agenda será publicada quando existirem atividades confirmadas. Explore entretanto os caminhos da filatelia."
-  },
-  "join": {
-    "other": "Tornar-se sócio"
-  },
-  "association": {
-    "other": "O Núcleo"
-  },
-  "collecting": {
-    "other": "A arte de colecionar"
-  },
-  "news_label": {
-    "other": "Do Núcleo e da filatelia"
-  },
-  "exhibitions_label": {
-    "other": "Coleções em destaque"
-  },
-  "publications_label": {
-    "other": "A biblioteca do colecionador"
-  },
-  "contact": {
-    "other": "Contactos"
-  },
-  "contact_pending": {
-    "other": "Informação a disponibilizar após confirmação."
-  },
-  "address": {
-    "other": "Morada postal"
-  },
-  "email": {
-    "other": "Email"
-  },
-  "phone": {
-    "other": "Telefone"
-  },
-  "meeting_place": {
-    "other": "Local dos encontros"
-  },
-  "meeting_schedule": {
-    "other": "Horário dos encontros"
-  },
-  "social": {
-    "other": "Redes sociais"
-  },
-  "pending": {
-    "other": "Por confirmar"
-  },
-  "credits": {
-    "other": "Créditos e licenças"
-  },
-  "footer_copy": {
-    "other": "Selos que contam histórias. Uma paixão que nos aproxima."
-  },
-  "footer_nav": {
-    "other": "Descobrir"
-  },
-  "footer_location": {
-    "other": "Braga, Portugal"
-  },
-  "rss": {
-    "other": "Subscrever notícias por RSS"
-  },
-  "back": {
-    "other": "Voltar à secção"
-  },
-  "by": {
-    "other": "Por"
-  },
-  "date": {
-    "other": "Data"
-  },
-  "location": {
-    "other": "Local"
-  },
-  "year": {
-    "other": "Ano"
-  },
-  "issue": {
-    "other": "Número"
-  },
-  "download": {
-    "other": "Consultar / descarregar PDF"
-  },
-  "file_pending": {
-    "other": "Documento a disponibilizar."
-  },
-  "gallery": {
-    "other": "Galeria"
-  },
-  "empty": {
-    "other": "Novos conteúdos serão publicados aqui."
-  },
-  "previous_page": {
-    "other": "Página anterior"
-  },
-  "next_page": {
-    "other": "Página seguinte"
-  },
-  "pagination": {
-    "other": "Paginação"
-  },
-  "not_found": {
-    "other": "Página não encontrada"
-  },
-  "not_found_copy": {
-    "other": "Este endereço não corresponde a uma página disponível."
-  },
-  "search_hint": {
-    "other": "A pesquisa apresenta resultados no idioma desta página."
-  },
-  "search_unavailable": {
-    "other": "A pesquisa fica disponível após a compilação com Pagefind. Pode explorar o site através do menu."
-  },
-  "tags": {
-    "other": "Temas"
-  },
-  "categories": {
-    "other": "Categorias"
-  }
-}
+home:
+  other: Início
+menu:
+  other: Menu
+navigation:
+  other: Navegação principal
+language:
+  other: Idioma
+search:
+  other: Pesquisar
+skip:
+  other: Saltar para o conteúdo
+discover:
+  other: Conhecer o Núcleo
+explore:
+  other: Explorar a filatelia
+all_news:
+  other: Todas as notícias
+all_activities:
+  other: Ver atividades
+all_exhibitions:
+  other: Ver exposições
+all_publications:
+  other: Ver publicações
+read:
+  other: Ler mais
+demo:
+  other: DEMO · Exemplo de conteúdo
+demo_notice:
+  other: Este é um exemplo de apresentação. Não anuncia uma notícia, evento ou
+    publicação real do Núcleo.
+upcoming:
+  other: Próximas atividades
+previous:
+  other: Atividades anteriores
+unscheduled:
+  other: Datas a anunciar
+examples:
+  other: Exemplos de apresentação
+no_activities:
+  other: Novos encontros, novas descobertas.
+agenda_copy:
+  other:
+    A agenda será publicada quando existirem atividades confirmadas. Explore
+    entretanto os caminhos da filatelia.
+join:
+  other: Tornar-se sócio
+association:
+  other: O Núcleo
+collecting:
+  other: A arte de colecionar
+news_label:
+  other: Do Núcleo e da filatelia
+exhibitions_label:
+  other: Coleções em destaque
+publications_label:
+  other: A biblioteca do colecionador
+contact:
+  other: Contactos
+contact_pending:
+  other: Informação a disponibilizar após confirmação.
+address:
+  other: Morada postal
+email:
+  other: Email
+phone:
+  other: Telefone
+meeting_place:
+  other: Local dos encontros
+meeting_schedule:
+  other: Horário dos encontros
+social:
+  other: Redes sociais
+pending:
+  other: Por confirmar
+credits:
+  other: Créditos e licenças
+footer_copy:
+  other: Selos que contam histórias. Uma paixão que nos aproxima.
+footer_nav:
+  other: Descobrir
+footer_location:
+  other: Braga, Portugal
+rss:
+  other: Subscrever notícias por RSS
+back:
+  other: Voltar à secção
+by:
+  other: Por
+date:
+  other: Data
+location:
+  other: Local
+year:
+  other: Ano
+issue:
+  other: Número
+download:
+  other: Consultar / descarregar PDF
+file_pending:
+  other: Documento a disponibilizar.
+gallery:
+  other: Galeria
+empty:
+  other: Novos conteúdos serão publicados aqui.
+previous_page:
+  other: Página anterior
+next_page:
+  other: Página seguinte
+pagination:
+  other: Paginação
+not_found:
+  other: Página não encontrada
+not_found_copy:
+  other: Este endereço não corresponde a uma página disponível.
+search_hint:
+  other: A pesquisa apresenta resultados no idioma desta página.
+search_unavailable:
+  other:
+    A pesquisa fica disponível após a compilação com Pagefind. Pode explorar
+    o site através do menu.
+tags:
+  other: Temas
+categories:
+  other: Categorias
+section_contents:
+  other: Conteúdos desta secção

@@ -1,6 +1,4 @@
 ---
-{
-  "title": "Categorias",
-  "translationKey": "categories"
-}
+title: Categorias
+translationKey: categories
 ---

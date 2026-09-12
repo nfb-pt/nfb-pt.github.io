@@ -1,0 +1,1 @@
+Place approved, accessible PDFs here. Use a descriptive lowercase filename, for example `nfb-bulletin-2027-01.pdf`. Set `download: documents/filename.pdf` on its publication page. Do not include sample PDFs presented as real publications. Confirm permission to distribute and provide searchable text, document language and a meaningful title in PDF metadata.

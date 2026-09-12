@@ -1,2 +1,7 @@
-{{ define "main" }}<section class="section container wrap"><p>{{ i18n "search_hint" }}</p><div id="search"><p>{{ i18n "search_unavailable" }}</p></div></section>
-<script>window.addEventListener("DOMContentLoaded", function () { if (typeof PagefindUI !== "undefined") { document.querySelector("#search").replaceChildren(); new PagefindUI({ element: "#search", showSubResults: true, showImages: false, translations: {{ if eq .Language.Lang "pt" }}{placeholder: "Pesquisar no site", zero_results: "Sem resultados para [SEARCH_TERM]", clear_search: "Limpar", load_more: "Carregar mais resultados", search_label: "Pesquisar neste site", searching: "A pesquisar…", many_results: "[COUNT] resultados para [SEARCH_TERM]", one_result: "[COUNT] resultado para [SEARCH_TERM]"}{{ else }}{placeholder: "Search this site"}{{ end }} }); } });</script>{{ end }}
+{{ define "main" }}
+  <section class="section container wrap">
+    <p>{{ i18n "search_hint" }}</p>
+    <div id="search"><p>{{ i18n "search_unavailable" }}</p></div>
+  </section>
+<script>window.addEventListener("DOMContentLoaded", function () { if (typeof PagefindUI !== "undefined") { document.querySelector("#search").replaceChildren(); new PagefindUI({ element: "#search", showSubResults: true, showImages: false, translations: {{ if eq .Language.Lang "pt" }}{placeholder: "Pesquisar no site", zero_results: "Sem resultados para [SEARCH_TERM]", clear_search: "Limpar", load_more: "Carregar mais resultados", search_label: "Pesquisar neste site", searching: "A pesquisar…", many_results: "[COUNT] resultados para [SEARCH_TERM]", one_result: "[COUNT] resultado para [SEARCH_TERM]"}{{ else }}{placeholder: "Search this site"}{{ end }} }); } });</script>
+{{ end }}

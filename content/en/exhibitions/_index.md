@@ -1,13 +1,8 @@
 ---
-{
-  "title": "Exhibitions",
-  "translationKey": "exhibitions",
-  "description": "Collections worth a closer look.",
-  "type": "exhibitions",
-  "cascade": {
-    "type": "exhibitions"
-  }
-}
+title: Exhibitions
+translationKey: exhibitions
+description: Collections worth a closer look.
+type: exhibitions
+cascade:
+  type: exhibitions
 ---
-
-

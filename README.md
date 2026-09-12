@@ -6,7 +6,7 @@
 
 The [TODO Group](https://todogroup.org/) website serves as the central hub for our community, hosting resources, blog content, guides, and information about OSPOs (Open Source Program Offices). All contributions should align with our mission to provide vendor-neutral, practical resources that help organizations run effective open source programs.
 
-## Contributing 
+## Contributing
 
 Please read our [contributing guidelines](https://github.com/todogroup/todogroup.org/blob/main/CONTRIBUTING.md) to get started
 
@@ -14,9 +14,9 @@ Please read our [contributing guidelines](https://github.com/todogroup/todogroup
 
 This site is built using the [Hugo](https://gohugo.io) static site generator and hosted on [Netlify](https://netlify.com). The site uses the [Dot-Org Theme for Hugo](https://github.com/cncf/dot-org-hugo-theme) as a base and then has its own customisations.
 
- In order to build or locally develop the website, you'll need to install [Hugo](https://gohugo.io) and [node.js](https://nodejs.org/en).
+In order to build or locally develop the website, you'll need to install [Hugo](https://gohugo.io) and [node.js](https://nodejs.org/en).
 
- If you don't have them installed, you can install them via [brew.sh](https://brew.sh).
+If you don't have them installed, you can install them via [brew.sh](https://brew.sh).
 
 ```bash
 # macOS

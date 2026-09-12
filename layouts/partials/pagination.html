@@ -1,1 +1,11 @@
-{{ if gt .Paginator.TotalPages 1 }}<nav class="pagination" aria-label="{{ i18n "pagination" }}">{{ with .Paginator.Prev }}<a href="{{ .URL }}">← {{ i18n "previous_page" }}</a>{{ end }}<span>{{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }}</span>{{ with .Paginator.Next }}<a href="{{ .URL }}">{{ i18n "next_page" }} →</a>{{ end }}</nav>{{ end }}
+{{ if gt .Paginator.TotalPages 1 }}
+  <nav class="pagination" aria-label="{{ i18n "pagination" }}">
+    {{ with .Paginator.Prev }}
+      <a href="{{ .URL }}">← {{ i18n "previous_page" }}</a>
+    {{ end }}<span
+      >{{ .Paginator.PageNumber }} / {{ .Paginator.TotalPages }}</span
+    >{{ with .Paginator.Next }}
+      <a href="{{ .URL }}">{{ i18n "next_page" }} →</a>
+    {{ end }}
+  </nav>
+{{ end }}

@@ -1,4 +1,4 @@
-theme: dot-org-hugo-theme
+# Pinned theme is imported once below, with only the assets we use.
 title: Núcleo Filatélico de Braga
 baseURL: https://nfb-pt.github.io/
 timeZone: Europe/Lisbon

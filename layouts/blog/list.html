@@ -1,2 +1,8 @@
 {{/* Compatibility override: the pinned theme references a removed Hugo pagination template. */}}
-{{ define "main" }}<section class="section container wrap">{{ .Content }}{{ range (.Paginate .RegularPages).Pages }}{{ partial "card.html" . }}{{ end }}{{ partial "pagination.html" . }}</section>{{ end }}
+{{ define "main" }}
+  <section class="section container wrap">
+    {{ .Content }}{{ range (.Paginate .RegularPages).Pages }}
+      {{ partial "card.html" . }}
+    {{ end }}{{ partial "pagination.html" . }}
+  </section>
+{{ end }}
