@@ -1,17 +1,10 @@
-{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\" ?>" | safeHTML }}
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
-    <channel>
-        <title>{{ .Site.Title }}</title>
-        <description>TODO is an open community of practitioners who aim to create and share knowledge, collaborate on practices, tools, and other ways to run successful and effective Open Source Program Offices and similar Open Source initiatives.</description>
-        <link>{{ .Site.BaseURL }}</link>
-        <atom:link href="{{ .Site.BaseURL }}index.xml" rel="self" type="application/rss+xml" />
-        {{ range where .Site.RegularPages "Section" "eq" "blog" }}
-        <item>
-            <title>{{ .Title }}</title>
-            <guid>{{ .Permalink }}</guid>
-            <link>{{ .Permalink }}</link>
-            <description>{{ .Summary | replaceRE "&ldquo;" "\"" | replaceRE "&rdquo;" "\"" | replaceRE "&rsquo;" "'" | replaceRE "&mdash;" "—" | safeHTML }}</description>
-        </item>
-        {{ end }}
-    </channel>
-</rss>
+{{ `<?xml version="1.0" encoding="utf-8"?>` | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
+<title>{{ .Title }} | {{ .Site.Title }}</title><link>{{ .Permalink }}</link>
+<description>{{ .Description | default .Site.Params.description }}</description>
+<language>{{ .Language.Locale }}</language>
+{{ with .OutputFormats.Get "RSS" }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml"/>{{ end }}
+{{ $items := .RegularPages }}{{ if .IsHome }}{{ $items = where .Site.RegularPages "Type" "news" }}{{ end }}
+{{ range first 20 $items.ByDate.Reverse }}{{ if and (not .Params.demo) (not .Date.IsZero) }}
+<item><title>{{ .Title }}</title><link>{{ .Permalink }}</link><guid>{{ .Permalink }}</guid><pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate><description>{{ .Summary | plainify }}</description></item>
+{{ end }}{{ end }}</channel></rss>

@@ -1,7 +1,7 @@
 {
   "pt": {
-    "languageName": "Português",
-    "languageCode": "pt-PT",
+    "label": "Português",
+    "locale": "pt-PT",
     "contentDir": "content/pt",
     "weight": 1,
     "title": "Núcleo Filatélico de Braga",
@@ -62,8 +62,8 @@
     }
   },
   "en": {
-    "languageName": "English",
-    "languageCode": "en",
+    "label": "English",
+    "locale": "en",
     "contentDir": "content/en",
     "weight": 2,
     "title": "Núcleo Filatélico de Braga",

@@ -1,0 +1,6 @@
+---
+{
+  "title": "Categories",
+  "translationKey": "categories"
+}
+---

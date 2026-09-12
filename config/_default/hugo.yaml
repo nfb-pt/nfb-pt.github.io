@@ -6,7 +6,8 @@ defaultContentLanguage: pt
 defaultContentLanguageInSubdir: false
 enableRobotsTXT: true
 summaryLength: 30
-paginate: 9
+pagination:
+  pagerSize: 9
 removePathAccents: true
 taxonomies:
   category: categories

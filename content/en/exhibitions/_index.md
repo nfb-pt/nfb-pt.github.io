@@ -3,7 +3,10 @@
   "title": "Exhibitions",
   "translationKey": "exhibitions",
   "description": "Collections worth a closer look.",
-  "type": "exhibitions"
+  "type": "exhibitions",
+  "cascade": {
+    "type": "exhibitions"
+  }
 }
 ---
 

@@ -9,3 +9,4 @@ static/css/style-*.css
 *.code-workspace
 static/pagefind
 hugo_stats.json
+.cache/

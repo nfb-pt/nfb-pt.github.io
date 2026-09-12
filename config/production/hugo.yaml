@@ -1,2 +1,3 @@
 baseURL: https://nfb-pt.github.io/
-minify: true
+minify:
+  minifyOutput: true

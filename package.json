@@ -1,36 +1,36 @@
 {
-  "name": "dot-org-hugo-theme",
+  "name": "nucleo-filatelico-braga-website",
   "version": "1.0.0",
-  "description": "",
-  "main": "none.js",
+  "private": true,
+  "description": "Bilingual Hugo website for N\u00facleo Filat\u00e9lico de Braga",
+  "license": "CC-BY-4.0",
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
-      "build": "hugo --theme=dot-org-hugo-theme",
-      "start": "hugo serve --logLevel info --configDir=config --buildDrafts --buildFuture --ignoreCache --disableFastRender --gc  --printI18nWarnings --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
-      "dev": "npm run dev:start",
-      "dev:start": "hugo serve --logLevel info --configDir=config --buildDrafts --buildFuture --ignoreCache --disableFastRender --gc  --printI18nWarnings --printMemoryUsage --printPathWarnings --printUnusedTemplates --templateMetrics --templateMetricsHints",
-      "dev:start:with-pagefind": "hugo --baseURL=/ --theme=dot-org-hugo-theme && npm_config_yes=true npx pagefind --site 'public' --output-subdir '../static/pagefind' && npm run dev:start",
-      "dev:build": "hugo --theme=dot-org-hugo-theme"
+    "build": "node scripts/hugo.mjs --gc --minify --cleanDestinationDir && pagefind --site public",
+    "start": "node scripts/hugo.mjs server --disableFastRender",
+    "dev": "npm run start",
+    "preview": "npm run build && python3 -m http.server 4173 --bind 127.0.0.1 --directory public",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "python3 scripts/check-site.py",
+    "test": "npm run build && npm run check"
   },
-  "repository": {
-      "type": "git",
-      "url": "https://github.com/cncf/dot-org-hugo-theme"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-      "url": "https://github.com/cncf/dot-org-hugo-theme/issues"
-  },
-  "homepage": "https://github.com/cncf/dot-org-hugo-theme#readme",
   "dependencies": {
-      "autoprefixer": "^10.4.16",
-      "hugo-extended": "^0.126.0",
-      "netlify-cli": "^22",
-      "postcss": "^8.4.31",
-      "postcss-cli": "^11"
+    "autoprefixer": "10.5.6",
+    "hugo-extended": "0.166.0",
+    "pagefind": "1.5.2",
+    "postcss": "8.5.28",
+    "postcss-cli": "11.0.1"
   },
   "devDependencies": {
-      "prettier": "^3.0.3",
-      "prettier-plugin-go-template": "^0.0.15"
+    "prettier": "3.9.6",
+    "prettier-plugin-go-template": "0.0.15"
+  },
+  "overrides": {
+    "hugo-extended": {
+      "adm-zip": "0.6.1"
+    }
   }
 }
