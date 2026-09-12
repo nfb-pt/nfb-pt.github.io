@@ -1,40 +1,5 @@
-######################## custom scripts & styles ####################
-
-# Add custom assets relative to /static or via https
-logo_on_white: "/img/todo-logo-on-white.svg"
-logo_on_black: "/img/todo-logo-on-black.svg"
-custom_js: []
-custom_css: []
-
-######################## custom config ####################
-
-### default social share image (can also be set per lang) ###
-images: ["/img/todo-social-share.png"]
-
-github:
-  repo_url: "https://github.com/todogroup/todogroup.org/blob/main"
-  show_edit_link: true
-
-social_links:
-  devstats: ""
-  discord: ""
-  facebook: ""
-  flickr: ""
-  github: "https://github.com/todogroup/todogroup.org"
-  instagram: ""
-  landscape: "https://landscape.todogroup.org"
-  linkedin: "https://www.linkedin.com/company/todo-group/"
-  mastodon: "https://social.lfx.dev/@todogroup"
-  pinterest: ""
-  rss: "https://todogroup.org/index.xml"
-  slack: "https://thetodogroup.slack.com"
-  stackoverflow: ""
-  threads: ""
-  twitter: ""
-  x: "https://twitter.com/todogroup"
-  youtube: "https://youtube.com/@ospology"
-
-# Makes the header sticky on tall screens
+# Set logo to images/brand/logo.svg (or .png) when an approved logo is available.
+logo: ""
+images: [images/brand/nfb-social.png]
 sticky_header: true
-# Enable search in header UI
 show_search: true
