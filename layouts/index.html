@@ -1,90 +1,29 @@
 {{ define "main" }}
-  <div class="columns hero-grid">
-    <div class="hero-grid__col1">
-      <h1 class="title">
-        {{ i18n "hero1" }}<br /><span class="darker">{{ i18n "hero2" }}</span>
-      </h1>
-
-      <h2 class="subhero">{{ i18n "subhero" }}</h2>
-
-      <p class="shortened-width">{{ i18n "explainerText" | markdownify }}</p>
-
-      <a href="{{ relLangURL "/about/about-us" }}" class="button">{{ i18n "explainerButton" }}</a>
+{{ $about := "sobre" }}{{ $philately := "filatelia" }}{{ $news := "noticias" }}{{ $activities := "atividades" }}{{ $exhibitions := "exposicoes" }}{{ $publications := "publicacoes" }}{{ $membership := "sobre/ser-socio" }}
+{{ if eq .Language.Lang "en" }}{{ $about = "about" }}{{ $philately = "philately" }}{{ $news = "news" }}{{ $activities = "activities" }}{{ $exhibitions = "exhibitions" }}{{ $publications = "publications" }}{{ $membership = "about/membership" }}{{ end }}
+<section class="hero container wrap" aria-labelledby="hero-title">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow">{{ .Params.hero_eyebrow }}</span>
+      <h1 id="hero-title">{{ .Params.hero_line }}<span>{{ .Params.hero_accent }}</span></h1>
+      <p class="hero-org">{{ .Site.Title }}</p>
+      <p class="lead">{{ .Params.hero_intro }}</p>
+      <div class="hero-actions"><a class="button" href="{{ (.Site.GetPage $about).RelPermalink }}">{{ i18n "discover" }} <span aria-hidden="true">↗</span></a><a class="button outline" href="{{ (.Site.GetPage $philately).RelPermalink }}">{{ i18n "explore" }}</a></div>
     </div>
-
-    <div class="hero-grid__col2">
-      <img
-        width="585"
-        height="530"
-        src="{{ "img/home-teamwork.png" | relURL }}"
-        alt="People collaborating"
-        loading="eager"
-        decoding="async"
-      />
-    </div>
+    <figure class="hero-art">{{ partial "image.html" (dict "page" . "src" .Params.hero_image "alt" .Params.hero_alt "width" 900 "height" 760 "eager" true) }}<figcaption>{{ .Params.hero_caption }}</figcaption></figure>
   </div>
-
-  <h3 class="h4">{{ i18n "sectionTitle" | markdownify }}</h3>
-
-  <div class="cards columns-3 box-grid">
-    <div class="card">
-      <h2>{{ i18n "sectionTitle1" }}</h2>
-      <p>{{ i18n "sectionText1" | markdownify }}</p>
-      <a href="{{ relLangURL "/community/get-started/" }}" class="button">{{ i18n "sectionButton1" }}</a>
-    </div>
-
-    <div class="card">
-      <h2>{{ i18n "sectionTitle2" }}</h2>
-      <p>{{ i18n "sectionText2" | markdownify }}</p>
-      <a href="{{ relLangURL "/about/associates/" }}" class="button"
-        >{{ i18n "sectionButton2" }}</a
-      >
-    </div>
-
-    <div class="card">
-      <h2>{{ i18n "sectionTitle3" }}</h2>
-      <p>{{ i18n "sectionText3" | markdownify }}</p>
-      <a href="{{ relLangURL "/about/members/" }}" class="button">{{ i18n "sectionButton3" }}</a>
-    </div>
-  </div>
-
-  <hr />
-
-  <div class="columns landscape-grid">
-    <div class="landscape-grid__col1">
-      <a href="https://landscape.todogroup.org/">
-        <img
-          width="300"
-          height="150"
-          loading="lazy"
-          src="{{ "img/ospo-landscape-logo.svg" | relURL }}"
-          alt="{{ i18n "landscapeTitle" }}"
-          decoding="async"
-        />
-      </a>
-      <p>{{ i18n "landscapeText" | markdownify }}</p>
-      <a href="https://landscape.todogroup.org/" class="button"
-        >{{ i18n "landscapeButton" }}</a
-      >
-    </div>
-    <div class="landscape-grid__col2">
-      <div class="floating-effect">
-        <!-- Embed OSPO landscape as a PNG -->
-        <a
-          href="https://landscape.todogroup.org/"
-          alt="{{ i18n "landscapeTitle" }}"
-        >
-          <img
-            src="/img/landscape2.png"
-            alt="{{ i18n "landscapeTitle" }}"
-            width="818"
-            height="492"
-            loading="lazy"
-            class="rounded-corners"
-            decoding="async"
-          />
-        </a>
-      </div>
-    </div>
-  </div>
+</section>
+<section class="intro-band"><div class="intro-grid container wrap"><div><span class="eyebrow">{{ i18n "association" }}</span><h2>{{ .Params.intro_title }}</h2></div><p>{{ .Params.intro_text }}</p></div></section>
+<section class="section container wrap">
+  <div class="section-heading"><div><span class="eyebrow">{{ i18n "news_label" }}</span><h2>{{ (.Site.GetPage $news).Title }}</h2></div><a class="text-link" href="{{ (.Site.GetPage $news).RelPermalink }}">{{ i18n "all_news" }} <span aria-hidden="true">↗</span></a></div>
+  <div class="cards nfb-grid two">{{ range first 2 (where .Site.RegularPages "Type" "news").ByDate.Reverse }}{{ partial "card.html" . }}{{ else }}<p>{{ i18n "empty" }}</p>{{ end }}</div>
+</section>
+<section class="section agenda-section container wrap">
+{{/* The shared activities partial supplies dated real entries and an honest empty state. */}}
+{{ partial "home-activities.html" (dict "page" . "section" (.Site.GetPage $activities)) }}
+</section>
+<section class="collect-band"><div class="section collect-grid container wrap"><figure class="collect-art">{{ partial "image.html" (dict "page" . "src" "images/stamps/collection-study.svg" "alt" .Params.collect_alt) }}</figure><div><span class="eyebrow">{{ i18n "collecting" }}</span><h2>{{ .Params.collect_title }}</h2><p>{{ .Params.collect_text }}</p><a class="button" href="{{ (.Site.GetPage $philately).RelPermalink }}">{{ i18n "explore" }} <span aria-hidden="true">↗</span></a></div></div></section>
+<section class="section container wrap"><div class="section-heading"><div><span class="eyebrow">{{ i18n "exhibitions_label" }}</span><h2>{{ (.Site.GetPage $exhibitions).Title }}</h2></div><a class="text-link" href="{{ (.Site.GetPage $exhibitions).RelPermalink }}">{{ i18n "all_exhibitions" }} <span aria-hidden="true">↗</span></a></div><div class="cards nfb-grid two">{{ range first 2 (where .Site.RegularPages "Type" "exhibitions").ByWeight }}{{ partial "card.html" . }}{{ end }}</div></section>
+<section class="publications-band"><div class="section container wrap"><div class="section-heading"><div><span class="eyebrow">{{ i18n "publications_label" }}</span><h2>{{ (.Site.GetPage $publications).Title }}</h2></div><a class="text-link" href="{{ (.Site.GetPage $publications).RelPermalink }}">{{ i18n "all_publications" }} <span aria-hidden="true">↗</span></a></div><div class="cards nfb-grid two">{{ range first 1 (where .Site.RegularPages "Type" "publications").ByWeight }}{{ partial "card.html" . }}{{ end }}{{ with .Site.GetPage (printf "%s/%s" $philately (cond (eq .Language.Lang "pt") "literatura-filatelica" "philatelic-literature")) }}{{ partial "card.html" . }}{{ end }}</div></div></section>
+<section class="join-band container wrap"><span class="eyebrow">{{ .Site.Title }}</span><h2>{{ .Params.join_title }}</h2><p>{{ .Params.join_text }}</p><a class="button" href="{{ (.Site.GetPage $membership).RelPermalink }}">{{ i18n "join" }} <span aria-hidden="true">↗</span></a></section>
 {{ end }}

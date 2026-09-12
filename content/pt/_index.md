@@ -9,6 +9,7 @@
   "hero_intro": "A promover a filatelia e o colecionismo em Braga desde 1981.",
   "hero_image": "images/stamps/braga-postal-composition.svg",
   "hero_alt": "Composição ilustrada com selos imaginários, um arco e marcas postais; não representa uma emissão postal real.",
+  "collect_alt": "Composição ilustrativa de dois selos imaginários sobre natureza e património.",
   "hero_caption": "Uma homenagem gráfica à arte de colecionar.",
   "intro_title": "Uma paixão que se partilha.",
   "intro_text": "O Núcleo Filatélico de Braga é uma associação de filatelia e colecionismo sediada em Braga. Um lugar para aproximar curiosos e colecionadores, partilhar olhares e descobrir as histórias que cada selo pode contar.",

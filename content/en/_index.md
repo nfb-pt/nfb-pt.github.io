@@ -9,6 +9,7 @@
   "hero_intro": "Promoting philately and stamp collecting in Braga since 1981.",
   "hero_image": "images/stamps/braga-postal-composition.svg",
   "hero_alt": "Illustrated composition of imaginary stamps, an arch and postmarks; not an actual postal issue.",
+  "collect_alt": "Illustrated composition of two imaginary stamps about nature and heritage.",
   "hero_caption": "A graphic tribute to the art of collecting.",
   "intro_title": "A passion to share.",
   "intro_text": "Núcleo Filatélico de Braga is a philatelic and stamp collecting association based in Braga, Portugal. A place for newcomers and collectors to share perspectives and discover the stories each stamp can tell.",
