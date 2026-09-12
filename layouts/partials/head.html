@@ -1,29 +1,34 @@
-{{ $title := cond .IsHome .Site.Title (print .Title " | " .Site.Title) }}
-{{ $description := .Description | default (.Summary | truncate 160) | default .Site.Params.description | default "" }}
-
+{{ $title := cond .IsHome .Site.Title (printf "%s | %s" .Title .Site.Title) }}
+{{ $description := .Description | default (.Summary | plainify | truncate 160) | default .Site.Params.description }}
+{{ $image := "images/brand/nfb-social.png" | absURL }}
+{{ with .Params.image }}{{ $r := $.Resources.GetMatch . | default (resources.Get .) }}{{ with $r }}{{ if ne .MediaType.SubType "svg" }}{{ $image = .Permalink }}{{ end }}{{ end }}{{ end }}
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    {{- partial "head/csp.html" . }}
-    <title>{{ $title }}</title>
-    <meta name="description" content="{{ $description }}" />
-
-    {{ if .Params.noindex }}
-    <meta name="robots" content="noindex, nofollow" />
-    {{ end }}
-
-    {{- partial "head/preload.html" . }}
-    {{- partial "head/css.html" . }}
-    {{- if and .IsPage (eq .Section "blog") }}
-    {{- partial "blog/social.html" . }}
-    {{- else }}
-    {{- template "_internal/opengraph.html" . -}}
-    {{- partial "head/twitter-cards.html" . }}
-    {{- end }}
-    {{- partial "head/published-time.html" . }}
-    {{- partial "head/favicons.html" . }}
-    {{- template "_internal/google_analytics.html" . -}}
-    {{- partial "head/custom-css.html" . }}
-    {{- partial "head/custom-head.html" . }}
-    {{- partial "head/sticky-header.html" . }}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{ range .AllTranslations }}<link rel="alternate" hreflang="{{ .Language.LanguageCode }}" href="{{ .Permalink }}">{{ end }}
+{{ range .AllTranslations }}{{ if eq .Language.Lang "pt" }}<link rel="alternate" hreflang="x-default" href="{{ .Permalink }}">{{ end }}{{ end }}
+{{ if or .Params.noindex .Params.demo }}<meta name="robots" content="noindex, follow">{{ end }}
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:type" content="{{ if and .IsPage (eq .Type "news") }}article{{ else }}website{{ end }}">
+<meta property="og:locale" content="{{ if eq .Language.Lang "pt" }}pt_PT{{ else }}en_GB{{ end }}">
+<meta property="og:locale:alternate" content="{{ if eq .Language.Lang "pt" }}en_GB{{ else }}pt_PT{{ end }}">
+<meta property="og:image" content="{{ $image }}">
+<meta property="og:image:alt" content="{{ .Params.image_alt | default .Site.Title }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $image }}">
+{{ if and (eq .Type "news") (not .Date.IsZero) }}<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">{{ end }}
+<meta name="theme-color" content="#173e45">
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+{{ $style := resources.Get "scss/styles.scss" | resources.ToCSS (dict "outputStyle" "compressed") | resources.PostCSS | fingerprint }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+{{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="{{ $.Title }}" href="{{ .Permalink }}">{{ end }}
+{{ if eq .Layout "search" }}<link rel="stylesheet" href="{{ "pagefind/pagefind-ui.css" | relURL }}"><script src="{{ "pagefind/pagefind-ui.js" | relURL }}" defer></script>{{ end }}
 </head>

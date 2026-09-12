@@ -1,0 +1,12 @@
+{{ $page := .page }}{{ $src := .src | default $page.Params.image }}{{ $alt := .alt | default $page.Params.image_alt | default "" }}
+{{ $image := $page.Resources.GetMatch $src | default (resources.Get $src) }}
+{{ if $image }}
+{{ $loading := "lazy" }}{{ if .eager }}{{ $loading = "eager" }}{{ end }}
+{{ if eq $image.MediaType.SubType "svg" }}
+<img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" width="{{ .width | default 900 }}" height="{{ .height | default 650 }}" loading="{{ $loading }}" decoding="async"{{ if .eager }} fetchpriority="high"{{ end }}>
+{{ else }}
+{{ $large := $image.Resize "1200x webp q82" }}{{ if lt $image.Width 1200 }}{{ $large = $image }}{{ end }}
+{{ $small := $image.Resize "600x webp q80" }}{{ if lt $image.Width 600 }}{{ $small = $image }}{{ end }}
+<img src="{{ $large.RelPermalink }}" srcset="{{ $small.RelPermalink }} {{ $small.Width }}w, {{ $large.RelPermalink }} {{ $large.Width }}w" sizes="{{ .sizes | default "(max-width: 700px) 100vw, 50vw" }}" width="{{ $large.Width }}" height="{{ $large.Height }}" alt="{{ $alt }}" loading="{{ $loading }}" decoding="async"{{ if .eager }} fetchpriority="high"{{ end }}>
+{{ end }}
+{{ else }}{{ errorf "Missing image %q on %s" $src $page.Path }}{{ end }}

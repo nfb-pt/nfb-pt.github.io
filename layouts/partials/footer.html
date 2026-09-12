@@ -1,0 +1,11 @@
+<footer class="nfb-footer">
+<div class="container wrap">
+  <div class="footer-grid">
+    <div class="footer-identity"><a class="nfb-brand" href="{{ .Site.Home.RelPermalink }}"><span class="nfb-monogram" aria-hidden="true">NFB<span>BRAGA</span></span><span class="nfb-wordmark">Núcleo Filatélico<span>de Braga</span></span></a><p>{{ i18n "footer_copy" }}</p><span class="eyebrow">{{ i18n "footer_location" }}</span></div>
+    <nav aria-label="{{ i18n "association" }}"><h2>{{ i18n "association" }}</h2><ul>{{ $about := "sobre" }}{{ if eq .Language.Lang "en" }}{{ $about = "about" }}{{ end }}{{ range (.Site.GetPage $about).Pages.ByWeight }}<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>{{ end }}</ul></nav>
+    <nav aria-label="{{ i18n "footer_nav" }}"><h2>{{ i18n "footer_nav" }}</h2><ul>{{ range .Site.Menus.main }}{{ if in (slice "philately" "news" "activities" "exhibitions" "publications") .Identifier }}<li><a href="{{ .URL }}">{{ .Name }}</a></li>{{ end }}{{ end }}</ul></nav>
+    <div><h2>{{ i18n "contact" }}</h2><p>{{ i18n "contact_pending" }}</p>{{ $contact := "contactos" }}{{ if eq .Language.Lang "en" }}{{ $contact = "contact" }}{{ end }}<a class="text-link" href="{{ (.Site.GetPage $contact).RelPermalink }}">{{ i18n "contact" }} <span aria-hidden="true">↗</span></a></div>
+  </div>
+  <div class="footer-bottom"><span>© {{ now.Year }} Núcleo Filatélico de Braga</span><div>{{ $credits := "creditos" }}{{ $news := "noticias" }}{{ if eq .Language.Lang "en" }}{{ $credits = "credits" }}{{ $news = "news" }}{{ end }}<a href="{{ (.Site.GetPage $credits).RelPermalink }}">{{ i18n "credits" }}</a><a href="{{ ((.Site.GetPage $news).OutputFormats.Get "RSS").RelPermalink }}">RSS</a><span>Hugo · Dot Org Theme</span></div></div>
+</div>
+</footer>

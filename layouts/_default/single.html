@@ -1,0 +1,11 @@
+{{ define "main" }}
+<article class="section container wrap article-layout">
+{{ if .Params.demo }}<aside class="notice"><strong>{{ i18n "demo" }}</strong><p>{{ i18n "demo_notice" }}</p></aside>{{ end }}
+{{ if eq .Type "news" }}<div class="article-meta">{{ if not .Date.IsZero }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date | time.Format ":date_long" }}</time>{{ end }}{{ with .Params.author }}<span>{{ i18n "by" }} {{ . }}</span>{{ end }}</div>{{ end }}
+{{ with .Params.image }}<figure class="featured-image">{{ partial "image.html" (dict "page" $ "src" . "eager" true) }}{{ with $.Params.image_caption }}<figcaption>{{ . }}</figcaption>{{ end }}</figure>{{ end }}
+<div class="prose">{{ .Content }}</div>
+{{ partial "item-details.html" . }}
+{{ range slice "categories" "tags" }}{{ with $.GetTerms . }}<ul class="tags">{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}</ul>{{ end }}{{ end }}
+{{ with .Parent }}{{ if not .IsHome }}<a class="text-link back-link" href="{{ .RelPermalink }}">← {{ i18n "back" }}</a>{{ end }}{{ end }}
+</article>
+{{ end }}

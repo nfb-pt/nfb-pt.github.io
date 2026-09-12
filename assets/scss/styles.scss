@@ -1,0 +1,12 @@
+// Root override: retain the theme's foundation and component primitives.
+@import "variables";
+@import "normalize";
+@import "accessibility";
+@import "fonts";
+@import "global";
+@import "typography";
+@import "buttons";
+@import "images";
+@import "shortcodes/card";
+@import "shortcodes/columns";
+@import "nfb";

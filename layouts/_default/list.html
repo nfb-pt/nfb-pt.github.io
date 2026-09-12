@@ -1,0 +1,9 @@
+{{ define "main" }}
+<section class="section container wrap">
+{{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+{{ $pages := .Pages.ByWeight }}{{ if eq .Type "news" }}{{ $pages = .RegularPages.ByDate.Reverse }}{{ end }}
+{{ $paginator := .Paginate $pages }}
+<div class="cards nfb-grid">{{ range $paginator.Pages }}{{ partial "card.html" . }}{{ else }}<p>{{ i18n "empty" }}</p>{{ end }}</div>
+{{ partial "pagination.html" . }}
+</section>
+{{ end }}

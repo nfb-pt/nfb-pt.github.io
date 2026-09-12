@@ -1,0 +1,1 @@
+Place the approved logo here as logo.svg or logo.png, then set `logo: images/brand/logo.svg` in config/_default/params.yaml. The present text/graphic lockup is temporary, not an official logo. Suggested SVG viewBox ratio: 240:64. Keep readable at 200 px wide. See root README for licensing and image guidance.
