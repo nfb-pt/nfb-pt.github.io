@@ -58,7 +58,7 @@ Alternativamente, com Docker e o submódulo já inicializado, execute `./run-hug
 | `themes/dot-org-hugo-theme/`     | Tema importado; não editar diretamente                       |
 | `scripts/`                       | Compilação e verificações                                    |
 
-O tema é importado uma única vez através de `module.imports`, a partir do submódulo local. Importam-se os templates, os assets e as fontes; os logótipos, ícones e imagens genéricas do tema ficam fora da publicação. Os overrides locais mantêm a base tipográfica e os padrões de cartões, secções e rodapé. A navegação usa JavaScript local pequeno para controlar estado e foco de forma acessível. `layouts/blog/list.html` é um override de compatibilidade: impede que um template não utilizado do tema invoque a antiga paginação interna removida do Hugo.
+O tema é importado uma única vez através de `module.imports`, a partir do submódulo local. Importam-se os templates, os assets e as fontes; os logótipos, ícones e imagens genéricas do tema ficam fora da publicação. Os overrides locais mantêm a base tipográfica e os padrões de cartões, secções e rodapé. A navegação usa JavaScript local pequeno para controlar estado e foco de forma acessível. O blogue usa os mesmos cartões e o mesmo template de artigo que as notícias, com autoria ligada aos perfis e uma listagem própria em `layouts/blog/list.html`.
 
 ## Português e inglês
 
@@ -77,13 +77,15 @@ Para adicionar uma tradução, copie a página para a secção correspondente da
 npm run check:translations
 ```
 
-Este comando identifica traduções ausentes e falha se encontrar alguma. `npm run check` apenas assinala traduções ausentes, permitindo trabalho editorial ainda incompleto. A configuração de CI exige as duas versões para os conteúdos publicados. Rascunhos (`draft: true`) não entram nesta verificação estrita. Os ficheiros `_index.md` das secções definem `cascade.type`: novos conteúdos herdam o tipo correto em ambas as línguas.
+Este comando identifica traduções obrigatórias ausentes e falha se encontrar alguma. **Os artigos do blogue podem ser publicados apenas numa língua**: a tradução é opcional em `content/pt/blogue/` e `content/en/blog/`, exceto nos índices `_index.md`. As restantes páginas publicadas, incluindo perfis de autor e secções, continuam a exigir PT/EN no CI. `npm run check` assinala as traduções obrigatórias ausentes sem bloquear o trabalho editorial. Rascunhos (`draft: true`) não entram nesta verificação estrita. Os ficheiros `_index.md` das secções definem `cascade.type`: novos conteúdos herdam o tipo correto em ambas as línguas.
 
 | Tipo        | Secção PT     | Secção EN      |
 | ----------- | ------------- | -------------- |
 | Associação  | `sobre`       | `about`        |
 | Recursos    | `filatelia`   | `philately`    |
 | Notícias    | `noticias`    | `news`         |
+| Blogue      | `blogue`      | `blog`         |
+| Autores     | `autores`     | `authors`      |
 | Atividades  | `atividades`  | `activities`   |
 | Exposições  | `exposicoes`  | `exhibitions`  |
 | Publicações | `publicacoes` | `publications` |
@@ -119,6 +121,46 @@ Texto da notícia em Markdown.
 ```
 
 A data é a data de publicação. Datas futuras não são publicadas por defeito. O nome do autor só aparece se `author` estiver preenchido. As listas têm paginação; a homepage mostra as duas notícias mais recentes. Não precisa de acrescentar cada notícia ao menu.
+
+### Artigo do blogue e autoria
+
+O menu conserva **Notícias / News** e acrescenta **Blogue / Blog**. Use notícias para informação institucional e o blogue para artigos assinados pelos associados. Na homepage, os dois artigos mais recentes do idioma atual aparecem entre Notícias e Atividades, com os mesmos cartões das notícias. A listagem completa tem paginação e RSS próprio em `/blogue/index.xml` e `/en/blog/index.xml`.
+
+Existem três artigos de exemplo, todos identificados como DEMO:
+
+| Artigo PT                                    | Tradução EN                                    |
+| -------------------------------------------- | ---------------------------------------------- |
+| `blogue/um-caderno-para-a-colecao/index.md`  | Apenas português; demonstra também coautoria   |
+| `blogue/escolher-um-tema/index.md`           | `blog/choosing-a-theme/index.md`               |
+| `blogue/olhar-devagar-para-um-selo/index.md` | `blog/taking-time-to-look-at-a-stamp/index.md` |
+
+Os perfis **Autor de exemplo A/B** são demonstrativos e não identificam associados reais. Para criar um autor, coloque uma página em `content/pt/autores/` e a equivalente em `content/en/authors/`, a partir do modelo `archetypes/authors.md`. Use o mesmo `author_id` estável e o mesmo `translationKey` nas duas versões. O título é o nome aprovado pelo associado, o texto Markdown é a biografia e `image`/`image_alt` permitem uma fotografia opcional. Confirme autorização para divulgar estes dados.
+
+Para criar um artigo, copie `archetypes/blog.md` ou uma pasta de exemplo para `content/pt/blogue/nome-do-artigo/index.md` e edite:
+
+```yaml
+---
+title: "[A COMPLETAR]"
+translationKey: artigo-chave-unica
+type: blog
+draft: true
+date: "2026-09-01T10:00:00+01:00" # Data de exemplo: substituir
+# IDs de perfis existentes no idioma do artigo; não são nomes livres.
+authors: [identificador-do-associado]
+summary: "[A COMPLETAR]"
+description: "[A COMPLETAR]"
+image: images/stamps/nome-descritivo.jpg
+image_alt: "[A COMPLETAR]"
+tags: []
+---
+Texto do artigo em Markdown.
+```
+
+Para coautoria, use `authors: [primeiro-id, segundo-id]`. Cada artigo liga aos seus autores; cada perfil reúne automaticamente os artigos que assina no idioma atual. Os testes rejeitam autores em falta ou IDs duplicados. Não use os perfis DEMO como identificação de associados reais.
+
+A tradução inglesa pode ser acrescentada mais tarde em `content/en/blog/`, conservando `translationKey`. Enquanto não existir, o artigo apresenta uma nota de idioma e o seletor EN conduz à homepage inglesa com um rótulo acessível que explica a ausência de tradução. As listas inglesas não repetem o artigo português. Não é necessário criar uma página inglesa vazia.
+
+O associado pode entregar um texto e imagens ao responsável editorial ou propor os ficheiros num pull request. Mantenha o artigo como rascunho até à revisão. Ao adaptar um exemplo, substitua texto, datas e autores, retire `demo: true` e `noindex: true` e publique apenas depois da aprovação. Os exemplos DEMO não entram na pesquisa, sitemap ou RSS; artigos reais entram normalmente. A pesquisa mantém os idiomas separados.
 
 ### Atividade
 
@@ -172,7 +214,7 @@ Sem `download`, o site mostra uma mensagem de indisponibilidade em vez de um bot
 
 ### Homepage, associação e contactos
 
-Os textos da homepage estão no front matter de `content/pt/_index.md` e `content/en/_index.md`. Notícias, atividades, exposições e publicações são recolhidas automaticamente das respetivas secções.
+Os textos da homepage estão no front matter de `content/pt/_index.md` e `content/en/_index.md`. Notícias, artigos do blogue, atividades, exposições e publicações são recolhidas automaticamente das respetivas secções.
 
 Os textos institucionais ficam em `sobre/` e `about/`. As notas `editorial_notes` não são apresentadas no site. Nos contactos, preencha o mapa `contact` de cada língua com morada, email, telefone, local/horário e redes sociais confirmados. Valores `[A COMPLETAR]` são apresentados como «Por confirmar». O email torna-se uma ligação; os outros campos aceitam texto e ligações Markdown. O rodapé remete para esta página, sem duplicar valores desconhecidos.
 

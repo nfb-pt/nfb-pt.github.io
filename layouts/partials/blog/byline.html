@@ -1,0 +1,19 @@
+<div class="blog-byline">
+  {{ if not .links }}
+    {{ if not .page.Date.IsZero }}
+      <time datetime="{{ .page.Date.Format "2006-01-02" }}"
+        >{{ .page.Date | time.Format ":date_long" }}</time
+      >
+    {{ end }}
+  {{ end }}
+  <span
+    >{{ i18n "by" }}
+    {{ range $index, $author := partial "blog/authors.html" .page }}
+      {{ if $index }},{{ end }}{{ if $.links }}
+        <a rel="author" href="{{ .RelPermalink }}">{{ .Title }}</a>
+      {{ else }}
+        {{ .Title }}
+      {{ end }}
+    {{ end }}</span
+  >
+</div>

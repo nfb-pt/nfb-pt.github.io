@@ -124,3 +124,21 @@ categories:
   other: Categories
 section_contents:
   other: In this section
+all_blog:
+  other: All articles
+blog_label:
+  other: Members’ perspectives
+blog_authors:
+  other: Blog authors
+author_articles:
+  other: Articles by this author
+blog_demo_notice:
+  other: Sample article with demonstration authorship. It is not a contribution
+    from a real association member.
+author_demo_notice:
+  other: Demonstration profile. This is not a real association member.
+blog_untranslated:
+  other: This article is available only in English. The PT option opens the
+    Portuguese homepage.
+language_home:
+  other: "{{ .language }} homepage — this page has no translation"

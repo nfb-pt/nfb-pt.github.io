@@ -50,7 +50,7 @@ try {
   await send("Page.enable");
   await send("Network.enable");
   await send("Network.setCacheDisabled", { cacheDisabled: true });
-  for (const width of [320, 390, 768, 1366, 1920]) {
+  for (const width of [320, 390, 768, 1200, 1366, 1920]) {
     await send("Emulation.setDeviceMetricsOverride", {
       width,
       height: 900,
@@ -68,7 +68,22 @@ try {
         0,
         `Broken images ${JSON.stringify(metrics.broken)}`,
       );
-      assert.equal(metrics.cards, 6);
+      assert.equal(metrics.cards, 8);
+      assert(
+        await evaluate(
+          `document.querySelector('#latest-blog').previousElementSibling.querySelector('h2').textContent.trim() === ${JSON.stringify(lang === "pt" ? "Notícias" : "News")}`,
+        ),
+      );
+      assert(
+        await evaluate(
+          `document.querySelector('#latest-blog').nextElementSibling.classList.contains('agenda-section')`,
+        ),
+      );
+      assert(
+        await evaluate(
+          `!!document.querySelector('.nfb-nav a[href="${lang === "pt" ? "/blogue/" : "/en/blog/"}"]')`,
+        ),
+      );
       report.push({ width, lang, ...metrics });
       if ([390, 1366].includes(width)) {
         const shot = await send("Page.captureScreenshot", { format: "png" });
@@ -132,6 +147,7 @@ try {
   );
   for (const [url, translation] of [
     ["/sobre/historia/", "/en/about/history/"],
+    ["/blogue/escolher-um-tema/", "/en/blog/choosing-a-theme/"],
     ["/en/exhibitions/sample-gallery/", "/exposicoes/galeria-demo/"],
   ]) {
     await navigate(url);
@@ -143,6 +159,10 @@ try {
     assert.equal(await evaluate(`document.documentElement.scrollWidth`), 390);
   }
   for (const url of [
+    "/blogue/",
+    "/blogue/um-caderno-para-a-colecao/",
+    "/en/blog/",
+    "/autores/exemplo-a/",
     "/contactos/",
     "/atividades/",
     "/publicacoes/boletim-demo/",
@@ -151,6 +171,29 @@ try {
     await navigate(url);
     assert.equal(await evaluate(`document.documentElement.scrollWidth`), 390);
   }
+  await navigate("/blogue/um-caderno-para-a-colecao/");
+  assert(await evaluate(`!!document.querySelector('.translation-note')`));
+  assert.equal(
+    await evaluate(
+      `document.querySelector('.nfb-languages a[lang="en"]').pathname`,
+    ),
+    "/en/",
+  );
+  assert.equal(
+    await evaluate(
+      `document.querySelectorAll('link[rel="alternate"][hreflang="en"]').length`,
+    ),
+    0,
+  );
+  assert.equal(
+    await evaluate(`document.querySelectorAll('a[rel="author"]').length`),
+    2,
+  );
+  await navigate("/en/blog/");
+  assert.equal(
+    await evaluate(`document.querySelectorAll('.nfb-card').length`),
+    2,
+  );
   for (const [url, query, prefix] of [
     ["/pesquisa/", "coleção", "/"],
     ["/en/search/", "collection", "/en/"],

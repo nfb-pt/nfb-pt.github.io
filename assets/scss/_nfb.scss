@@ -905,3 +905,35 @@ dd {
     max-height: 48px;
   }
 }
+
+.blog-section {
+  padding-top: 0;
+}
+.blog-byline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 18px;
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 24px;
+}
+.nfb-card .blog-byline {
+  display: flex;
+  flex-direction: column;
+  margin: 18px 0 0;
+  font-size: 12px;
+}
+.translation-note {
+  background: var(--paper);
+  border-left: 3px solid var(--ink);
+  padding: 15px 20px;
+  font-size: 14px;
+  margin-bottom: 30px;
+}
+.author-photo {
+  max-width: 160px;
+  margin: 0 0 25px;
+}
+.author-photo img {
+  border-radius: 8px;
+}

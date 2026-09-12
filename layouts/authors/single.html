@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <section class="section container wrap">
+    {{ if .Params.demo }}
+      <aside class="notice">
+        <strong>{{ i18n "demo" }}</strong>
+        <p>{{ i18n "author_demo_notice" }}</p>
+      </aside>
+    {{ end }}
+    {{ with .Params.image }}
+      <figure class="author-photo">
+        {{ partial "image.html" (dict "page" $ "src" . "eager" true) }}
+      </figure>
+    {{ end }}
+    <div class="prose">{{ .Content }}</div>
+    <h2>{{ i18n "author_articles" }}</h2>
+    <div class="cards nfb-grid">
+      {{ range (where (where .Site.RegularPages "Type" "blog") "Params.authors" "intersect" (slice .Params.author_id)).ByDate.Reverse }}
+        {{ partial "card.html" . }}
+      {{ else }}
+        <p>{{ i18n "empty" }}</p>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

@@ -7,7 +7,7 @@ summary: "[A COMPLETAR]"
 image: ""
 image_alt: ""
 type: news
-date: { { .Date } }
+date: "{{ .Date }}"
 # author: "Name only if supplied"
 categories: []
 tags: []

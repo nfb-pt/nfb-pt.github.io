@@ -125,3 +125,22 @@ categories:
   other: Categorias
 section_contents:
   other: Conteúdos desta secção
+all_blog:
+  other: Todos os artigos
+blog_label:
+  other: Olhares dos associados
+blog_authors:
+  other: Autores do blogue
+author_articles:
+  other: Artigos deste autor
+blog_demo_notice:
+  other: Artigo de exemplo com autoria demonstrativa. Não corresponde a um
+    contributo de um associado real.
+author_demo_notice:
+  other: Perfil de demonstração. Não identifica um associado real.
+blog_untranslated:
+  other:
+    Este artigo está disponível apenas em português. A opção EN abre a página
+    inicial em inglês.
+language_home:
+  other: Página inicial em {{ .language }} — tradução desta página indisponível

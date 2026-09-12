@@ -18,6 +18,9 @@
     <p>
       {{ .Params.summary | default .Description | default (.Summary | plainify) }}
     </p>
+    {{ if eq .Type "blog" }}
+      {{ partial "blog/byline.html" (dict "page" . "links" false) }}
+    {{ end }}
     {{ if eq .Type "activities" }}
       {{ with .Params.starts }}
         <time class="card-meta" datetime="{{ . }}"

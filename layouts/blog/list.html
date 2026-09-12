@@ -1,8 +1,23 @@
-{{/* Compatibility override: the pinned theme references a removed Hugo pagination template. */}}
 {{ define "main" }}
   <section class="section container wrap">
-    {{ .Content }}{{ range (.Paginate .RegularPages).Pages }}
-      {{ partial "card.html" . }}
-    {{ end }}{{ partial "pagination.html" . }}
+    <a
+      class="text-link"
+      href="{{ (.Site.GetPage (cond (eq .Language.Lang "pt") "autores" "authors")).RelPermalink }}"
+      >{{ i18n "blog_authors" }} ↗</a
+    >
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    {{ $pages := .Pages.ByWeight }}{{ if in (slice "news" "blog") .Type }}
+      {{ $pages = .RegularPages.ByDate.Reverse }}
+    {{ end }}
+    {{ $paginator := .Paginate $pages }}
+    <h2 class="visually-hidden">{{ i18n "section_contents" }}</h2>
+    <div class="cards nfb-grid">
+      {{ range $paginator.Pages }}
+        {{ partial "card.html" . }}
+      {{ else }}
+        <p>{{ i18n "empty" }}</p>
+      {{ end }}
+    </div>
+    {{ partial "pagination.html" . }}
   </section>
 {{ end }}

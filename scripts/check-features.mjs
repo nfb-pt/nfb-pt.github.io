@@ -46,6 +46,14 @@ try {
       translationKey: `test-news-${i}`,
       date: past,
     });
+  for (let i = 0; i < 10; i++)
+    fixture("blogue", `test-blog-${i}`, {
+      title: `TEST BLOG ${i}`,
+      translationKey: `test-blog-${i}`,
+      type: "blog",
+      date: past,
+      authors: ["exemplo-a"],
+    });
   const imageFolder = fixture("exposicoes", "test-image", {
     title: "TEST IMAGE",
     translationKey: "test-image",
@@ -94,8 +102,74 @@ try {
   assert(raster.includes("srcset="));
   assert(raster.includes(".webp"));
   assert(html("publicacoes/test-download").includes("/documents/approved.pdf"));
+  assert(
+    html("blogue/page/2").includes("TEST BLOG"),
+    "Blog pagination must work independently",
+  );
+  assert(
+    html("blogue/test-blog-0").includes("rel=author"),
+    "Blog links to its author profile",
+  );
+  assert(html("autores/exemplo-a").includes("TEST BLOG"));
+  assert(
+    !html("noticias").includes("TEST BLOG"),
+    "Blog articles must not become news",
+  );
+  assert(
+    !html("en/blog").includes("TEST BLOG"),
+    "English must not list untranslated Portuguese articles",
+  );
+  const blogFeed = fs.readFileSync(
+    path.join(temp, "public/blogue/index.xml"),
+    "utf8",
+  );
+  assert(blogFeed.includes("TEST BLOG"));
+  assert(
+    !blogFeed.includes("Um caderno para acompanhar"),
+    "DEMO articles stay out of RSS",
+  );
+  // Test source validation separately, before adding non-blog fixture pages.
+  const validationRoot = path.join(temp, "validation");
+  fs.cpSync("content", validationRoot, { recursive: true });
+  const validate = () =>
+    spawnSync(
+      process.execPath,
+      [
+        "scripts/check-content.mjs",
+        "--strict-translations",
+        "--content-dir",
+        validationRoot,
+      ],
+      { encoding: "utf8" },
+    );
+  assert.equal(
+    validate().status,
+    0,
+    "Portuguese-only blog article must pass strict CI",
+  );
+  const sample = path.join(validationRoot, "pt/sobre/untranslated.md");
+  fs.writeFileSync(
+    sample,
+    "---\ntitle: Test\ntranslationKey: required-translation-test\n---\n",
+  );
+  assert.notEqual(
+    validate().status,
+    0,
+    "Non-blog translations remain required",
+  );
+  fs.unlinkSync(sample);
+  const invalid = path.join(validationRoot, "pt/blogue/invalid.md");
+  fs.writeFileSync(
+    invalid,
+    "---\ntitle: Test\ntranslationKey: missing-author-test\ndate: 2026-01-01\nauthors: [missing-author]\n---\n",
+  );
+  assert.notEqual(
+    validate().status,
+    0,
+    "Missing author profiles must fail validation",
+  );
   console.log(
-    "Feature fixtures passed: upcoming/past/undated events, homepage filtering, news pagination, missing-translation fallback, raster srcset and PDF link rendering.",
+    "Feature fixtures passed: upcoming/past/undated events, homepage filtering, news pagination, missing-translation fallback, raster srcset, PDF links, blog pagination/authors/RSS, and optional blog translations.",
   );
 } finally {
   fs.rmSync(temp, { recursive: true, force: true });

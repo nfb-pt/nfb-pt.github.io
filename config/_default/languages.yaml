@@ -5,9 +5,8 @@ pt:
   weight: 1
   title: Núcleo Filatélico de Braga
   params:
-    description:
-      Filatelia, colecionismo e história postal em Braga. Conheça o Núcleo Filatélico de
-      Braga e descubra o mundo dos selos.
+    description: Filatelia, colecionismo e história postal em Braga. Conheça o
+      Núcleo Filatélico de Braga e descubra o mundo dos selos.
   menus:
     main:
       - identifier: home
@@ -26,22 +25,26 @@ pt:
         name: Notícias
         pageRef: noticias
         weight: 4
+      - identifier: blog
+        name: Blogue
+        pageRef: blogue
+        weight: 5
       - identifier: activities
         name: Atividades
         pageRef: atividades
-        weight: 5
+        weight: 6
       - identifier: exhibitions
         name: Exposições
         pageRef: exposicoes
-        weight: 6
+        weight: 7
       - identifier: publications
         name: Publicações
         pageRef: publicacoes
-        weight: 7
+        weight: 8
       - identifier: contact
         name: Contactos
         pageRef: contactos
-        weight: 8
+        weight: 9
 en:
   label: English
   locale: en
@@ -49,10 +52,11 @@ en:
   weight: 2
   title: Núcleo Filatélico de Braga
   params:
-    images: [images/brand/nfb-social-en.png]
+    images:
+      - images/brand/nfb-social-en.png
     description:
-      Philately, stamp collecting and postal history in Braga, Portugal. Discover Núcleo
-      Filatélico de Braga and the world of stamps.
+      Philately, stamp collecting and postal history in Braga, Portugal.
+      Discover Núcleo Filatélico de Braga and the world of stamps.
   menus:
     main:
       - identifier: home
@@ -71,19 +75,23 @@ en:
         name: News
         pageRef: news
         weight: 4
+      - identifier: blog
+        name: Blog
+        pageRef: blog
+        weight: 5
       - identifier: activities
         name: Activities
         pageRef: activities
-        weight: 5
+        weight: 6
       - identifier: exhibitions
         name: Exhibitions
         pageRef: exhibitions
-        weight: 6
+        weight: 7
       - identifier: publications
         name: Publications
         pageRef: publications
-        weight: 7
+        weight: 8
       - identifier: contact
         name: Contact
         pageRef: contact
-        weight: 8
+        weight: 9

@@ -53,3 +53,18 @@ Não foram executados Docker, GitHub Actions, publicação GitHub Pages/Netlify,
 Faltam dados reais aprovados de contactos, direção, história detalhada, adesão, agenda, notícias, exposições, PDFs e imagens. Estão identificados nas fontes e apresentados honestamente na interface. O logótipo continua provisório. O ano de 1981 foi fornecido pelo utilizador.
 
 A agenda é calculada durante a compilação; precisa de nova publicação para refletir a passagem do tempo. A configuração de alojamento assume a raiz do domínio. Os caminhos das fontes herdadas devem ser revistos se o site passar a um subdiretório.
+
+## Atualização: blogue com vários autores
+
+Implementação posterior à migração inicial: menu Notícias mantido e Blogue/Blog acrescentado; os dois artigos mais recentes do idioma atual aparecem entre Notícias e Atividades. Foram adicionados três artigos DEMO em português, dois com tradução inglesa, e dois perfis de autor DEMO em ambas as línguas. O artigo «Um caderno para acompanhar a coleção» existe apenas em português e demonstra coautoria.
+
+Verificações executadas nesta atualização:
+
+- `npm run format:check` e `npm test` passaram. O build continua sem erros/avisos de Hugo, com a mensagem informativa esperada do Pagefind.
+- 75 fontes publicadas verificadas: 37 pares PT/EN e um artigo apenas em português; nenhuma tradução obrigatória em falta. 100 ficheiros HTML e respetivas referências internas validados.
+- Testes isolados confirmam paginação própria do blogue, artigos por autor, RSS sem DEMO, separação entre notícias/blogue e entre línguas, aceitação de artigos sem tradução e rejeição de páginas institucionais sem tradução ou artigos com autores inexistentes.
+- Chrome: homepage PT/EN a 320, 390, 768, 1200, 1366 e 1920 px, sem deslocação horizontal. O menu mantém uma única linha a 1200 px. A homepage tem agora oito cartões, incluindo dois artigos do blogue.
+- Ordem Notícias → Blogue → Atividades confirmada no navegador; listagem inglesa com dois artigos; coautoria com duas ligações de perfil; tradução existente conserva a página equivalente e ausência de tradução conduz à homepage da outra língua sem declarar uma tradução inexistente nos metadados.
+- Capturas da homepage, listagem, artigo móvel e perfil de autor revistas visualmente. Os testes existentes de teclado e pesquisa nas duas línguas continuam a passar.
+
+As contagens e a exigência universal de tradução descritas na auditoria inicial acima são históricas; a exceção atual aplica-se apenas a artigos dentro de `blogue/` ou `blog/`. Perfis de autor, secções e restantes páginas continuam a exigir as duas línguas. Não houve alterações no tema importado nem publicação externa.

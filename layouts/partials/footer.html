@@ -36,7 +36,7 @@
         <h2>{{ i18n "footer_nav" }}</h2>
         <ul>
           {{ range .Site.Menus.main }}
-            {{ if in (slice "philately" "news" "activities" "exhibitions" "publications") .Identifier }}
+            {{ if in (slice "philately" "news" "blog" "activities" "exhibitions" "publications") .Identifier }}
               <li><a href="{{ .URL }}">{{ .Name }}</a></li>
             {{ end }}
           {{ end }}

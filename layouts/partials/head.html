@@ -33,7 +33,7 @@
   <meta property="og:url" content="{{ .Permalink }}" />
   <meta
     property="og:type"
-    content="{{ if and .IsPage (eq .Type "news") }}
+    content="{{ if and .IsPage (in (slice "news" "blog") .Type) }}
       article
     {{ else }}
       website
@@ -47,14 +47,16 @@
       en_GB
     {{ end }}"
   />
-  <meta
-    property="og:locale:alternate"
-    content="{{ if eq .Language.Lang "pt" }}
-      en_GB
-    {{ else }}
-      pt_PT
-    {{ end }}"
-  />
+  {{ range .Translations }}
+    <meta
+      property="og:locale:alternate"
+      content="{{ if eq .Language.Lang "pt" }}
+        pt_PT
+      {{ else }}
+        en_GB
+      {{ end }}"
+    />
+  {{ end }}
   <meta property="og:image" content="{{ $image }}" />
   <meta
     property="og:image:alt"
@@ -64,7 +66,7 @@
   <meta name="twitter:title" content="{{ $title }}" />
   <meta name="twitter:description" content="{{ $description }}" />
   <meta name="twitter:image" content="{{ $image }}" />
-  {{ if and (eq .Type "news") (not .Date.IsZero) }}
+  {{ if and (in (slice "news" "blog") .Type) (not .Date.IsZero) }}
     <meta
       property="article:published_time"
       content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}"

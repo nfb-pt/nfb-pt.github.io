@@ -1,7 +1,7 @@
 {{ define "main" }}
   <section class="section container wrap">
     {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
-    {{ $pages := .Pages.ByWeight }}{{ if eq .Type "news" }}
+    {{ $pages := .Pages.ByWeight }}{{ if in (slice "news" "blog") .Type }}
       {{ $pages = .RegularPages.ByDate.Reverse }}
     {{ end }}
     {{ $paginator := .Paginate $pages }}

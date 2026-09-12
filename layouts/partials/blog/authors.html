@@ -1,0 +1,11 @@
+{{ $authors := slice }}
+{{ $page := . }}
+{{ range .Params.authors }}
+  {{ $matches := where (where $page.Site.RegularPages "Type" "authors") "Params.author_id" . }}
+  {{ if eq (len $matches) 1 }}
+    {{ $authors = $authors | append (index $matches 0) }}
+  {{ else }}
+    {{ errorf "Blog article %s requires exactly one author profile for %q in %s" $page.Path . $page.Language.Lang }}
+  {{ end }}
+{{ end }}
+{{ return $authors }}
