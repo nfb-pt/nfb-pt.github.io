@@ -1,0 +1,17 @@
+{{ define "main" }}
+<section class="section container wrap">
+{{ .Content }}
+{{ $upcoming := slice }}{{ $past := slice }}{{ $unscheduled := slice }}{{ $demo := slice }}
+{{ range .RegularPages }}
+  {{ if .Params.demo }}{{ $demo = $demo | append . }}
+  {{ else if .Params.starts }}
+    {{ $end := time.AsTime (.Params.ends | default .Params.starts) }}
+    {{ if ge $end now }}{{ $upcoming = $upcoming | append . }}{{ else }}{{ $past = $past | append . }}{{ end }}
+  {{ else }}{{ $unscheduled = $unscheduled | append . }}{{ end }}
+{{ end }}
+<h2>{{ i18n "upcoming" }}</h2>
+{{ if $upcoming }}<div class="cards nfb-grid">{{ range sort $upcoming "Params.starts" }}{{ partial "card.html" . }}{{ end }}</div>{{ else }}<p>{{ i18n "agenda_copy" }}</p>{{ end }}
+{{ with $unscheduled }}<h2>{{ i18n "unscheduled" }}</h2><div class="cards nfb-grid">{{ range . }}{{ partial "card.html" . }}{{ end }}</div>{{ end }}
+{{ with $past }}<h2>{{ i18n "previous" }}</h2><div class="cards nfb-grid">{{ range sort . "Params.starts" "desc" }}{{ partial "card.html" . }}{{ end }}</div>{{ end }}
+{{ with $demo }}<h2>{{ i18n "examples" }}</h2><div class="cards nfb-grid">{{ range . }}{{ partial "card.html" . }}{{ end }}</div>{{ end }}
+</section>{{ end }}

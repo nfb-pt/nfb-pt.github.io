@@ -5,6 +5,6 @@
 <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
 <p>{{ .Params.summary | default .Description | default (.Summary | plainify) }}</p>
 {{ if eq .Type "activities" }}{{ with .Params.starts }}<time class="card-meta" datetime="{{ . }}">{{ time.AsTime . | time.Format ":date_long" }}</time>{{ else }}<span class="card-meta">{{ i18n "unscheduled" }}</span>{{ end }}{{ end }}
-{{ if eq .Type "publications" }}<span class="card-meta">{{ with .Params.year }}{{ i18n "year" }} {{ . }}{{ end }}{{ with .Params.issue }} · {{ i18n "issue" }} {{ . }}{{ end }}</span>{{ end }}
+{{ if eq .Type "publications" }}<span class="card-meta">{{ with .Params.year }}{{ if ne . "[A COMPLETAR]" }}{{ i18n "year" }} {{ . }}{{ end }}{{ end }}{{ with .Params.issue }}{{ if ne . "[A COMPLETAR]" }} · {{ i18n "issue" }} {{ . }}{{ end }}{{ end }}</span>{{ end }}
 <span class="card-arrow" aria-hidden="true">↗</span>
 </div></article>
