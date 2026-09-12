@@ -1,38 +1,182 @@
-hero1:
-  other: Talk openly
-hero2:
-  other: Develop openly
-subhero:
-  other: For practitioners building, scaling, and supporting Open Source Program Offices
-explainerText:
-  other: TODO Group is an open, vendor-neutral community of OSPO practitioners sharing best practices for open source management and emerging AI governance in real-world organizational contexts. Hosted by the Linux Foundation, TODO Group creates shared resources and guidance to support practical adoption, alignment, and collaboration across organizations.
-explainerButton:
-  other: About us
-sectionTitle:
-  other: Get Involved
-sectionTitle1:
-  other: Join our community
-sectionText1:
-  other: practitioners leading open source management and open source AI governance adoption across organizations
-sectionButton1:
-  other: Join Community
-sectionTitle2:
-  other: Become an Associate
-sectionText2:
-  other: Open source communities, projects, and foundations supporting the TODO mission and helping the OSPO movement
-sectionButton2:
-  other: Get Involved
-sectionTitle3:
-  other: Become a General Member
-sectionText3:
-  other: Organizations with open source management functions, committed to advancing OSPO adoption, open source strategy, and emerging AI governance practices through open collaboration
-sectionButton3:
-  other: Become a Member
-landscapeTitle:
-  other: OSPO Landscape
-landscapeText:
-  other: Explore the OSPO ecosystem, including adopter organizations, tools, and resources used by OSPO teams and open source professionals.
-landscapeButton:
-  other: Explore the Landscape
-aboutSilder:
-  other: https://docs.google.com/presentation/d/e/2PACX-1vT6TcnSJki1RdzzDTbLCKDl96POVoW4bNZH--0lsJXNrPRRjPC83o2DGKuhZj38qjALnZJPLa0yhMW5/embed?start=false&loop=true&delayms=5000
+{
+  "home": {
+    "other": "Home"
+  },
+  "menu": {
+    "other": "Menu"
+  },
+  "navigation": {
+    "other": "Main navigation"
+  },
+  "language": {
+    "other": "Language"
+  },
+  "search": {
+    "other": "Search"
+  },
+  "skip": {
+    "other": "Skip to content"
+  },
+  "discover": {
+    "other": "Meet the association"
+  },
+  "explore": {
+    "other": "Explore philately"
+  },
+  "all_news": {
+    "other": "All news"
+  },
+  "all_activities": {
+    "other": "View activities"
+  },
+  "all_exhibitions": {
+    "other": "View exhibitions"
+  },
+  "all_publications": {
+    "other": "View publications"
+  },
+  "read": {
+    "other": "Read more"
+  },
+  "demo": {
+    "other": "DEMO · Sample content"
+  },
+  "demo_notice": {
+    "other": "This is a layout example. It does not announce real association news, an event or a publication."
+  },
+  "upcoming": {
+    "other": "Upcoming activities"
+  },
+  "previous": {
+    "other": "Past activities"
+  },
+  "unscheduled": {
+    "other": "Dates to be announced"
+  },
+  "examples": {
+    "other": "Layout examples"
+  },
+  "no_activities": {
+    "other": "New meetings, new discoveries."
+  },
+  "agenda_copy": {
+    "other": "The programme will be published when activities are confirmed. In the meantime, explore the world of philately."
+  },
+  "join": {
+    "other": "Become a member"
+  },
+  "association": {
+    "other": "The association"
+  },
+  "collecting": {
+    "other": "The art of collecting"
+  },
+  "news_label": {
+    "other": "From the association and philately"
+  },
+  "exhibitions_label": {
+    "other": "Collections in focus"
+  },
+  "publications_label": {
+    "other": "The collector’s library"
+  },
+  "contact": {
+    "other": "Contact"
+  },
+  "contact_pending": {
+    "other": "Information will be published once confirmed."
+  },
+  "address": {
+    "other": "Postal address"
+  },
+  "email": {
+    "other": "Email"
+  },
+  "phone": {
+    "other": "Telephone"
+  },
+  "meeting_place": {
+    "other": "Meeting place"
+  },
+  "meeting_schedule": {
+    "other": "Meeting schedule"
+  },
+  "social": {
+    "other": "Social networks"
+  },
+  "pending": {
+    "other": "To be confirmed"
+  },
+  "credits": {
+    "other": "Credits and licences"
+  },
+  "footer_copy": {
+    "other": "Stamps that tell stories. A passion that brings us together."
+  },
+  "footer_nav": {
+    "other": "Discover"
+  },
+  "footer_location": {
+    "other": "Braga, Portugal"
+  },
+  "rss": {
+    "other": "Subscribe to news via RSS"
+  },
+  "back": {
+    "other": "Back to section"
+  },
+  "by": {
+    "other": "By"
+  },
+  "date": {
+    "other": "Date"
+  },
+  "location": {
+    "other": "Location"
+  },
+  "year": {
+    "other": "Year"
+  },
+  "issue": {
+    "other": "Issue"
+  },
+  "download": {
+    "other": "View / download PDF"
+  },
+  "file_pending": {
+    "other": "Document to be made available."
+  },
+  "gallery": {
+    "other": "Gallery"
+  },
+  "empty": {
+    "other": "New content will be published here."
+  },
+  "previous_page": {
+    "other": "Previous page"
+  },
+  "next_page": {
+    "other": "Next page"
+  },
+  "pagination": {
+    "other": "Pagination"
+  },
+  "not_found": {
+    "other": "Page not found"
+  },
+  "not_found_copy": {
+    "other": "This address does not match an available page."
+  },
+  "search_hint": {
+    "other": "Search shows results in this page’s language."
+  },
+  "search_unavailable": {
+    "other": "Search is available after building with Pagefind. You can explore the site using the menu."
+  },
+  "tags": {
+    "other": "Topics"
+  },
+  "categories": {
+    "other": "Categories"
+  }
+}
