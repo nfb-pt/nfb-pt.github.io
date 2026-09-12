@@ -23,6 +23,7 @@ class Page(HTMLParser):
         if tag=='meta' and a.get('name')=='robots': self.robots=a.get('content','')
         if tag=='link' and a.get('rel')=='canonical': self.canonical.append(a.get('href'))
         if tag=='link' and a.get('hreflang'): self.alt.append((a.get('hreflang'), a.get('href')))
+        if tag=='article' and 'nfb-cardhas-image' in a.get('class',''): errors.append(f'{self.file}: card class tokens merged')
         if tag=='img':
             self.images.append(a)
             if 'alt' not in a: errors.append(f'{self.file}: image missing alt')

@@ -1,0 +1,1 @@
+Fotografias autorizadas de exposições e coleções. Use nomes descritivos, cerca de 1600 px no lado maior, e registe os direitos em `docs/image-rights.md`. As legendas e o texto alternativo ficam nas páginas PT/EN. Não coloque imagens reais sem confirmar a autorização.

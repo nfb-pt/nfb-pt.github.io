@@ -48,6 +48,8 @@ const navigate = async (url) => {
 const report = [];
 try {
   await send("Page.enable");
+  await send("Network.enable");
+  await send("Network.setCacheDisabled", { cacheDisabled: true });
   for (const width of [320, 390, 768, 1366, 1920]) {
     await send("Emulation.setDeviceMetricsOverride", {
       width,

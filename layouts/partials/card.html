@@ -1,4 +1,4 @@
-<article class="card nfb-card{{ if .Params.image }}has-image{{ end }}">
+<article class="card nfb-card {{ if .Params.image }}has-image{{ end }}">
   {{ with .Params.image }}
     <div class="card-image">
       {{ partial "image.html" (dict "page" $ "src" .) }}

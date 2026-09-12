@@ -26,3 +26,7 @@ Build passed: EN 239, JA 42, ZH-CN 59 pages; 257 processed images. One warning: 
 Keep Hugo, the pinned theme, SCSS pipeline, bundled typefaces, Markdown and native translations. Root overrides adapt visual/navigation patterns and remove upstream assumptions. Native section types share cards and image handling. Portuguese uses `/`, English `/en/`; explicit shared translation keys make correspondence auditable. Source placeholders are hidden behind translated editorial status messages where appropriate. The requested founding year 1981 is user-supplied, not independently verified. No other association facts will be invented.
 
 Use original SVG illustration placeholders (not purported historical stamps or an official logo); keep future image assets and licensing records obvious. Preserve the supplied `Prompt` file unchanged.
+
+## Final implementation notes
+
+The original content directories were replaced in phase 4 to avoid URL collisions while building the paired content. Remaining old assets, dictionaries and templates were removed in phase 8. Hugo was upgraded from the baseline 0.126.1 to 0.166.0, with local compatibility overrides and current locale/pagination/CSS configuration. The theme is imported once via root module mounts, preserving the exact submodule revision while excluding unused upstream static branding. Source front matter was normalised to ordinary YAML for Markdown editors. Final verification is recorded in `quality-audit.md`.

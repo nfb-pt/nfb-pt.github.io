@@ -1,88 +1,257 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/2fe3c42f-494a-4377-9088-8a2d4aad9556/deploy-status)](https://app.netlify.com/sites/todogroup/deploys)
-[![License: CC BY 4.0](https://img.shields.io/badge/License-CC_BY_4.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
-[![Site](https://img.shields.io/badge/Static%20site-HUGO-%23FF00FF)](https://gohugo.io/)
+# Núcleo Filatélico de Braga
 
-# The TODO Group website
+Website bilingue do **Núcleo Filatélico de Braga (NFB)**, uma associação de filatelia e colecionismo sediada em Braga, Portugal. Português europeu é a língua principal (`/`); a versão inglesa está em `/en/`.
 
-The [TODO Group](https://todogroup.org/) website serves as the central hub for our community, hosting resources, blog content, guides, and information about OSPOs (Open Source Program Offices). All contributions should align with our mission to provide vendor-neutral, practical resources that help organizations run effective open source programs.
+O site é estático, construído com **Hugo Extended**, Markdown, SCSS e Pagefind. Mantém o tema Dot Org como submódulo, com adaptações na raiz do projeto. Não necessita de CMS, base de dados ou aplicação no servidor.
 
-## Contributing
+A identidade gráfica é provisória. As entradas marcadas **DEMO** são exemplos, não notícias, eventos, exposições ou publicações reais. O ano de 1981 foi fornecido no pedido de migração. Outros dados institucionais ainda desconhecidos estão identificados nas fontes com `[A COMPLETAR]`; não devem ser substituídos por informação presumida.
 
-Please read our [contributing guidelines](https://github.com/todogroup/todogroup.org/blob/main/CONTRIBUTING.md) to get started
+## Instalar e executar
 
-## Development Setup
+Requisitos: Git, Node.js **22 ou posterior**, npm e Python **3.9 ou posterior** para os testes e a pré-visualização estática. Hugo Extended **0.166.0** é instalado localmente por npm; não é necessário substituir o Hugo global. A primeira instalação requer acesso à rede para descarregar as dependências e o executável Hugo.
 
-This site is built using the [Hugo](https://gohugo.io) static site generator and hosted on [Netlify](https://netlify.com). The site uses the [Dot-Org Theme for Hugo](https://github.com/cncf/dot-org-hugo-theme) as a base and then has its own customisations.
-
-In order to build or locally develop the website, you'll need to install [Hugo](https://gohugo.io) and [node.js](https://nodejs.org/en).
-
-If you don't have them installed, you can install them via [brew.sh](https://brew.sh).
-
-```bash
-# macOS
-brew install hugo node
-```
-
-Then following these instructions:
-
-1. Clone this repo to a local directory on your computer.
-
-2. Navigate to the newly created directory, and pull in the theme:
-
-```bash
+```sh
+git clone --recurse-submodules https://github.com/nfb-pt/nfb-pt.github.io.git
+cd nfb-pt.github.io
+# Necessário se o clone não incluiu o tema:
 git submodule update --init --recursive
-```
-
-3. Install dependencies:
-
-```bash
-npm install
-```
-
-4. Build the site:
-
-```bash
-npm run build
-```
-
-5. Start the local server with live reload:
-
-```bash
+npm ci
 npm run start
 ```
 
-### Other npm commands for working with a local instance
+Abra `http://localhost:1313/` ou `http://localhost:1313/en/`. O servidor acompanha alterações nos ficheiros. Para incluir rascunhos:
 
-- `npm run dev:start` - Starts the local dev environment using exampleSite
-- `npm run dev:start:with-pagefind` - Starts the local dev environment using exampleSite with working pagefind search
-- `npm run dev:build` - Builds the site using exampleSite
-
-#### To run in docker
-
-As mentioned above, fork and clone this repository, run `git submodule update --init --recursive`, then run following:
-
-```bash
-./run-hugo-in-docker.sh
+```sh
+npm run start -- --buildDrafts
 ```
 
-This command should give an address you can visit on your local machine to see the local copy of your site. Typically this is `localhost:1313`. Just navigate to http://localhost:1313 in your browser and you should see the site running.
+Para compilar e experimentar também a pesquisa:
 
-If modifying the theme files, you should never edit the theme that is imported via Git Submodule, as otherwise the changes will be overwritten or lost the next time the theme is updated. Changes should be made in override files inside the root directory as this will override the theme directory. [Read docs](https://gohugo.io/getting-started/directory-structure/).
-
-### Updating the theme
-
-Some brief notes on how to update the theme:
-
-From the site root:
-
+```sh
+npm run build
+npm run preview
 ```
-git submodule init
-git submodule update
-cd themes/dot-org-hugo-theme
-git fetch
-git checkout main
-git pull origin main
-cd ../..
-git add themes/dot-org-hugo-theme
-git commit -m "Updated submodule to the latest version of dot-org-hugo-theme" -s
+
+`build` gera `public/`, limpa ficheiros obsoletos e cria os índices Pagefind. `preview` volta a compilar e serve `http://127.0.0.1:4173/`. A cache fica em `.cache/hugo/`, excluída do Git.
+
+O servidor Hugo de desenvolvimento não gera os índices de pesquisa. Use `preview` para testar Pagefind. Não copie índices para os conteúdos nem para `static/`: isso deixaria resultados desatualizados.
+
+Alternativamente, com Docker e o submódulo já inicializado, execute `./run-hugo-in-docker.sh`. O script usa Node 22, instala o Hugo fixado no lockfile e isola `node_modules` num volume Docker. O caminho Docker não foi executado durante a migração; o processo npm foi verificado em macOS.
+
+## Onde está cada coisa
+
+| Local                            | Responsabilidade                                             |
+| -------------------------------- | ------------------------------------------------------------ |
+| `config/_default/hugo.yaml`      | Hugo, importação do tema, taxonomias, paginação e sitemap    |
+| `config/_default/languages.yaml` | Línguas, descrições, menus e imagens de partilha             |
+| `config/_default/params.yaml`    | Caminhos dos logótipos e identidade comum                    |
+| `config/production/hugo.yaml`    | URL de produção e minificação                                |
+| `content/pt/`, `content/en/`     | Textos, dados das páginas e traduções                        |
+| `i18n/pt.yaml`, `i18n/en.yaml`   | Botões, rótulos, acessibilidade e outros textos da interface |
+| `archetypes/`                    | Modelos dos tipos de conteúdo                                |
+| `layouts/`                       | Overrides e componentes Hugo locais                          |
+| `assets/scss/_nfb.scss`          | Cores, espaçamento e adaptações visuais                      |
+| `assets/scss/styles.scss`        | Importações dos componentes SCSS do tema                     |
+| `assets/images/`                 | Imagens processadas e ilustrações                            |
+| `static/images/brand/`           | Logótipos finais e imagens de partilha                       |
+| `static/documents/`              | PDFs aprovados para distribuição                             |
+| `themes/dot-org-hugo-theme/`     | Tema importado; não editar diretamente                       |
+| `scripts/`                       | Compilação e verificações                                    |
+
+O tema é importado uma única vez através de `module.imports`, a partir do submódulo local. Importam-se os templates, os assets e as fontes; os logótipos, ícones e imagens genéricas do tema ficam fora da publicação. Os overrides locais mantêm a base tipográfica e os padrões de cartões, secções e rodapé. A navegação usa JavaScript local pequeno para controlar estado e foco de forma acessível. `layouts/blog/list.html` é um override de compatibilidade: impede que um template não utilizado do tema invoque a antiga paginação interna removida do Hugo.
+
+## Português e inglês
+
+As duas versões de cada página têm o **mesmo `translationKey`**, mesmo quando o nome do ficheiro e o URL diferem:
+
+```text
+content/pt/sobre/historia.md       → /sobre/historia/
+content/en/about/history.md       → /en/about/history/
 ```
+
+Ambas usam `translationKey: history`. Cada chave deve ser única dentro da sua língua. O seletor PT/EN utiliza as traduções nativas do Hugo e conserva a página equivalente. Quando falta uma tradução, a ligação conduz à homepage da outra língua; não inventa uma página nem traduz por JavaScript.
+
+Para adicionar uma tradução, copie a página para a secção correspondente da outra língua, conserve a chave e traduza título, descrição, resumo, texto, legendas, texto alternativo e termos de categorias/temas. Os caminhos das imagens e dos PDFs podem ser partilhados. As páginas de termos também podem ter um `translationKey`; veja `content/pt/tags/filatelia/_index.md` e o equivalente inglês.
+
+```sh
+npm run check:translations
+```
+
+Este comando identifica traduções ausentes e falha se encontrar alguma. `npm run check` apenas assinala traduções ausentes, permitindo trabalho editorial ainda incompleto. A configuração de CI exige as duas versões para os conteúdos publicados. Rascunhos (`draft: true`) não entram nesta verificação estrita. Os ficheiros `_index.md` das secções definem `cascade.type`: novos conteúdos herdam o tipo correto em ambas as línguas.
+
+| Tipo        | Secção PT     | Secção EN      |
+| ----------- | ------------- | -------------- |
+| Associação  | `sobre`       | `about`        |
+| Recursos    | `filatelia`   | `philately`    |
+| Notícias    | `noticias`    | `news`         |
+| Atividades  | `atividades`  | `activities`   |
+| Exposições  | `exposicoes`  | `exhibitions`  |
+| Publicações | `publicacoes` | `publications` |
+| Contactos   | `contactos`   | `contact`      |
+
+Use português europeu e a grafia **atividades**, **colecionadores**, **contactos**, **direção**, **sócios**. Não traduza o nome próprio da associação.
+
+## Criar conteúdos
+
+A forma mais simples é copiar uma pasta de exemplo dentro da secção pretendida e editar o seu `index.md`. Também pode copiar um modelo de `archetypes/` para uma nova pasta. A parte entre `---` é YAML; o resto é Markdown. Não é necessário editar HTML.
+
+Comece sempre com `draft: true`. Altere a chave de tradução nas duas cópias e confirme os dados antes de publicar. Para converter um exemplo DEMO em conteúdo real, substitua todo o texto de demonstração, retire `demo: true` e `noindex: true`, remova os temas de demonstração e retire `draft: true` apenas quando estiver aprovado. Entradas DEMO são visíveis para demonstrar o desenho, mas ficam fora de RSS, sitemap e pesquisa.
+
+### Notícia
+
+Exemplos: `content/pt/noticias/olhar-para-um-selo/index.md` e `content/en/news/a-closer-look/index.md`. Modelo: `archetypes/news.md`.
+
+```yaml
+---
+title: "[A COMPLETAR]"
+translationKey: noticia-chave-unica
+draft: true
+date: 2027-01-01T10:00:00+00:00 # Data de exemplo: substituir pela data real
+summary: "[A COMPLETAR]"
+description: "[A COMPLETAR]"
+# author: Nome fornecido pelo autor
+image: images/stamps/nome-descritivo.jpg
+image_alt: "[A COMPLETAR]"
+categories: []
+tags: []
+---
+Texto da notícia em Markdown.
+```
+
+A data é a data de publicação. Datas futuras não são publicadas por defeito. O nome do autor só aparece se `author` estiver preenchido. As listas têm paginação; a homepage mostra as duas notícias mais recentes. Não precisa de acrescentar cada notícia ao menu.
+
+### Atividade
+
+Exemplo: `content/pt/atividades/encontro-demo/index.md`. Modelo: `archetypes/activities.md`.
+
+Além do título, resumo e chave, pode usar:
+
+```yaml
+# Datas de exemplo; substituir por dados confirmados.
+starts: 2027-01-01T15:00:00+00:00
+ends: 2027-01-01T17:00:00+00:00
+activity_kind: encontro
+location: "[A COMPLETAR]"
+```
+
+`starts` e `ends` são as datas do evento, independentes de `date` (publicação). Inclua o fuso horário: Portugal continental usa `+00:00` no inverno e `+01:00` no verão. O fim não pode ser anterior ao início. Sem datas, o conteúdo aparece em «Datas a anunciar». Eventos cujo fim já passou aparecem nas atividades anteriores. Os exemplos DEMO têm um grupo separado e nunca preenchem a agenda da homepage.
+
+**A passagem de próxima a anterior acontece na compilação**, não no navegador. Publique uma nova compilação quando for necessário atualizar a agenda.
+
+### Exposição ou coleção
+
+Exemplo: `content/pt/exposicoes/galeria-demo/index.md`. Modelo: `archetypes/exhibitions.md`.
+
+Use `image` e `image_alt` para a imagem de destaque; `starts`, `ends` e `location` para dados confirmados. `exhibition_kind` permite classificar o conteúdo na fonte. A galeria é uma lista:
+
+```yaml
+gallery:
+  - image: images/exhibitions/nome-descritivo.jpg
+    alt: "[A COMPLETAR: descrição da imagem]"
+    caption: "[A COMPLETAR: contexto e crédito]"
+```
+
+Apresente curadoria, participação, coleções ou prémios no texto apenas quando existir informação confirmada. `weight` controla a ordem de apresentação.
+
+### Publicação e PDF
+
+Exemplo: `content/pt/publicacoes/boletim-demo/index.md`. Modelo: `archetypes/publications.md`.
+
+```yaml
+year: "[A COMPLETAR]"
+issue: "[A COMPLETAR]"
+image: images/publications/capa-descritiva.jpg
+image_alt: "[A COMPLETAR]"
+download: ""
+# Preencher apenas depois de colocar um ficheiro aprovado em static/documents/:
+# download: documents/nome-descritivo.pdf
+# file_size: 2 MB
+```
+
+Sem `download`, o site mostra uma mensagem de indisponibilidade em vez de um botão que não funciona. Use PDFs com texto pesquisável, título e idioma nos metadados, e estrutura acessível sempre que possível. Confirme os direitos de distribuição. Ano e número só devem ser preenchidos com valores reais.
+
+### Homepage, associação e contactos
+
+Os textos da homepage estão no front matter de `content/pt/_index.md` e `content/en/_index.md`. Notícias, atividades, exposições e publicações são recolhidas automaticamente das respetivas secções.
+
+Os textos institucionais ficam em `sobre/` e `about/`. As notas `editorial_notes` não são apresentadas no site. Nos contactos, preencha o mapa `contact` de cada língua com morada, email, telefone, local/horário e redes sociais confirmados. Valores `[A COMPLETAR]` são apresentados como «Por confirmar». O email torna-se uma ligação; os outros campos aceitam texto e ligações Markdown. O rodapé remete para esta página, sem duplicar valores desconhecidos.
+
+## Imagens e identidade gráfica
+
+Coloque imagens filatélicas em `assets/images/stamps/`, fotografias de exposições em `assets/images/exhibitions/` e capas em `assets/images/publications/`. Uma imagem exclusiva de uma página também pode ficar ao lado do seu `index.md`; nesse caso use `image: fotografia.jpg`.
+
+| Uso             | Preparação recomendada                                                           |
+| --------------- | -------------------------------------------------------------------------------- |
+| Destaque/cartão | 1600 × 1000 px, assunto principal centrado; o cartão recorta para 16:10          |
+| Galeria         | Até 1600 px no lado maior; preserva a proporção original                         |
+| Capa            | Fotografia/scan vertical; incluir margens se necessário para o recorte do cartão |
+| Hero            | Composição próxima de 900:760, com espaço à volta do assunto                     |
+| Partilha social | 1200 × 630 px, PNG ou JPG                                                        |
+
+Hugo cria variantes raster WebP até 600 e 1200 px, sem ampliar o original, com `srcset`, dimensões e carregamento diferido. A imagem principal carrega prioritariamente. SVGs mantêm-se vetoriais; use dimensões explícitas no elemento `<svg>`. Os nomes devem ser descritivos, sem espaços. Traduza o texto alternativo e as legendas.
+
+As ilustrações atuais são **composições originais de selos imaginários**, não fotografias de selos históricos. O registo de direitos está em `docs/image-rights.md`. Para novas imagens, registe autor, origem, licença/autorização e crédito obrigatório. Não copie imagens aleatórias da Internet.
+
+### Substituir a identidade provisória
+
+Coloque o logótipo aprovado em `static/images/brand/logo.svg` ou `logo.png` e defina em `config/_default/params.yaml`:
+
+```yaml
+logo: images/brand/logo.svg
+logo_footer: images/brand/logo-light.svg # Opcional, para o fundo escuro
+```
+
+Sem `logo_footer`, o rodapé usa `logo`. Sem ambos, mantém-se a marca tipográfica provisória. Prepare um SVG com proporção aproximada de 240:64 e confirme a legibilidade a 145 px em telemóvel. Substitua também `static/favicon.svg`, `nfb-social.png` e `nfb-social-en.png` quando houver identidade oficial.
+
+As cores e medidas estão em `assets/scss/_nfb.scss`: `--ink`, `--accent`, `--paper`, `--muted` e `--line`. As famílias Nunito e Oswald são servidas localmente pelo tema. Mantenha contraste adequado e estados de foco visíveis ao alterar cores.
+
+## Pesquisa e metadados
+
+Pagefind é executado depois de Hugo e gera índices independentes para `pt-PT` e `en`. O idioma do HTML determina a pesquisa; as entradas DEMO ficam de fora. A interface está traduzida e não requer serviço externo. O aviso informativo de Pagefind sobre a nova Component UI é esperado: mantemos a Default UI já usada pelo projeto, que continua suportada.
+
+Títulos, descrições, URL canónico, `hreflang`, OpenGraph, cartões sociais, RSS e sitemap são gerados por Hugo. Rascunhos, pesquisa e demonstrações não entram no sitemap. A versão publicada usa `https://nfb-pt.github.io/`, correspondente ao repositório; altere `baseURL` se for adotado outro domínio. Não foram mantidos analytics nem redes sociais da organização anterior.
+
+## Verificar alterações
+
+```sh
+npm run format
+npm run format:check
+npm test
+npm audit
+```
+
+`npm test` compila, verifica fontes/traduções, ligações e recursos locais, dimensões/alt de imagens, idioma, metadados, placeholders expostos e XML. Também compila cenários isolados para eventos, paginação, falta de tradução, imagens raster e ligações PDF. Os cenários temporários são removidos no fim. As verificações não confirmam disponibilidade de sites externos nem substituem uma revisão humana dos factos.
+
+Há testes opcionais de navegador em `scripts/check-browser.mjs`. Com `public/` servido na porta 4173 e Chrome iniciado com depuração na porta 9222, execute:
+
+```sh
+node scripts/check-browser.mjs
+```
+
+O script verifica PT/EN entre 320 e 1920 px, imagens, menu por teclado, páginas equivalentes e isolamento da pesquisa. Guarda capturas e resultados na pasta temporária do sistema. Veja `docs/quality-audit.md` para os resultados e limites da migração.
+
+## Publicar
+
+O diretório a publicar é **`public/` completo**, incluindo `pagefind/`. Não publique `content/`, dependências ou ficheiros de trabalho.
+
+### GitHub Pages
+
+O workflow `.github/workflows/pages.yaml` compila e testa em pull requests; publica alterações de `main` e execuções manuais. No repositório GitHub, selecione **Settings → Pages → Source → GitHub Actions**. O checkout inicializa o submódulo, instala as versões do lockfile e publica o artefacto estático. É necessário que o ambiente `github-pages` permita a publicação.
+
+A migração adiciona o workflow mas não executa um push nem altera configurações no GitHub. Para atualizar também a classificação temporal da agenda, desencadeie uma nova execução do workflow.
+
+### Netlify
+
+O processo existente foi preservado em `netlify.toml` e `Makefile`: `make production-build`, com saída em `public/`. O Netlify instala dependências e usa Node 22. Os previews recebem `DEPLOY_PRIME_URL` através de `HUGO_BASEURL`, incluindo URLs canónicos corretos para o preview. Se o Netlify passar a ser o alojamento principal, altere o URL de produção para o domínio confirmado. Nenhuma conta ou publicação Netlify foi configurada nesta migração.
+
+### Outro alojamento estático
+
+Execute `npm ci && npm run build` e envie o conteúdo de `public/`. O alojamento deve servir `index.html` nos diretórios e usar `404.html` para erros. Não há requisito de servidor de aplicação. A configuração atual destina-se à raiz de um domínio; publicar sob um subcaminho requer rever os caminhos das fontes do tema.
+
+## Licenças e origem
+
+Este projeto adapta o website [TODO Group](https://github.com/todogroup/todogroup.org), sob [CC BY 4.0](LICENSE). Foram alterados identidade, conteúdos, localização, componentes e processo de compilação. A atribuição permanece nas páginas de créditos, neste README e no histórico Git.
+
+O [Dot Org Theme](https://github.com/cncf/dot-org-hugo-theme), © 2023 Cloud Native Computing Foundation, mantém-se no commit `57c1fc627edcc358d083274593919074623e38ec`, sob [MIT](licenses/Dot-Org-MIT.txt). Nunito e Oswald têm avisos [SIL OFL](licenses/). As ilustrações originais desta migração usam CC BY 4.0; direitos de futuros scans, fotografias e logótipos devem ser registados separadamente.
+
+Não edite o submódulo diretamente. Para atualizar o tema, reveja o novo commit, atualize a referência do submódulo e execute os testes antes de integrar. O `override` npm de `adm-zip` para 0.6.1 corrige uma dependência do instalador Hugo 0.166.0; reavalie-o numa futura atualização.
