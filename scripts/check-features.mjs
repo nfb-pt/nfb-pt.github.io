@@ -71,6 +71,20 @@ try {
     year: 2026,
     issue: "1",
   });
+  fixture("edicoes", "2021-1", {
+    title: "TEST SCANNED ISSUE",
+    translationKey: "test-scanned-issue",
+    type: "magazine",
+    magazine_id: "a-pagina",
+    edition_year: 2021,
+    issue_date: "2021-03-01",
+    volume: 6,
+    number: 1,
+    format: "scan",
+    pdf: "documents/approved.pdf",
+    url: "/a-pagina/2021/1/",
+    description: "TEST OCR searchable transcription",
+  });
   const result = spawnSync(
     process.execPath,
     [
@@ -85,6 +99,35 @@ try {
   assert.equal(result.status, 0, result.stdout + result.stderr);
   const html = (url) =>
     fs.readFileSync(path.join(temp, "public", url, "index.html"), "utf8");
+  assert(html("publicacoes").includes("/filatelia/literatura-filatelica/"));
+  assert(
+    html("en/publications").includes("/en/philately/philatelic-literature/"),
+  );
+  assert(html("publicacoes/boletim-demo").includes("/publicacoes/a-pagina/"));
+  const archive = JSON.parse(
+    fs.readFileSync(
+      path.join(temp, "public/publicacoes/a-pagina/archive.json"),
+      "utf8",
+    ),
+  );
+  assert.deepEqual(
+    archive.issues.map((i) => i.date),
+    ["2026-09-01", "2021-03-01"],
+  );
+  assert(archive.issues[0].text.includes("No silêncio de um pequeno selo"));
+  const englishArchive = JSON.parse(
+    fs.readFileSync(
+      path.join(temp, "public/en/publications/a-pagina/archive.json"),
+      "utf8",
+    ),
+  );
+  assert.equal(
+    englishArchive.issues.filter((i) => i.language === "pt").length,
+    1,
+    "Untranslated scan must remain discoverable with language label",
+  );
+  assert(html("a-pagina/2021/1").includes("/documents/approved.pdf"));
+  assert(html("autores/exemplo-a").includes("/a-pagina/2026/1/#editorial"));
   const agenda = html("atividades");
   assert(
     agenda.indexOf("TEST UPCOMING") < agenda.indexOf("Atividades anteriores"),
@@ -146,6 +189,30 @@ try {
     validate().status,
     0,
     "Portuguese-only blog article must pass strict CI",
+  );
+  const englishIssue = path.join(validationRoot, "en/issues/2026-1");
+  fs.rmSync(englishIssue, { recursive: true });
+  assert.equal(
+    validate().status,
+    0,
+    "Entire magazine translations are optional",
+  );
+  const ptIssue = path.join(validationRoot, "pt/edicoes/2026-1/index.md");
+  const issueSource = fs.readFileSync(ptIssue, "utf8");
+  fs.writeFileSync(ptIssue, issueSource.replace("volume: 1", "volume: zero"));
+  assert.notEqual(validate().status, 0, "Editorial volume must be numeric");
+  fs.writeFileSync(
+    ptIssue,
+    issueSource.replace("type: magazine", "draft: true\ntype: magazine"),
+  );
+  fs.writeFileSync(
+    path.join(validationRoot, "pt/edicoes/2026-1/editorial.md"),
+    "---\ntitle: Draft entry\n---\n",
+  );
+  assert.equal(
+    validate().status,
+    0,
+    "Draft issue resources are excluded from publication checks",
   );
   const sample = path.join(validationRoot, "pt/sobre/untranslated.md");
   fs.writeFileSync(

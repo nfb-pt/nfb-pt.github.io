@@ -20,5 +20,28 @@
         <p>{{ i18n "empty" }}</p>
       {{ end }}
     </div>
+    {{ $authorID := .Params.author_id }}
+    {{ $contributions := slice }}
+    {{ range where .Site.RegularPages "Type" "magazine" }}
+      {{ $issue := . }}
+      {{ range partial "magazine/entries.html" . }}
+        {{ if in .Params.authors $authorID }}
+          {{ $contributions = $contributions | append (dict "title" .Title "url" (printf "%s#%s" $issue.RelPermalink .Params.anchor) "issue" $issue) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ with $contributions }}
+      <h2>{{ i18n "mag_contributions" }}</h2>
+      <ul class="magazine-contributions">
+        {{ range . }}
+          <li>
+            <a href="{{ .url }}">{{ .title }}</a> — A Página do NFB ·
+            {{ i18n "mag_number" }}
+            {{ .issue.Params.number }}
+            ({{ time.AsTime .issue.Params.issue_date | time.Format "January 2006" }})
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
   </section>
 {{ end }}

@@ -1,0 +1,12 @@
+{{ $records := slice }}
+{{ range partial "magazine/issues.html" . }}
+  {{ $text := printf "%s %s %s" .Title .Description .Plain }}
+  {{ range partial "magazine/entries.html" . }}
+    {{ $text = printf "%s %s %s" $text .Title .Plain }}
+    {{ range partial "blog/authors.html" . }}
+      {{ $text = printf "%s %s" $text .Title }}
+    {{ end }}
+  {{ end }}
+  {{ $records = $records | append (dict "url" .RelPermalink "title" .Title "date" .Params.issue_date "volume" .Params.volume "number" .Params.number "format" .Params.format "language" .Language.Lang "text" $text "pdf" (partial "magazine/pdf-url.html" .) "generate_pdf" (.Params.generate_pdf | default false)) }}
+{{ end }}
+{{ return $records }}

@@ -8,7 +8,7 @@
     "node": ">=22"
   },
   "scripts": {
-    "build": "node scripts/hugo.mjs --gc --minify --cleanDestinationDir && pagefind --site public",
+    "build": "node scripts/hugo.mjs --gc --minify --cleanDestinationDir && npm run build:pdf && pagefind --site public",
     "start": "node scripts/hugo.mjs server --disableFastRender",
     "dev": "npm run start",
     "preview": "npm run build && python3 -m http.server 4173 --bind 127.0.0.1 --directory public",
@@ -17,7 +17,9 @@
     "check": "node scripts/check-content.mjs && python3 scripts/check-site.py",
     "test": "npm run build && npm run check && npm run check:translations && npm run test:features",
     "check:translations": "node scripts/check-content.mjs --strict-translations",
-    "test:features": "node scripts/check-features.mjs"
+    "test:features": "node scripts/check-features.mjs && node scripts/check-magazine.mjs",
+    "build:pdf": "node scripts/build-magazine-pdfs.mjs",
+    "issue:new": "node scripts/new-issue.mjs"
   },
   "dependencies": {
     "autoprefixer": "10.5.6",

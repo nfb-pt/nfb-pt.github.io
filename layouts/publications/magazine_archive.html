@@ -1,0 +1,116 @@
+{{ define "main" }}
+  <section class="section container wrap magazine-archive">
+    <div class="archive-intro">
+      <div class="prose">{{ .Content }}</div>
+      <div class="archive-cover">
+        {{ partial "image.html" (dict "page" . "src" .Params.image "eager" true) }}
+      </div>
+    </div>
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">{{ i18n "mag_archive_label" }}</span>
+        <h2>{{ i18n "mag_archive" }}</h2>
+      </div>
+    </div>
+    <p>{{ i18n "mag_search_help" }}</p>
+    <form
+      class="archive-filters"
+      hidden
+      data-archive-form
+      data-index="{{ (.OutputFormats.Get "Archive").RelPermalink }}"
+      data-count="{{ i18n "mag_results" }}"
+    >
+      <div class="archive-query">
+        <label for="issue-query">{{ i18n "mag_search" }}</label
+        ><input
+          id="issue-query"
+          name="q"
+          type="search"
+          placeholder="{{ i18n "mag_search_placeholder" }}"
+        />
+      </div>
+      <div>
+        <label for="issue-from">{{ i18n "mag_from" }}</label
+        ><input id="issue-from" name="from" type="month" />
+      </div>
+      <div>
+        <label for="issue-to">{{ i18n "mag_to" }}</label
+        ><input id="issue-to" name="to" type="month" />
+      </div>
+      {{ range slice "year" "volume" "number" "format" }}
+        <div>
+          <label for="issue-{{ . }}">{{ i18n (printf "mag_%s" .) }}</label
+          ><select id="issue-{{ . }}" name="{{ . }}">
+            <option value="">{{ i18n "mag_all" }}</option>
+          </select>
+        </div>
+      {{ end }}
+      <div>
+        <label for="issue-sort">{{ i18n "mag_sort" }}</label
+        ><select id="issue-sort" name="sort">
+          <option value="newest">{{ i18n "mag_newest" }}</option>
+          <option value="oldest">{{ i18n "mag_oldest" }}</option>
+          <option value="volume">{{ i18n "mag_volume_order" }}</option>
+          <option value="number">{{ i18n "mag_number_order" }}</option>
+        </select>
+      </div>
+      <button type="reset" class="button outline">
+        {{ i18n "mag_reset" }}
+      </button>
+      <span hidden data-format-digital>{{ i18n "mag_digital" }}</span
+      ><span hidden data-format-scan>{{ i18n "mag_scan" }}</span>
+      <p
+        class="archive-result-count"
+        role="status"
+        aria-live="polite"
+        data-archive-count
+      ></p>
+    </form>
+    <p hidden data-archive-error>{{ i18n "mag_search_error" }}</p>
+    <div class="issue-list" data-issue-list>
+      {{ range partial "magazine/issues.html" . }}
+        <article class="issue-card" data-issue-url="{{ .RelPermalink }}">
+          <div class="issue-number" aria-hidden="true">
+            {{ printf "%02d" (int .Params.number) }}
+          </div>
+          <div class="issue-card-body">
+            {{ if .Params.demo }}
+              <span class="badge">{{ i18n "demo" }}</span>
+            {{ end }}
+            <h3>
+              <a href="{{ .RelPermalink }}"
+                >{{ time.AsTime .Params.issue_date | time.Format "January 2006" }}</a
+              >
+            </h3>
+            <p>{{ .Description }}</p>
+            <div class="issue-card-meta">
+              <span>{{ i18n "mag_volume" }} {{ .Params.volume }}</span
+              ><span>{{ i18n "mag_number" }} {{ .Params.number }}</span
+              ><span>{{ i18n (printf "mag_%s" .Params.format) }}</span
+              ><span lang="{{ .Language.Locale }}">{{ .Language.Label }}</span>
+            </div>
+          </div>
+          <div class="issue-actions">
+            <a class="text-link" href="{{ .RelPermalink }}"
+              >{{ i18n "mag_read" }} <span aria-hidden="true">↗</span></a
+            >{{ with partial "magazine/pdf-url.html" . }}
+              <a class="text-link" href="{{ . }}"
+                >PDF <span aria-hidden="true">↓</span></a
+              >
+            {{ end }}
+          </div>
+        </article>
+      {{ else }}
+        <p>{{ i18n "empty" }}</p>
+      {{ end }}
+    </div>
+    <p hidden data-archive-empty>{{ i18n "mag_no_results" }}</p>
+  </section>
+  {{ $js := resources.Get "js/magazine-archive.js" | js.Build (dict "format" "esm" "minify" true) | fingerprint }}
+  <script
+    type="module"
+    src="{{ $js.RelPermalink }}"
+    integrity="{{ $js.Data.Integrity }}"
+    defer
+  ></script>
+{{ end }}

@@ -1,0 +1,5 @@
+{{ $entries := slice }}
+{{ range .Resources.ByType "page" }}
+  {{ if not .Draft }}{{ $entries = $entries | append . }}{{ end }}
+{{ end }}
+{{ return (sort $entries "Params.weight") }}

@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <section class="section container wrap">
+    {{ with .Content }}<div class="prose">{{ . }}</div>{{ end }}
+    <h2 class="visually-hidden">{{ i18n "section_contents" }}</h2>
+    <div class="cards nfb-grid two">
+      {{ range .RegularPages.ByWeight }}{{ partial "card.html" . }}{{ end }}
+      {{ $literature := cond (eq .Language.Lang "pt") "filatelia/literatura-filatelica" "philately/philatelic-literature" }}
+      {{ with .Site.GetPage $literature }}{{ partial "card.html" . }}{{ end }}
+    </div>
+  </section>
+{{ end }}

@@ -1,0 +1,125 @@
+{{ define "main" }}
+  {{ $issue := . }}{{ $entries := partial "magazine/entries.html" . }}
+  {{ $archive := .Site.GetPage (cond (eq .Language.Lang "pt") "publicacoes/a-pagina" "publications/a-pagina") }}
+  <div class="magazine-toolbar container wrap" data-pagefind-ignore>
+    <a href="{{ $archive.RelPermalink }}">← {{ i18n "mag_archive" }}</a>
+    <div>
+      {{ with partial "magazine/pdf-url.html" . }}
+        <a class="button outline" href="{{ . }}">{{ i18n "mag_pdf" }}</a>
+      {{ end }}{{ if eq .Params.format "digital" }}
+        <button class="button" type="button" hidden data-print-issue>
+          {{ i18n "mag_print" }}
+        </button>
+      {{ end }}
+    </div>
+  </div>
+  <article class="magazine-paper">
+    <header class="magazine-cover">
+      <div class="magazine-masthead">
+        <p>NÚCLEO FILATÉLICO DE BRAGA</p>
+        <h1 data-pagefind-meta="title">
+          A Página <span>do NFB</span
+          ><span class="visually-hidden">
+            — {{ .Params.number }}/{{ .Params.edition_year }}</span
+          >
+        </h1>
+      </div>
+      <div class="magazine-cover-meta">
+        <time datetime="{{ .Params.issue_date }}"
+          >{{ time.AsTime .Params.issue_date | time.Format "January 2006" }}</time
+        ><span>{{ i18n "mag_volume" }} {{ .Params.volume }}</span
+        ><span>{{ i18n "mag_number" }} {{ .Params.number }}</span>
+      </div>
+      {{ if .Params.demo }}
+        <p class="magazine-demo">{{ i18n "mag_demo" }}</p>
+      {{ end }}
+      <div class="magazine-cover-grid">
+        <div>
+          <span class="eyebrow">{{ i18n "mag_cover_label" }}</span>
+          <h2>{{ .Params.coverline | default .Description }}</h2>
+          <p>{{ .Description }}</p>
+        </div>
+        {{ with .Params.image }}
+          <figure>
+            {{ partial "image.html" (dict "page" $ "src" . "eager" true) }}
+          </figure>
+        {{ end }}
+      </div>
+      <p class="magazine-cover-footer">{{ i18n "mag_cover_footer" }}</p>
+    </header>
+    {{ if $entries }}
+      <nav class="magazine-toc" aria-labelledby="magazine-contents">
+        <span class="eyebrow">{{ i18n "mag_reading" }}</span>
+        <h2 id="magazine-contents">{{ i18n "mag_contents" }}</h2>
+        <ol>
+          {{ range $entries }}
+            <li>
+              <a href="#{{ .Params.anchor }}"
+                ><span
+                  >{{ i18n (printf "mag_section_%s" .Params.section) }}</span
+                ><strong>{{ .Title }}</strong></a
+              >
+            </li>
+          {{ end }}
+        </ol>
+      </nav>
+    {{ end }}
+    {{ with .Content }}
+      <div class="magazine-introduction prose">{{ . }}</div>
+    {{ end }}
+    {{ if eq .Params.format "scan" }}
+      <div class="magazine-scan-note">
+        <h2>{{ i18n "mag_scan" }}</h2>
+        <p>{{ i18n "mag_scan_help" }}</p>
+        {{ with partial "magazine/pdf-url.html" . }}
+          <a class="button" href="{{ . }}">{{ i18n "mag_pdf" }}</a>
+        {{ else }}
+          <p>{{ i18n "file_pending" }}</p>
+        {{ end }}
+      </div>
+    {{ end }}
+    {{ range $entries }}
+      {{ $entry := . }}
+      <section
+        id="{{ .Params.anchor }}"
+        class="magazine-entry {{ if in (slice "article" "braga") .Params.section }}
+          magazine-feature
+        {{ end }} {{ if eq .Params.section "poem" }}magazine-poem{{ end }}"
+      >
+        <header>
+          <span class="eyebrow"
+            >{{ i18n (printf "mag_section_%s" .Params.section) }}</span
+          >
+          <h2>{{ .Title }}</h2>
+          {{ partial "blog/byline.html" (dict "page" . "links" true) }}
+        </header>
+        {{ with .Params.image }}
+          <figure>
+            {{ partial "image.html" (dict "page" $issue "src" . "alt" $entry.Params.image_alt) }}
+          </figure>
+        {{ end }}
+        <div class="magazine-entry-text">{{ .Content }}</div>
+        <a class="magazine-back" href="#magazine-contents"
+          >↑ {{ i18n "mag_contents" }}</a
+        >
+      </section>
+    {{ end }}
+    <footer class="magazine-colophon">
+      <p>A Página do NFB · Núcleo Filatélico de Braga</p>
+      <p>
+        {{ i18n "mag_volume" }} {{ .Params.volume }} ·
+        {{ i18n "mag_number" }}
+        {{ .Params.number }} ·
+        {{ time.AsTime .Params.issue_date | time.Format "January 2006" }}
+      </p>
+      {{ if .Params.demo }}<p>{{ i18n "mag_demo" }}</p>{{ end }}
+      <p>{{ .Permalink }}</p>
+    </footer>
+  </article>
+  {{ $js := resources.Get "js/magazine.js" | minify | fingerprint }}
+  <script
+    src="{{ $js.RelPermalink }}"
+    integrity="{{ $js.Data.Integrity }}"
+    defer
+  ></script>
+{{ end }}

@@ -5,7 +5,7 @@
   {{ if eq (len $matches) 1 }}
     {{ $authors = $authors | append (index $matches 0) }}
   {{ else }}
-    {{ errorf "Blog article %s requires exactly one author profile for %q in %s" $page.Path . $page.Language.Lang }}
+    {{ errorf "Content %s requires exactly one author profile for %q in %s" $page.Path . $page.Language.Lang }}
   {{ end }}
 {{ end }}
 {{ return $authors }}

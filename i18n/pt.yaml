@@ -144,3 +144,92 @@ blog_untranslated:
     inicial em inglês.
 language_home:
   other: Página inicial em {{ .language }} — tradução desta página indisponível
+mag_archive_label:
+  other: A Página do NFB
+mag_archive:
+  other: Arquivo de edições
+mag_search:
+  other: Pesquisar por palavras
+mag_search_placeholder:
+  other: Tema, título, autor ou palavra do texto…
+mag_search_help:
+  other:
+    Pesquise nos títulos, autores e textos das edições. Para digitalizações,
+    a pesquisa depende do texto transcrito ou reconhecido por OCR que tenha sido
+    acrescentado.
+mag_from:
+  other: Desde
+mag_to:
+  other: Até
+mag_year:
+  other: Ano civil
+mag_volume:
+  other: Ano editorial
+mag_number:
+  other: Número
+mag_format:
+  other: Formato
+mag_all:
+  other: Todos
+mag_sort:
+  other: Ordenar por
+mag_newest:
+  other: "Data: mais recente"
+mag_oldest:
+  other: "Data: mais antiga"
+mag_volume_order:
+  other: Ano editorial e número
+mag_number_order:
+  other: Número
+mag_reset:
+  other: Limpar filtros
+mag_results:
+  other: "{count} edição(ões) encontrada(s)"
+mag_no_results:
+  other: Não foram encontradas edições com estes critérios.
+mag_search_error:
+  other: Não foi possível carregar a pesquisa. Pode consultar todas as edições abaixo.
+mag_read:
+  other: Consultar edição
+mag_digital:
+  other: Edição digital
+mag_scan:
+  other: Digitalização
+mag_pdf:
+  other: Descarregar PDF
+mag_print:
+  other: Imprimir / guardar PDF
+mag_contents:
+  other: Índice
+mag_reading:
+  other: Nesta edição
+mag_demo:
+  other:
+    DEMO · Edição de demonstração. Data, ano e número exemplificativos; não é
+    uma edição real.
+mag_cover_label:
+  other: Uma publicação para colecionar
+mag_cover_footer:
+  other: Filatelia · Colecionismo · Braga · Cultura
+mag_scan_help:
+  other: Esta edição está disponível como digitalização em PDF. O texto
+    apresentado nesta página serve de apoio à leitura e à pesquisa; consulte o
+    original para confirmar a paginação e as imagens.
+mag_contributions:
+  other: Contributos para A Página do NFB
+mag_section_editorial:
+  other: Editorial
+mag_section_activities:
+  other: Atividades
+mag_section_article:
+  other: Filatelia e colecionismo
+mag_section_members:
+  other: Informações para sócios
+mag_section_curiosity:
+  other: Curiosidades
+mag_section_puzzle:
+  other: Passatempos
+mag_section_braga:
+  other: Braga
+mag_section_poem:
+  other: Poesia

@@ -13,8 +13,12 @@ taxonomies:
   category: categories
   tag: tags
 outputs:
-  home: [HTML, RSS]
-  section: [HTML, RSS]
+  home:
+    - HTML
+    - RSS
+  section:
+    - HTML
+    - RSS
 markup:
   goldmark:
     renderer:
@@ -37,3 +41,9 @@ module:
           target: layouts
         - source: assets
           target: assets
+outputFormats:
+  Archive:
+    mediaType: application/json
+    baseName: archive
+    isPlainText: true
+    notAlternative: true

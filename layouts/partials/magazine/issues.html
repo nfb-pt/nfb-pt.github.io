@@ -1,0 +1,12 @@
+{{ $archive := . }}
+{{ $issues := where (where .Site.RegularPages "Type" "magazine") "Params.magazine_id" .Params.magazine_id }}
+{{ range hugo.Sites }}
+  {{ if ne .Language.Lang $archive.Language.Lang }}
+    {{ range where (where .RegularPages "Type" "magazine") "Params.magazine_id" $archive.Params.magazine_id }}
+      {{ if not (where .AllTranslations "Language.Lang" $archive.Language.Lang) }}
+        {{ $issues = $issues | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ return (sort $issues "Params.issue_date" "desc") }}

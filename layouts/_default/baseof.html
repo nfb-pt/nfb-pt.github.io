@@ -10,7 +10,7 @@
         data-pagefind-body
       {{ end }}{{ if .Params.demo }}data-pagefind-ignore="all"{{ end }}
     >
-      {{ if not .IsHome }}
+      {{ if and (not .IsHome) (ne .Type "magazine") }}
         <header class="page-heading container wrap">
           <a class="eyebrow breadcrumb" href="{{ .Site.Home.RelPermalink }}"
             >{{ i18n "home" }} <span aria-hidden="true">/</span></a

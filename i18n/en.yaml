@@ -142,3 +142,88 @@ blog_untranslated:
     Portuguese homepage.
 language_home:
   other: "{{ .language }} homepage — this page has no translation"
+mag_archive_label:
+  other: A Página do NFB
+mag_archive:
+  other: Issue archive
+mag_search:
+  other: Search by words
+mag_search_placeholder:
+  other: Topic, title, author or word in the text…
+mag_search_help:
+  other: Search issue titles, authors and texts. Searching digitised issues
+    depends on transcribed or OCR text that has been added.
+mag_from:
+  other: From
+mag_to:
+  other: To
+mag_year:
+  other: Calendar year
+mag_volume:
+  other: Volume
+mag_number:
+  other: Number
+mag_format:
+  other: Format
+mag_all:
+  other: All
+mag_sort:
+  other: Sort by
+mag_newest:
+  other: "Date: newest first"
+mag_oldest:
+  other: "Date: oldest first"
+mag_volume_order:
+  other: Volume and number
+mag_number_order:
+  other: Number
+mag_reset:
+  other: Clear filters
+mag_results:
+  other: "{count} issue(s) found"
+mag_no_results:
+  other: No issues match these criteria.
+mag_search_error:
+  other: Search could not be loaded. All issues remain available below.
+mag_read:
+  other: Read issue
+mag_digital:
+  other: Digital edition
+mag_scan:
+  other: Digitised edition
+mag_pdf:
+  other: Download PDF
+mag_print:
+  other: Print / save PDF
+mag_contents:
+  other: Contents
+mag_reading:
+  other: In this issue
+mag_demo:
+  other: DEMO · Demonstration issue. Date, volume and number are illustrative;
+    this is not a real issue.
+mag_cover_label:
+  other: A publication to collect
+mag_cover_footer:
+  other: Philately · Collecting · Braga · Culture
+mag_scan_help:
+  other: This issue is available as a digitised PDF. Text on this page supports
+    reading and search; consult the original for pagination and images.
+mag_contributions:
+  other: Contributions to A Página do NFB
+mag_section_editorial:
+  other: Editorial
+mag_section_activities:
+  other: Activities
+mag_section_article:
+  other: Philately and collecting
+mag_section_members:
+  other: Information for members
+mag_section_curiosity:
+  other: Curiosities
+mag_section_puzzle:
+  other: Puzzles
+mag_section_braga:
+  other: Braga
+mag_section_poem:
+  other: Poetry

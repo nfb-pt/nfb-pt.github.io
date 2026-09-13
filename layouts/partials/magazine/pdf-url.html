@@ -1,0 +1,7 @@
+{{ $url := "" }}
+{{ if .Params.generate_pdf }}
+  {{ $url = printf "%sa-pagina.pdf" .RelPermalink }}
+{{ else }}
+  {{ with .Params.pdf }}{{ $url = . | relURL }}{{ end }}
+{{ end }}
+{{ return $url }}
