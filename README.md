@@ -232,6 +232,8 @@ Os textos institucionais ficam em `sobre/` e `about/`. As notas `editorial_notes
 
 ## Imagens e identidade gráfica
 
+As ilustrações dos cartões de Sobre o NFB, Filatelia e do encontro de demonstração ficam em `assets/images/cards/`; veja [o inventário e os prompts](docs/card-images.md).
+
 Coloque imagens filatélicas em `assets/images/stamps/`, fotografias de exposições em `assets/images/exhibitions/` e capas em `assets/images/publications/`. Uma imagem exclusiva de uma página também pode ficar ao lado do seu `index.md`; nesse caso use `image: fotografia.jpg`.
 
 | Uso             | Preparação recomendada                                                           |

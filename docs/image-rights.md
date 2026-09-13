@@ -16,3 +16,5 @@ Não foram importadas fotografias nem scans de terceiros. As fontes do tema cons
 Para cada nova imagem, acrescente uma linha com caminho, autor, URL de origem quando aplicável, licença ou referência da autorização, crédito exigido e alterações efetuadas. A disponibilização de um scan na Internet não confirma, por si só, direitos de reutilização.
 
 O futuro logótipo oficial deve ter os seus próprios termos de utilização; não se presume que esteja sob a licença das ilustrações provisórias.
+
+As onze imagens em `assets/images/cards/` foram geradas com a ferramenta integrada `image_gen`, sem imagens externas fornecidas. São composições simbólicas, não documentos históricos nem fotografias do Núcleo. Os ficheiros, páginas e prompts estão registados em [card-images.md](card-images.md).
