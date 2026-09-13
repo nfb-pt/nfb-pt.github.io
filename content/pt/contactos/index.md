@@ -2,7 +2,7 @@
 title: Contactos
 translationKey: contact
 layout: contact
-description: Informações de contacto do Núcleo Filatélico de Braga.
+description: Informações de contacto do Núcleo Filatélico e de Coleccionismo de Braga.
 contact:
   address: "[A COMPLETAR]"
   email: "[A COMPLETAR]"

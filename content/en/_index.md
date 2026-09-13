@@ -1,5 +1,5 @@
 ---
-title: Núcleo Filatélico de Braga
+title: Núcleo Filatélico e de Coleccionismo de Braga
 translationKey: home
 description: Promoting philately and stamp collecting in Braga since 1981.
 hero_eyebrow: BRAGA, PORTUGAL · SINCE 1981
@@ -12,7 +12,7 @@ collect_alt: Illustrated composition of two imaginary stamps about nature and he
 hero_caption: A graphic tribute to the art of collecting.
 intro_title: A passion to share.
 intro_text:
-  Núcleo Filatélico de Braga is a philatelic and stamp collecting association based in
+  Núcleo Filatélico e de Coleccionismo de Braga is a philatelic and stamp collecting association based in
   Braga, Portugal. A place for newcomers and collectors to share perspectives and discover the
   stories each stamp can tell.
 collect_title: Your next journey begins with a stamp.

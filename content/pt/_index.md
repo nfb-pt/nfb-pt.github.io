@@ -1,5 +1,5 @@
 ---
-title: Núcleo Filatélico de Braga
+title: Núcleo Filatélico e de Coleccionismo de Braga
 translationKey: home
 description: A promover a filatelia e o colecionismo em Braga desde 1981.
 hero_eyebrow: BRAGA, PORTUGAL · DESDE 1981
@@ -14,7 +14,7 @@ collect_alt: Composição ilustrativa de dois selos imaginários sobre natureza 
 hero_caption: Uma homenagem gráfica à arte de colecionar.
 intro_title: Uma paixão que se partilha.
 intro_text:
-  O Núcleo Filatélico de Braga é uma associação de filatelia e colecionismo sediada em
+  O Núcleo Filatélico e de Coleccionismo de Braga é uma associação de filatelia e colecionismo sediada em
   Braga. Um lugar para aproximar curiosos e colecionadores, partilhar olhares e descobrir as
   histórias que cada selo pode contar.
 collect_title: O próximo destino começa num selo.

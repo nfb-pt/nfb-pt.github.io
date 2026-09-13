@@ -92,3 +92,9 @@ Literatura Filatélica tem agora uma ilustração gerada por IA, sem reproduçõ
 `npm test` e `npm run format:check` passaram: 101 fontes publicadas, 108 ficheiros HTML e 3604 referências internas. O cenário isolado confirma a prioridade das atividades reais sobre os exemplos. Os testes de Chrome passaram em PT/EN entre 320 e 1920 px, com dez cartões na homepage atual, sem imagens quebradas ou deslocação horizontal. Capturas da homepage e de Publicações foram revistas visualmente.
 
 A espera ilimitada por `Image.decode()` no teste de navegador foi substituída por uma verificação limitada do carregamento efetivo: a primeira podia ficar pendente num separador oculto durante alterações de imagens responsivas. A revisão concluída usou uma instância isolada de Chrome headless. Não houve publicação externa.
+
+## Atualização do nome oficial
+
+Foi adotado o nome fornecido pelo utilizador: **Núcleo Filatélico e de Coleccionismo de Braga**. A sigla NFB e o foco na filatelia mantêm-se. O nome foi corrigido em PT/EN, na configuração, marca tipográfica, rodapé, conteúdos institucionais, metadados, revista, capa provisória, cartões de partilha e README. A grafia «Coleccionismo» é preservada no nome próprio.
+
+`npm test` e `npm run format:check` passaram. O PDF gerado contém o nome completo. A pesquisa nas fontes e no HTML/XML/JSON publicado não encontrou o nome anterior (ficheiros de trabalho do utilizador e tema excluídos). Os testes Chrome PT/EN entre 320 e 1920 px passaram; capturas da homepage móvel e de portátil, e do cartão social, foram revistas visualmente. O nome do cabeçalho usa agora o título configurado e uma largura limitada para acomodar o texto. Não houve publicação externa.

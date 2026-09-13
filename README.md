@@ -1,6 +1,6 @@
-# Núcleo Filatélico de Braga
+# Núcleo Filatélico e de Coleccionismo de Braga
 
-Website bilingue do **Núcleo Filatélico de Braga (NFB)**, uma associação de filatelia e colecionismo sediada em Braga, Portugal. Português europeu é a língua principal (`/`); a versão inglesa está em `/en/`.
+Website bilingue do **Núcleo Filatélico e de Coleccionismo de Braga (NFB)**, uma associação de filatelia e colecionismo sediada em Braga, Portugal. Português europeu é a língua principal (`/`); a versão inglesa está em `/en/`.
 
 O site é estático, construído com **Hugo Extended**, Markdown, SCSS e Pagefind. Mantém o tema Dot Org como submódulo, com adaptações na raiz do projeto. Não necessita de CMS, base de dados ou aplicação no servidor.
 
@@ -91,7 +91,7 @@ Este comando identifica traduções obrigatórias ausentes e falha se encontrar 
 | Publicações | `publicacoes` | `publications` |
 | Contactos   | `contactos`   | `contact`      |
 
-Use português europeu e a grafia **atividades**, **colecionadores**, **contactos**, **direção**, **sócios**. Não traduza o nome próprio da associação.
+Use português europeu e a grafia **atividades**, **colecionadores**, **contactos**, **direção**, **sócios**. Não traduza o nome próprio da associação. Use **Núcleo Filatélico e de Coleccionismo de Braga**, preservando a grafia oficial «Coleccionismo», e mantenha a sigla **NFB**.
 
 ## Criar conteúdos
 

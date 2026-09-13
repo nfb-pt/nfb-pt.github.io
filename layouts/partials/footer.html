@@ -14,9 +14,7 @@
           {{ else }}
             <span class="nfb-monogram" aria-hidden="true"
               >NFB<span>BRAGA</span></span
-            ><span class="nfb-wordmark"
-              >Núcleo Filatélico<span>de Braga</span></span
-            >
+            ><span class="nfb-wordmark">{{ .Site.Title }}</span>
           {{ end }}
         </a>
         <p>{{ i18n "footer_copy" }}</p>
@@ -55,7 +53,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© {{ now.Year }} Núcleo Filatélico de Braga</span>
+      <span>© {{ now.Year }} {{ .Site.Title }}</span>
       <div>
         {{ $credits := "creditos" }}{{ $news := "noticias" }}{{ if eq .Language.Lang "en" }}
           {{ $credits = "credits" }}{{ $news = "news" }}

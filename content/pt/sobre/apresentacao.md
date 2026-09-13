@@ -6,10 +6,10 @@ editorial_notes:
   de adesão, conforme a página."
 weight: 1
 description:
-  O Núcleo Filatélico de Braga é uma associação de filatelia e colecionismo sediada em
+  O Núcleo Filatélico e de Coleccionismo de Braga é uma associação de filatelia e colecionismo sediada em
   Braga, Portugal.
 ---
 
-O Núcleo Filatélico de Braga é uma associação de filatelia e colecionismo sediada em Braga, Portugal.
+O Núcleo Filatélico e de Coleccionismo de Braga é uma associação de filatelia e colecionismo sediada em Braga, Portugal.
 
 Este espaço convida a descobrir a filatelia, a conhecer coleções e a partilhar o interesse pelos selos e pela história postal.

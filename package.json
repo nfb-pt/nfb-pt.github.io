@@ -2,7 +2,7 @@
   "name": "nucleo-filatelico-braga-website",
   "version": "1.0.0",
   "private": true,
-  "description": "Bilingual Hugo website for Núcleo Filatélico de Braga",
+  "description": "Bilingual Hugo website for Núcleo Filatélico e de Coleccionismo de Braga",
   "license": "CC-BY-4.0",
   "engines": {
     "node": ">=22"

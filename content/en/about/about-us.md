@@ -6,10 +6,10 @@ editorial_notes:
   de adesão, conforme a página."
 weight: 1
 description:
-  Núcleo Filatélico de Braga is a philatelic and stamp collecting association based in
+  Núcleo Filatélico e de Coleccionismo de Braga is a philatelic and stamp collecting association based in
   Braga, Portugal.
 ---
 
-Núcleo Filatélico de Braga is a philatelic and stamp collecting association based in Braga, Portugal.
+Núcleo Filatélico e de Coleccionismo de Braga is a philatelic and stamp collecting association based in Braga, Portugal.
 
 This space invites you to discover philately, explore collections and share an interest in stamps and postal history.

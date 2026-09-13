@@ -16,7 +16,7 @@
   <article class="magazine-paper">
     <header class="magazine-cover">
       <div class="magazine-masthead">
-        <p>NÚCLEO FILATÉLICO DE BRAGA</p>
+        <p>{{ .Site.Title | upper }}</p>
         <h1 data-pagefind-meta="title">
           A Página <span>do NFB</span
           ><span class="visually-hidden">
@@ -105,7 +105,7 @@
       </section>
     {{ end }}
     <footer class="magazine-colophon">
-      <p>A Página do NFB · Núcleo Filatélico de Braga</p>
+      <p>A Página do NFB · {{ .Site.Title }}</p>
       <p>
         {{ i18n "mag_volume" }} {{ .Params.volume }} ·
         {{ i18n "mag_number" }}
