@@ -82,3 +82,13 @@ Verificações executadas nesta atualização:
 - PDFs PT/EN produzidos localmente com Chrome. `pdfinfo` confirma formato A4 e estrutura marcada; `pdftotext` confirma texto extraível, conteúdos e numeração. A capa PDF foi renderizada com Poppler e revista visualmente. Os estilos de impressão ocultam cabeçalho, rodapé do site e ferramentas de navegação. Não se afirma conformidade PDF/UA.
 
 O navegador é agora uma dependência de compilação quando há PDFs automáticos. O runner Ubuntu dos GitHub Actions já o disponibiliza; outros ambientes precisam de Chrome/Chromium e podem usar `CHROME_BIN`. Esta alteração não foi executada nos GitHub Actions/Netlify nem publicada externamente. Nenhuma edição histórica foi inventada: datas, ano editorial e número da edição atual são exemplos DEMO. Digitalizações precisam de transcrição Markdown para pesquisa no site; o índice não extrai texto dos PDFs.
+
+## Atualização: exemplos de atividades e Literatura Filatélica
+
+Foram acrescentadas duas atividades DEMO PT/EN, com datas e programas ilustrativos e estado «Confirmada · exemplo». A homepage apresenta estes exemplos apenas quando não há atividades reais futuras, com aviso explícito; as datas mantêm a classificação temporal na compilação. O exemplo anterior sem data permanece na listagem.
+
+Literatura Filatélica tem agora uma ilustração gerada por IA, sem reproduções de livros ou selos reais. O mesmo ficheiro serve PT/EN, com textos alternativos traduzidos e versões WebP de aproximadamente 21 KB (600 px) e 88 KB (1200 px). O prompt foi registado em `docs/literature-image.md`.
+
+`npm test` e `npm run format:check` passaram: 101 fontes publicadas, 108 ficheiros HTML e 3604 referências internas. O cenário isolado confirma a prioridade das atividades reais sobre os exemplos. Os testes de Chrome passaram em PT/EN entre 320 e 1920 px, com dez cartões na homepage atual, sem imagens quebradas ou deslocação horizontal. Capturas da homepage e de Publicações foram revistas visualmente.
+
+A espera ilimitada por `Image.decode()` no teste de navegador foi substituída por uma verificação limitada do carregamento efetivo: a primeira podia ficar pendente num separador oculto durante alterações de imagens responsivas. A revisão concluída usou uma instância isolada de Chrome headless. Não houve publicação externa.

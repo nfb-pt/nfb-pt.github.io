@@ -233,3 +233,10 @@ mag_section_braga:
   other: Braga
 mag_section_poem:
   other: Poesia
+
+activity_confirmed:
+  other: Confirmada
+activity_confirmed_demo:
+  other: Confirmada · exemplo
+activity_examples_notice:
+  other: DEMO — Atividades ilustrativas com datas definidas. Não são eventos reais anunciados pelo Núcleo.

@@ -5,7 +5,8 @@ import os from "node:os";
 import path from "node:path";
 import assert from "node:assert/strict";
 const base = process.env.NFB_TEST_URL || "http://127.0.0.1:4173";
-const tabs = await (await fetch("http://127.0.0.1:9222/json/list")).json();
+const debugURL = process.env.NFB_CHROME_URL || "http://127.0.0.1:9222";
+const tabs = await (await fetch(`${debugURL}/json/list`)).json();
 const ws = new WebSocket(
   tabs.find((t) => t.type === "page").webSocketDebuggerUrl,
 );
@@ -41,9 +42,19 @@ const evaluate = async (expression) => {
 const navigate = async (url) => {
   await send("Page.navigate", { url: base + url });
   await new Promise((r) => setTimeout(r, 350));
-  await evaluate(
-    `Promise.all([document.fonts.ready, ...[...document.images].map(i => {i.loading='eager'; return i.decode().catch(()=>{});})])`,
-  );
+  await evaluate(`[...document.images].forEach(i => { i.loading='eager'; })`);
+  // Image.decode() may stay pending when responsive sources change in a hidden tab.
+  // Poll actual loading state, then verify naturalWidth in the assertions below.
+  for (let attempt = 0; attempt < 50; attempt++) {
+    if (
+      await evaluate(
+        `document.readyState === 'complete' && document.fonts.status === 'loaded' && [...document.images].every(i => i.complete)`,
+      )
+    )
+      return;
+    await new Promise((resolve) => setTimeout(resolve, 100));
+  }
+  throw new Error(`Page assets did not finish loading: ${url}`);
 };
 const report = [];
 try {
@@ -68,7 +79,10 @@ try {
         0,
         `Broken images ${JSON.stringify(metrics.broken)}`,
       );
-      assert.equal(metrics.cards, 8);
+      const activityCards = await evaluate(
+        `document.querySelectorAll('.agenda-section .nfb-card').length`,
+      );
+      assert.equal(metrics.cards, 8 + activityCards);
       assert(
         await evaluate(
           `document.querySelector('#latest-blog').previousElementSibling.querySelector('h2').textContent.trim() === ${JSON.stringify(lang === "pt" ? "Notícias" : "News")}`,

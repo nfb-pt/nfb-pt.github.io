@@ -1,4 +1,13 @@
 {{ if in (slice "activities" "exhibitions") .Type }}
+  {{ if and (eq .Type "activities") (eq .Params.status "confirmed") }}
+    <p class="badge">
+      {{ if .Params.demo }}
+        {{ i18n "activity_confirmed_demo" }}
+      {{ else }}
+        {{ i18n "activity_confirmed" }}
+      {{ end }}
+    </p>
+  {{ end }}
   <dl class="contact-grid">
     <div>
       <dt>{{ i18n "date" }}</dt>

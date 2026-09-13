@@ -227,3 +227,10 @@ mag_section_braga:
   other: Braga
 mag_section_poem:
   other: Poetry
+
+activity_confirmed:
+  other: Confirmed
+activity_confirmed_demo:
+  other: Confirmed · example
+activity_examples_notice:
+  other: DEMO — Illustrative activities with dates set. These are not actual events announced by the association.

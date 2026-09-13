@@ -21,6 +21,15 @@
     {{ if eq .Type "blog" }}
       {{ partial "blog/byline.html" (dict "page" . "links" false) }}
     {{ end }}
+    {{ if and (eq .Type "activities") (eq .Params.status "confirmed") }}
+      <span class="card-meta"
+        >{{ if .Params.demo }}
+          {{ i18n "activity_confirmed_demo" }}
+        {{ else }}
+          {{ i18n "activity_confirmed" }}
+        {{ end }}</span
+      >
+    {{ end }}
     {{ if eq .Type "activities" }}
       {{ with .Params.starts }}
         <time class="card-meta" datetime="{{ . }}"

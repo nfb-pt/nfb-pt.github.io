@@ -6,6 +6,17 @@
     {{ end }}
   {{ end }}
 {{ end }}
+{{ $showExamples := false }}
+{{ if not $items }}
+  {{ range .section.RegularPages }}
+    {{ if and .Params.demo .Params.homepage_example .Params.starts (eq .Params.status "confirmed") }}
+      {{ if ge (time.AsTime (.Params.ends | default .Params.starts)) now }}
+        {{ $items = $items | append . }}
+        {{ $showExamples = true }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
 {{ if $items }}
   <div class="section-heading">
     <h2>{{ i18n "upcoming" }}</h2>
@@ -13,7 +24,12 @@
       >{{ i18n "all_activities" }} ↗</a
     >
   </div>
-  <div class="cards nfb-grid">
+  {{ if $showExamples }}
+    <p class="notice" data-activity-examples>
+      {{ i18n "activity_examples_notice" }}
+    </p>
+  {{ end }}
+  <div class="cards nfb-grid {{ if eq (len $items) 2 }}two{{ end }}">
     {{ range first 3 (sort $items "Params.starts") }}
       {{ partial "card.html" . }}
     {{ end }}

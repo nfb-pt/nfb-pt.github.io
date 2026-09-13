@@ -136,6 +136,12 @@ try {
   assert(agenda.indexOf("TEST UNDATED") > agenda.indexOf("Datas a anunciar"));
   const home = html("");
   assert(home.includes("TEST UPCOMING"));
+  assert(
+    !home.includes("data-activity-examples"),
+    "Real upcoming activities take priority over homepage examples",
+  );
+  assert(!home.includes("/atividades/trocas-demo/"));
+  assert(agenda.includes("Confirmada · exemplo"));
   assert(!home.includes("TEST PAST"));
   assert(!home.includes("TEST UNDATED"));
   assert(html("noticias/page/2").includes("TEST NEWS"));

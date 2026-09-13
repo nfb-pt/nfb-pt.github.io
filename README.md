@@ -176,7 +176,7 @@ activity_kind: encontro
 location: "[A COMPLETAR]"
 ```
 
-`starts` e `ends` são as datas do evento, independentes de `date` (publicação). Inclua o fuso horário: Portugal continental usa `+00:00` no inverno e `+01:00` no verão. O fim não pode ser anterior ao início. Sem datas, o conteúdo aparece em «Datas a anunciar». Eventos cujo fim já passou aparecem nas atividades anteriores. Os exemplos DEMO têm um grupo separado e nunca preenchem a agenda da homepage.
+`starts` e `ends` são as datas do evento, independentes de `date` (publicação). Inclua o fuso horário: Portugal continental usa `+00:00` no inverno e `+01:00` no verão. O fim não pode ser anterior ao início. Sem datas, o conteúdo aparece em «Datas a anunciar». Eventos cujo fim já passou aparecem nas atividades anteriores. Os exemplos DEMO têm um grupo separado. Os dois exemplos com `status: confirmed`, datas futuras e `homepage_example: true` também aparecem na homepage quando não há atividades reais agendadas, com um aviso DEMO explícito. São datas e programas fictícios: não anunciam eventos do Núcleo. Atividades reais têm sempre prioridade; retire `demo`, `noindex` e `homepage_example` quando substituir um exemplo por dados confirmados. `status: confirmed` apresenta o estado «Confirmada» nos cartões e na ficha.
 
 **A passagem de próxima a anterior acontece na compilação**, não no navegador. Publique uma nova compilação quando for necessário atualizar a agenda.
 
@@ -244,7 +244,7 @@ Coloque imagens filatélicas em `assets/images/stamps/`, fotografias de exposiç
 
 Hugo cria variantes raster WebP até 600 e 1200 px, sem ampliar o original, com `srcset`, dimensões e carregamento diferido. A imagem principal carrega prioritariamente. SVGs mantêm-se vetoriais; use dimensões explícitas no elemento `<svg>`. Os nomes devem ser descritivos, sem espaços. Traduza o texto alternativo e as legendas.
 
-As ilustrações atuais são **composições originais de selos imaginários**, não fotografias de selos históricos. O registo de direitos está em `docs/image-rights.md`. Para novas imagens, registe autor, origem, licença/autorização e crédito obrigatório. Não copie imagens aleatórias da Internet.
+As ilustrações atuais são **composições de selos imaginários**, incluindo a imagem de Literatura Filatélica gerada por IA, não fotografias de selos históricos. O registo de direitos está em `docs/image-rights.md`. Para novas imagens, registe autor, origem, licença/autorização e crédito obrigatório. Não copie imagens aleatórias da Internet.
 
 ### Substituir a identidade provisória
 
@@ -282,7 +282,7 @@ Há testes opcionais de navegador em `scripts/check-browser.mjs`. Com `public/` 
 node scripts/check-browser.mjs
 ```
 
-O script verifica PT/EN entre 320 e 1920 px, imagens, menu por teclado, páginas equivalentes e isolamento da pesquisa. Guarda capturas e resultados na pasta temporária do sistema. Veja `docs/quality-audit.md` para os resultados e limites da migração.
+O script verifica PT/EN entre 320 e 1920 px, imagens, menu por teclado, páginas equivalentes e isolamento da pesquisa. Para usar uma instância isolada do Chrome noutra porta, defina, por exemplo, `NFB_CHROME_URL=http://127.0.0.1:9223`. Guarda capturas e resultados na pasta temporária do sistema. Veja `docs/quality-audit.md` para os resultados e limites da migração.
 
 ## Publicar
 
