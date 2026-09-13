@@ -8,7 +8,7 @@ A identidade gráfica é provisória. As entradas marcadas **DEMO** são exemplo
 
 ## Instalar e executar
 
-Requisitos: Git, Node.js **22 ou posterior**, npm e Python **3.9 ou posterior** para os testes e a pré-visualização estática. Hugo Extended **0.166.0** é instalado localmente por npm; não é necessário substituir o Hugo global. A primeira instalação requer acesso à rede para descarregar as dependências e o executável Hugo.
+Requisitos: Git, Node.js **22 ou posterior**, npm e Python **3.9 ou posterior** para os testes e a pré-visualização estática. Hugo Extended **0.166.0** é instalado localmente por npm; não é necessário substituir o Hugo global. Para gerar os PDFs automáticos da revista, instale também Google Chrome/Chromium (ou defina `CHROME_BIN` com o caminho do executável). O navegador é usado apenas na compilação. A primeira instalação requer acesso à rede para descarregar as dependências e o executável Hugo.
 
 ```sh
 git clone --recurse-submodules https://github.com/nfb-pt/nfb-pt.github.io.git
@@ -32,9 +32,9 @@ npm run build
 npm run preview
 ```
 
-`build` gera `public/`, limpa ficheiros obsoletos e cria os índices Pagefind. `preview` volta a compilar e serve `http://127.0.0.1:4173/`. A cache fica em `.cache/hugo/`, excluída do Git.
+`build` gera `public/`, limpa ficheiros obsoletos, gera os PDFs de A Página do NFB e cria os índices Pagefind. `preview` volta a compilar e serve `http://127.0.0.1:4173/`. A cache fica em `.cache/hugo/`, excluída do Git.
 
-O servidor Hugo de desenvolvimento não gera os índices de pesquisa. Use `preview` para testar Pagefind. Não copie índices para os conteúdos nem para `static/`: isso deixaria resultados desatualizados.
+O servidor Hugo de desenvolvimento não gera os PDFs nem os índices de pesquisa. Use `preview` para testar Pagefind. Não copie índices para os conteúdos nem para `static/`: isso deixaria resultados desatualizados.
 
 Alternativamente, com Docker e o submódulo já inicializado, execute `./run-hugo-in-docker.sh`. O script usa Node 22, instala o Hugo fixado no lockfile e isola `node_modules` num volume Docker. O caminho Docker não foi executado durante a migração; o processo npm foi verificado em macOS.
 
@@ -77,7 +77,7 @@ Para adicionar uma tradução, copie a página para a secção correspondente da
 npm run check:translations
 ```
 
-Este comando identifica traduções obrigatórias ausentes e falha se encontrar alguma. **Os artigos do blogue podem ser publicados apenas numa língua**: a tradução é opcional em `content/pt/blogue/` e `content/en/blog/`, exceto nos índices `_index.md`. As restantes páginas publicadas, incluindo perfis de autor e secções, continuam a exigir PT/EN no CI. `npm run check` assinala as traduções obrigatórias ausentes sem bloquear o trabalho editorial. Rascunhos (`draft: true`) não entram nesta verificação estrita. Os ficheiros `_index.md` das secções definem `cascade.type`: novos conteúdos herdam o tipo correto em ambas as línguas.
+Este comando identifica traduções obrigatórias ausentes e falha se encontrar alguma. **Os artigos do blogue podem ser publicados apenas numa língua**: a tradução é opcional em `content/pt/blogue/` e `content/en/blog/`, exceto nos índices `_index.md`. As edições de A Página do NFB e as suas entradas também podem existir apenas numa língua. As restantes páginas publicadas, incluindo perfis de autor e secções, continuam a exigir PT/EN no CI. `npm run check` assinala as traduções obrigatórias ausentes sem bloquear o trabalho editorial. Rascunhos (`draft: true`) não entram nesta verificação estrita. Os ficheiros `_index.md` das secções definem `cascade.type`: novos conteúdos herdam o tipo correto em ambas as línguas.
 
 | Tipo        | Secção PT     | Secção EN      |
 | ----------- | ------------- | -------------- |
@@ -197,7 +197,19 @@ Apresente curadoria, participação, coleções ou prémios no texto apenas quan
 
 ### Publicação e PDF
 
-Exemplo: `content/pt/publicacoes/boletim-demo/index.md`. Modelo: `archetypes/publications.md`.
+**A Página do NFB** tem um arquivo próprio em `/publicacoes/a-pagina/`, com pesquisa por palavras/autores, filtros de data, ano editorial e número, e edições em HTML/PDF. Literatura Filatélica também aparece na listagem de Publicações.
+
+Para criar um número, como rascunho (dados ilustrativos):
+
+```sh
+npm run issue:new -- --year 2027 --volume 6 --number 1 --date 2027-03-01
+```
+
+O URL fica `/a-pagina/2027/1/`; o PDF automático, `/a-pagina/2027/1/a-pagina.pdf`. Cada entrada é um ficheiro Markdown, com autores dos mesmos perfis do blogue. O índice e as ligações nos perfis são gerados automaticamente. Existe uma edição completa DEMO, com tradução inglesa, em `content/pt/edicoes/2026-1/` e `content/en/issues/2026-1/`.
+
+Veja **[o guia editorial de A Página do NFB](docs/a-pagina.md)** para criar edições, acrescentar artigos, publicar digitalizações, preparar texto para pesquisa, traduzir e gerar/imprimir PDFs.
+
+Para outras publicações avulsas, use o modelo `archetypes/publications.md`:
 
 ```yaml
 year: "[A COMPLETAR]"
@@ -262,7 +274,7 @@ npm test
 npm audit
 ```
 
-`npm test` compila, verifica fontes/traduções, ligações e recursos locais, dimensões/alt de imagens, idioma, metadados, placeholders expostos e XML. Também compila cenários isolados para eventos, paginação, falta de tradução, imagens raster e ligações PDF. Os cenários temporários são removidos no fim. As verificações não confirmam disponibilidade de sites externos nem substituem uma revisão humana dos factos.
+`npm test` compila, verifica fontes/traduções, ligações e recursos locais, dimensões/alt de imagens, idioma, metadados, placeholders expostos e XML. Também compila cenários isolados para eventos, paginação, falta de tradução, imagens raster, arquivos de edições e ligações PDF, e testa filtros/ordenação e criação segura de rascunhos da revista. Os cenários temporários são removidos no fim. As verificações não confirmam disponibilidade de sites externos nem substituem uma revisão humana dos factos.
 
 Há testes opcionais de navegador em `scripts/check-browser.mjs`. Com `public/` servido na porta 4173 e Chrome iniciado com depuração na porta 9222, execute:
 
@@ -278,13 +290,13 @@ O diretório a publicar é **`public/` completo**, incluindo `pagefind/`. Não p
 
 ### GitHub Pages
 
-O workflow `.github/workflows/pages.yaml` compila e testa em pull requests; publica alterações de `main` e execuções manuais. No repositório GitHub, selecione **Settings → Pages → Source → GitHub Actions**. O checkout inicializa o submódulo, instala as versões do lockfile e publica o artefacto estático. É necessário que o ambiente `github-pages` permita a publicação.
+O workflow `.github/workflows/pages.yaml` compila e testa em pull requests; publica alterações de `main` e execuções manuais. No repositório GitHub, selecione **Settings → Pages → Source → GitHub Actions**. O runner Ubuntu fornece Chrome para os PDFs. O checkout inicializa o submódulo, instala as versões do lockfile e publica o artefacto estático. É necessário que o ambiente `github-pages` permita a publicação.
 
 A migração adiciona o workflow mas não executa um push nem altera configurações no GitHub. Para atualizar também a classificação temporal da agenda, desencadeie uma nova execução do workflow.
 
 ### Netlify
 
-O processo existente foi preservado em `netlify.toml` e `Makefile`: `make production-build`, com saída em `public/`. O Netlify instala dependências e usa Node 22. Os previews recebem `DEPLOY_PRIME_URL` através de `HUGO_BASEURL`, incluindo URLs canónicos corretos para o preview. Se o Netlify passar a ser o alojamento principal, altere o URL de produção para o domínio confirmado. Nenhuma conta ou publicação Netlify foi configurada nesta migração.
+O processo existente foi preservado em `netlify.toml` e `Makefile`: `make production-build`, com saída em `public/`. O Netlify instala dependências e usa Node 22. A geração automática de PDFs exige agora Chrome/Chromium no ambiente de compilação, com `CHROME_BIN` configurado; veja [os requisitos da revista](docs/a-pagina.md#pdf-e-impressão). Em alternativa, publique neste alojamento o artefacto já compilado pelos GitHub Actions. Os previews recebem `DEPLOY_PRIME_URL` através de `HUGO_BASEURL`, incluindo URLs canónicos corretos para o preview. Se o Netlify passar a ser o alojamento principal, altere o URL de produção para o domínio confirmado. Nenhuma conta ou publicação Netlify foi configurada nesta migração.
 
 ### Outro alojamento estático
 

@@ -1,13 +1,13 @@
 # Direitos das imagens
 
-| Ficheiro                                              | Origem e licença                                                  | Observações                                                                   |
-| ----------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `assets/images/stamps/braga-postal-composition.svg`   | Composição vetorial original criada para esta migração; CC BY 4.0 | Selos imaginários, arquitetura estilizada; não representa emissão postal real |
-| `assets/images/stamps/collection-study.svg`           | Composição vetorial original criada para esta migração; CC BY 4.0 | Natureza e património; sem reprodução de selos reais                          |
-| `assets/images/stamps/correspondence-study.svg`       | Composição vetorial original criada para esta migração; CC BY 4.0 | Envelope e marcas postais ilustrativos                                        |
-| `assets/images/publications/bulletin-placeholder.svg` | Composição vetorial original criada para esta migração; CC BY 4.0 | Capa marcada DEMO; não é publicação do Núcleo                                 |
-| `static/images/brand/nfb-social*.png`                 | Renderização da identidade e ilustração originais; CC BY 4.0      | PT/EN, 1200 × 630; criadas com o navegador a partir de HTML e SVG locais      |
-| `static/favicon.svg`                                  | Marca tipográfica original criada para esta migração; CC BY 4.0   | Provisória; não é logótipo oficial                                            |
+| Ficheiro                                            | Origem e licença                                                  | Observações                                                                        |
+| --------------------------------------------------- | ----------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `assets/images/stamps/braga-postal-composition.svg` | Composição vetorial original criada para esta migração; CC BY 4.0 | Selos imaginários, arquitetura estilizada; não representa emissão postal real      |
+| `assets/images/stamps/collection-study.svg`         | Composição vetorial original criada para esta migração; CC BY 4.0 | Natureza e património; sem reprodução de selos reais                               |
+| `assets/images/stamps/correspondence-study.svg`     | Composição vetorial original criada para esta migração; CC BY 4.0 | Envelope e marcas postais ilustrativos                                             |
+| `assets/images/publications/a-pagina-cover.svg`     | Composição vetorial original criada para esta migração; CC BY 4.0 | Identidade gráfica provisória de A Página do NFB; sem reprodução de capa histórica |
+| `static/images/brand/nfb-social*.png`               | Renderização da identidade e ilustração originais; CC BY 4.0      | PT/EN, 1200 × 630; criadas com o navegador a partir de HTML e SVG locais           |
+| `static/favicon.svg`                                | Marca tipográfica original criada para esta migração; CC BY 4.0   | Provisória; não é logótipo oficial                                                 |
 
 Não foram importadas fotografias nem scans de terceiros. As fontes do tema conservam os avisos SIL OFL em `licenses/`.
 

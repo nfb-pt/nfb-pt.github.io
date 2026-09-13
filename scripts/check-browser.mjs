@@ -165,12 +165,127 @@ try {
     "/autores/exemplo-a/",
     "/contactos/",
     "/atividades/",
-    "/publicacoes/boletim-demo/",
+    "/publicacoes/a-pagina/",
+    "/a-pagina/2026/1/",
+    "/en/a-pagina/2026/1/",
     "/en/news/a-closer-look/",
   ]) {
     await navigate(url);
     assert.equal(await evaluate(`document.documentElement.scrollWidth`), 390);
   }
+  for (const width of [320, 390, 768, 1366, 1920]) {
+    await send("Emulation.setDeviceMetricsOverride", {
+      width,
+      height: 900,
+      deviceScaleFactor: 1,
+      mobile: false,
+    });
+    for (const prefix of ["", "/en"]) {
+      await navigate(
+        prefix +
+          (prefix ? "/publications/a-pagina/" : "/publicacoes/a-pagina/"),
+      );
+      assert.equal(
+        await evaluate(`document.documentElement.scrollWidth`),
+        width,
+      );
+      assert(
+        await evaluate(`!document.querySelector('[data-archive-form]').hidden`),
+      );
+      const query = prefix ? "wander" : "silencio";
+      await evaluate(
+        `{const input=document.querySelector('#issue-query');input.value=${JSON.stringify(query)};input.dispatchEvent(new Event('input',{bubbles:true}));}`,
+      );
+      assert.equal(
+        await evaluate(
+          `document.querySelectorAll('.issue-card:not([hidden])').length`,
+        ),
+        1,
+        "Search must find words inside the poem",
+      );
+      await evaluate(
+        `{const input=document.querySelector('#issue-query');input.value='xyz-no-match';input.dispatchEvent(new Event('input',{bubbles:true}));}`,
+      );
+      assert.equal(
+        await evaluate(
+          `document.querySelectorAll('.issue-card:not([hidden])').length`,
+        ),
+        0,
+      );
+      await evaluate(`document.querySelector('[data-archive-form]').reset()`);
+      await new Promise((r) => setTimeout(r, 50));
+      assert.equal(
+        await evaluate(
+          `document.querySelectorAll('.issue-card:not([hidden])').length`,
+        ),
+        1,
+      );
+      await navigate(prefix + "/a-pagina/2026/1/");
+      assert.equal(
+        await evaluate(`document.documentElement.scrollWidth`),
+        width,
+      );
+      assert.equal(
+        await evaluate(`document.querySelectorAll('.magazine-toc li').length`),
+        9,
+      );
+      assert.equal(
+        await evaluate(`document.querySelectorAll('.magazine-entry').length`),
+        9,
+      );
+      assert.equal(
+        await evaluate(`document.querySelectorAll('.magazine-feature').length`),
+        3,
+      );
+      assert(await evaluate(`!!document.querySelector('.magazine-poem')`));
+      assert.equal(
+        await evaluate(
+          `document.querySelectorAll('#passatempos a[rel=author]').length`,
+        ),
+        2,
+      );
+      assert(
+        await evaluate(`!document.querySelector('[data-print-issue]').hidden`),
+      );
+      const pdf = await fetch(base + prefix + "/a-pagina/2026/1/a-pagina.pdf");
+      assert(pdf.ok);
+      assert(
+        Buffer.from(await pdf.arrayBuffer())
+          .subarray(0, 5)
+          .equals(Buffer.from("%PDF-")),
+      );
+      if ([390, 1366].includes(width)) {
+        const shot = await send("Page.captureScreenshot", { format: "png" });
+        fs.writeFileSync(
+          path.join(
+            os.tmpdir(),
+            `nfb-magazine-${prefix ? "en" : "pt"}-${width}.png`,
+          ),
+          Buffer.from(shot.data, "base64"),
+        );
+      }
+    }
+  }
+  await send("Emulation.setEmulatedMedia", { media: "print" });
+  assert.equal(
+    await evaluate(
+      `getComputedStyle(document.querySelector('.nfb-header')).display`,
+    ),
+    "none",
+  );
+  assert.equal(
+    await evaluate(
+      `getComputedStyle(document.querySelector('.magazine-toolbar')).display`,
+    ),
+    "none",
+  );
+  await send("Emulation.setEmulatedMedia", { media: "" });
+  await send("Emulation.setDeviceMetricsOverride", {
+    width: 390,
+    height: 844,
+    deviceScaleFactor: 1,
+    mobile: false,
+  });
   await navigate("/blogue/um-caderno-para-a-colecao/");
   assert(await evaluate(`!!document.querySelector('.translation-note')`));
   assert.equal(

@@ -68,3 +68,17 @@ Verificações executadas nesta atualização:
 - Capturas da homepage, listagem, artigo móvel e perfil de autor revistas visualmente. Os testes existentes de teclado e pesquisa nas duas línguas continuam a passar.
 
 As contagens e a exigência universal de tradução descritas na auditoria inicial acima são históricas; a exceção atual aplica-se apenas a artigos dentro de `blogue/` ou `blog/`. Perfis de autor, secções e restantes páginas continuam a exigir as duas línguas. Não houve alterações no tema importado nem publicação externa.
+
+## Atualização: A Página do NFB
+
+O boletim foi substituído pelo arquivo de A Página do NFB; os URLs antigos mantêm redirecionamentos. Publicações inclui Literatura Filatélica em PT/EN. A edição completa de demonstração contém nove entradas e usa os perfis de autoria do blogue. As traduções das edições também são opcionais, além das do blogue: arquivos, secções e perfis continuam bilingues.
+
+Verificações executadas nesta atualização:
+
+- `npm test` e `npm run format:check` passaram; Hugo sem erros/avisos novos. 97 fontes publicadas, 104 ficheiros HTML e 3395 referências internas verificadas, sem traduções obrigatórias em falta.
+- Arquivo JSON inclui texto completo e autores. Testes confirmam pesquisa sem distinção de acentos/maiúsculas, combinação de palavras, intervalo de meses, ano civil/editorial, número, formato e quatro ordenações. Testes de navegador encontram uma palavra apenas presente no poema, mostram o estado vazio e repõem os resultados ao limpar filtros.
+- Cenários Hugo isolados verificam ordenação de várias edições, PDF fornecido para digitalização, descoberta de uma edição portuguesa no arquivo inglês quando não há tradução, ligações nos perfis e redirecionamento antigo. O comando de criação foi testado para formatos digital/scan, rascunhos, datas inválidas e recusa de substituição de conteúdo existente.
+- Chrome: arquivo e revista PT/EN a 320, 390, 768, 1366 e 1920 px, sem deslocação horizontal; índice com nove entradas, três artigos de destaque e coautoria confirmados. Capturas da revista em telemóvel e portátil revistas visualmente. Os testes anteriores da homepage, menu por teclado, traduções e pesquisa Pagefind continuam a passar.
+- PDFs PT/EN produzidos localmente com Chrome. `pdfinfo` confirma formato A4 e estrutura marcada; `pdftotext` confirma texto extraível, conteúdos e numeração. A capa PDF foi renderizada com Poppler e revista visualmente. Os estilos de impressão ocultam cabeçalho, rodapé do site e ferramentas de navegação. Não se afirma conformidade PDF/UA.
+
+O navegador é agora uma dependência de compilação quando há PDFs automáticos. O runner Ubuntu dos GitHub Actions já o disponibiliza; outros ambientes precisam de Chrome/Chromium e podem usar `CHROME_BIN`. Esta alteração não foi executada nos GitHub Actions/Netlify nem publicada externamente. Nenhuma edição histórica foi inventada: datas, ano editorial e número da edição atual são exemplos DEMO. Digitalizações precisam de transcrição Markdown para pesquisa no site; o índice não extrai texto dos PDFs.
