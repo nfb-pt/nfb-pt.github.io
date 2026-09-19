@@ -160,7 +160,7 @@ try {
     "menu-toggle",
   );
   for (const [url, translation] of [
-    ["/sobre/historia/", "/en/about/history/"],
+    ["/sobre/apresentacao/", "/en/about/about-us/"],
     ["/blogue/escolher-um-tema/", "/en/blog/choosing-a-theme/"],
     ["/en/exhibitions/sample-gallery/", "/exposicoes/galeria-demo/"],
   ]) {

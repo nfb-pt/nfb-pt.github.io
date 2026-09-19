@@ -1,6 +1,6 @@
 # Ilustrações dos cartões
 
-Onze imagens geradas com a ferramenta integrada `image_gen`, uma chamada por imagem, sem fotografias ou imagens de referência externas. A direção visual acompanha a imagem de Literatura Filatélica: verde-petróleo, sálvia e terracota, papel e tecido, composições centradas. São ilustrações de peças imaginárias; não documentam o acervo, dirigentes, instalações ou encontros reais do Núcleo.
+Dez imagens geradas com a ferramenta integrada `image_gen`, uma chamada por imagem, sem fotografias ou imagens de referência externas. A direção visual acompanha a imagem de Literatura Filatélica: verde-petróleo, sálvia e terracota, papel e tecido, composições centradas. São ilustrações de peças imaginárias; não documentam o acervo, dirigentes, instalações ou encontros reais do Núcleo.
 
 Os ficheiros originais ficam em `assets/images/cards/`. Hugo cria variantes WebP de 600 e 1200 px, sem ampliar os originais, e usa `srcset` e carregamento diferido. As mesmas imagens são usadas em PT/EN, com texto alternativo traduzido. A imagem de Literatura Filatélica e as restantes imagens existentes foram conservadas.
 
@@ -9,7 +9,6 @@ Os ficheiros originais ficam em `assets/images/cards/`. Hugo cria variantes WebP
 | Imagem                                          | Página PT                                      | Página EN                                       |
 | ----------------------------------------------- | ---------------------------------------------- | ----------------------------------------------- |
 | `assets/images/cards/about-introduction.png`    | `content/pt/sobre/apresentacao.md`             | `content/en/about/about-us.md`                  |
-| `assets/images/cards/about-history.png`         | `content/pt/sobre/historia.md`                 | `content/en/about/history.md`                   |
 | `assets/images/cards/about-board.png`           | `content/pt/sobre/direcao.md`                  | `content/en/about/board.md`                     |
 | `assets/images/cards/about-membership.png`      | `content/pt/sobre/ser-socio.md`                | `content/en/about/membership.md`                |
 | `assets/images/cards/starting-a-collection.png` | `content/pt/filatelia/comecar-uma-colecao.md`  | `content/en/philately/starting-a-collection.md` |
@@ -31,10 +30,6 @@ Use case: stylized-concept. Asset type: one finished landscape website card imag
 ### about-introduction
 
 A welcoming introduction to a philatelic association: an open dark petrol-green stamp album displaying a few imaginary stamps with arches, plants and birds, a magnifying glass and a small closed reference book. Balanced close still life, no people.
-
-### about-history
-
-Association history and memory: a neat archival box, a restrained stack of folded correspondence tied with cotton ribbon, a dark green clothbound album and a small grouping of imaginary stamps. Clean pale sage background, not dusty, not sepia, no readable historic documents or dates.
 
 ### about-board
 

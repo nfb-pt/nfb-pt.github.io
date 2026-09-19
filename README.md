@@ -65,11 +65,11 @@ O tema é importado uma única vez através de `module.imports`, a partir do sub
 As duas versões de cada página têm o **mesmo `translationKey`**, mesmo quando o nome do ficheiro e o URL diferem:
 
 ```text
-content/pt/sobre/historia.md       → /sobre/historia/
-content/en/about/history.md       → /en/about/history/
+content/pt/sobre/apresentacao.md   → /sobre/apresentacao/
+content/en/about/about-us.md      → /en/about/about-us/
 ```
 
-Ambas usam `translationKey: history`. Cada chave deve ser única dentro da sua língua. O seletor PT/EN utiliza as traduções nativas do Hugo e conserva a página equivalente. Quando falta uma tradução, a ligação conduz à homepage da outra língua; não inventa uma página nem traduz por JavaScript.
+Ambas usam `translationKey: about-us`. Cada chave deve ser única dentro da sua língua. O seletor PT/EN utiliza as traduções nativas do Hugo e conserva a página equivalente. Quando falta uma tradução, a ligação conduz à homepage da outra língua; não inventa uma página nem traduz por JavaScript.
 
 Para adicionar uma tradução, copie a página para a secção correspondente da outra língua, conserve a chave e traduza título, descrição, resumo, texto, legendas, texto alternativo e termos de categorias/temas. Os caminhos das imagens e dos PDFs podem ser partilhados. As páginas de termos também podem ter um `translationKey`; veja `content/pt/tags/filatelia/_index.md` e o equivalente inglês.
 
