@@ -2,7 +2,7 @@
   <section class="section container wrap">
     <div class="prose">{{ .Content }}</div>
     <dl class="contact-grid">
-      {{ range slice "address" "email" "phone" "meeting_place" "meeting_schedule" "social" }}
+      {{ range slice "address" "email" "meeting_place" "meeting_schedule" "social" }}
         <div>
           <dt>{{ i18n . }}</dt>
           <dd>

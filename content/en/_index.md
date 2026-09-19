@@ -3,8 +3,8 @@ title: Núcleo Filatélico e de Coleccionismo de Braga
 translationKey: home
 description: Promoting philately and stamp collecting in Braga since 1981.
 hero_eyebrow: BRAGA, PORTUGAL · SINCE 1981
-hero_line: A world waiting
-hero_accent: in every stamp.
+hero_line: Every collection
+hero_accent: tells a story.
 hero_intro: Promoting philately and stamp collecting in Braga since 1981.
 hero_image: images/stamps/braga-postal-composition.svg
 hero_alt: Illustrated composition of imaginary stamps, an arch and postmarks; not an actual postal issue.

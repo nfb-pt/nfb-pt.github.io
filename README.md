@@ -230,7 +230,7 @@ Sem `download`, o site mostra uma mensagem de indisponibilidade em vez de um bot
 
 Os textos da homepage estão no front matter de `content/pt/_index.md` e `content/en/_index.md`. Notícias e artigos são reunidos automaticamente numa única lista, por data. Atividades, exposições e publicações são recolhidas das respetivas secções.
 
-Os textos institucionais ficam em `sobre/` e `about/`. As notas `editorial_notes` não são apresentadas no site. Nos contactos, preencha o mapa `contact` de cada língua com morada, email, telefone, local/horário e redes sociais confirmados. Valores `[A COMPLETAR]` são apresentados como «Por confirmar». O email torna-se uma ligação; os outros campos aceitam texto e ligações Markdown. O rodapé remete para esta página, sem duplicar valores desconhecidos.
+Os textos institucionais ficam em `sobre/` e `about/`. As notas `editorial_notes` não são apresentadas no site. Nos contactos, preencha o mapa `contact` de cada língua com morada, email, local/horário e redes sociais confirmados. Valores `[A COMPLETAR]` são apresentados como «Por confirmar». O email torna-se uma ligação; os outros campos aceitam texto e ligações Markdown. O rodapé remete para esta página, sem duplicar valores desconhecidos.
 
 ## Imagens e identidade gráfica
 

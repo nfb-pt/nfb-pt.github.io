@@ -1,5 +1,5 @@
 ---
-title: Um olhar mais atento sobre um selo
+title: "Notícia: Um olhar mais atento sobre um selo"
 translationKey: news-demo-1
 demo: true
 noindex: true

@@ -1,15 +1,17 @@
 ---
-title: Histórias que viajam por carta
+title: "Notícia: Histórias que viajam por carta"
 translationKey: news-demo-2
 demo: true
 noindex: true
-date: 2026-01-01T10:00:00Z
+date: 2026-09-19T10:00:00Z
 summary: "Selos, cartas e marcas postais: um exemplo de como partilhar descobertas e leituras."
 description: "Selos, cartas e marcas postais: um exemplo de como partilhar descobertas e leituras."
 image: images/stamps/correspondence-study.svg
 image_alt: Ilustração original de um envelope com um selo imaginário e uma marca postal.
 categories:
   - Demonstração
+authors:
+  - exemplo-b
 tags:
   - Filatelia
 editorial_notes:

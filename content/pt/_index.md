@@ -3,8 +3,8 @@ title: Núcleo Filatélico e de Coleccionismo de Braga
 translationKey: home
 description: A promover a filatelia e o colecionismo em Braga desde 1981.
 hero_eyebrow: BRAGA, PORTUGAL · DESDE 1981
-hero_line: Há um mundo
-hero_accent: em cada selo.
+hero_line: Cada colecção
+hero_accent: conta uma história.
 hero_intro: A promover a filatelia e o colecionismo em Braga desde 1981.
 hero_image: images/stamps/braga-postal-composition.svg
 hero_alt:
