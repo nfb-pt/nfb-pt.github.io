@@ -6,17 +6,13 @@
       aria-label="{{ .Site.Title }} — {{ i18n "home" }}"
     >
       {{ with .Site.Params.logo }}
-        <img
-          src="{{ . | relURL }}"
-          width="240"
-          height="64"
-          alt="{{ $.Site.Title }}"
-        />
+        <img src="{{ . | relURL }}" width="49" height="64" alt="" />
       {{ else }}
         <span class="nfb-monogram" aria-hidden="true"
           >NFB<span>BRAGA</span></span
-        ><span class="nfb-wordmark">{{ .Site.Title }}</span>
+        >
       {{ end }}
+      <span class="nfb-wordmark">{{ .Site.Title }}</span>
     </a>
     <div class="nfb-header__tools">
       {{ partial "language-selector.html" . }}

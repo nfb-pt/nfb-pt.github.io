@@ -257,7 +257,7 @@ logo: images/brand/logo.svg
 logo_footer: images/brand/logo-light.svg # Opcional, para o fundo escuro
 ```
 
-Sem `logo_footer`, o rodapé usa `logo`. Sem ambos, mantém-se a marca tipográfica provisória. Prepare um SVG com proporção aproximada de 240:64 e confirme a legibilidade a 145 px em telemóvel. Substitua também `static/favicon.svg`, `nfb-social.png` e `nfb-social-en.png` quando houver identidade oficial.
+O logótipo aparece ao lado do nome completo da associação, no cabeçalho e no rodapé. Sem `logo_footer`, o rodapé usa `logo`. Sem ambos, mantém-se o monograma NFB provisório junto ao nome. Prefira um símbolo com fundo transparente: a imagem mantém as proporções numa área de 49 × 64 px (33 × 48 px em telemóvel). O nome é obtido automaticamente do título do site. Substitua também `static/favicon.svg`, `nfb-social.png` e `nfb-social-en.png` quando houver identidade oficial.
 
 As cores e medidas estão em `assets/scss/_nfb.scss`: `--ink`, `--accent`, `--paper`, `--muted` e `--line`. As famílias Nunito e Oswald são servidas localmente pelo tema. Mantenha contraste adequado e estados de foco visíveis ao alterar cores.
 

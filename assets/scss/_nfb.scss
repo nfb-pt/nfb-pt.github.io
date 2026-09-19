@@ -897,14 +897,15 @@ dd {
 }
 
 .nfb-brand > img {
-  width: 205px;
-  max-height: 64px;
+  width: 49px;
+  height: 64px;
+  flex-shrink: 0;
   object-fit: contain;
 }
 @media (max-width: 520px) {
   .nfb-brand > img {
-    width: 145px;
-    max-height: 48px;
+    width: 33px;
+    height: 48px;
   }
 }
 

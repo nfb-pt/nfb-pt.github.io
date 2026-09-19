@@ -6,16 +6,17 @@
           {{ with (.Site.Params.logo_footer | default .Site.Params.logo) }}
             <img
               src="{{ . | relURL }}"
-              width="240"
+              width="49"
               height="64"
-              alt="{{ $.Site.Title }}"
+              alt=""
               loading="lazy"
             />
           {{ else }}
             <span class="nfb-monogram" aria-hidden="true"
               >NFB<span>BRAGA</span></span
-            ><span class="nfb-wordmark">{{ .Site.Title }}</span>
+            >
           {{ end }}
+          <span class="nfb-wordmark">{{ .Site.Title }}</span>
         </a>
         <p>{{ i18n "footer_copy" }}</p>
         <span class="eyebrow">{{ i18n "footer_location" }}</span>
