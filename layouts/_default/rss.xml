@@ -1,10 +1,12 @@
 {{ `<?xml version="1.0" encoding="utf-8"?>` | safeHTML }}
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel>
-<title>{{ .Title }} | {{ .Site.Title }}</title><link>{{ .Permalink }}</link>
+{{ $section := . }}{{ if eq .Type "blog" }}{{ $section = .Site.GetPage (cond (eq .Language.Lang "pt") "noticias" "news") }}{{ end }}
+<title>{{ $section.Title }} | {{ .Site.Title }}</title><link>{{ $section.Permalink }}</link>
 <description>{{ .Description | default .Site.Params.description }}</description>
 <language>{{ .Language.Locale }}</language>
 {{ with .OutputFormats.Get "RSS" }}<atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml"/>{{ end }}
-{{ $items := .RegularPages }}{{ if .IsHome }}{{ $items = where .Site.RegularPages "Type" "news" }}{{ end }}
-{{ range first 20 $items.ByDate.Reverse }}{{ if and (not .Params.demo) (not .Date.IsZero) }}
+{{ $items := .RegularPages }}{{ if or .IsHome (in (slice "news" "blog") .Type) }}{{ $items = partial "editorial-pages.html" . }}{{ end }}
+{{ $items = where $items "Params.demo" "ne" true }}
+{{ range first 20 $items.ByDate.Reverse }}{{ if not .Date.IsZero }}
 <item><title>{{ .Title }}</title><link>{{ .Permalink }}</link><guid>{{ .Permalink }}</guid><pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate><description>{{ .Summary | plainify }}</description></item>
 {{ end }}{{ end }}</channel></rss>

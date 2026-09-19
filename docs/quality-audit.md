@@ -106,3 +106,9 @@ Foram geradas onze ilustrações com `image_gen`: quatro para Sobre o NFB, seis 
 `npm test` e `npm run format:check` passaram: 108 ficheiros HTML e 3736 referências internas verificados. Hugo criou 22 variantes WebP de 600/1200 px, com aproximadamente 18–177 KB por variante. Não foram alterados templates, SCSS, dependências ou o tema.
 
 Uma verificação Chrome das seis listagens PT/EN confirmou todos os cartões ilustrados, imagens carregadas e textos alternativos preenchidos, sem deslocação horizontal a 320, 390, 768, 1366 e 1920 px. Capturas de Sobre o NFB e Filatelia em portátil, e de Atividades em telemóvel, foram revistas visualmente. Não houve publicação externa.
+
+## Atualização: Notícias e Artigos
+
+Notícias e artigos assinados partilham agora uma secção PT/EN, com listagem paginada por data e três entradas na homepage, antes das Atividades. Os URL dos artigos e os perfis de autor foram preservados. Os antigos índices do blogue redirecionam para a secção conjunta; os feeds RSS antigos continuam disponíveis e incluem notícias e artigos, excluindo DEMO. As pastas e tipos internos mantêm-se para compatibilidade editorial.
+
+`npm test` passou, incluindo produção, PDF, Pagefind, traduções, referências internas e cenários de paginação conjunta, autoria e RSS. `npm run format:check` passou. Os testes Chrome PT/EN passaram entre 320 e 1920 px, incluindo os redirecionamentos dos dois idiomas, navegação por teclado e pesquisa. Foram revistas capturas da homepage em telemóvel e portátil e da secção conjunta na homepage completa. Não houve publicação externa.

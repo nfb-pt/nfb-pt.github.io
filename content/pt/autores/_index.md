@@ -1,5 +1,5 @@
 ---
-title: Autores do blogue
+title: Autores
 translationKey: blog-authors
 description: Conheça quem escreve e explore os seus artigos.
 type: authors

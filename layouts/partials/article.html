@@ -46,7 +46,11 @@
       </ul>
     {{ end }}
   {{ end }}
-  {{ with .Parent }}
+  {{ $parent := .Parent }}
+  {{ if in (slice "news" "blog") .Type }}
+    {{ $parent = .Site.GetPage (cond (eq .Language.Lang "pt") "noticias" "news") }}
+  {{ end }}
+  {{ with $parent }}
     {{ if not .IsHome }}
       <a class="text-link back-link" href="{{ .RelPermalink }}"
         >← {{ i18n "back" }}</a

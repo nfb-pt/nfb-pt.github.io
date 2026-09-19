@@ -6,7 +6,8 @@ pt:
   title: Núcleo Filatélico e de Coleccionismo de Braga
   params:
     description: Filatelia, colecionismo e história postal em Braga. Conheça o
-      Núcleo Filatélico e de Coleccionismo de Braga e descubra o mundo dos selos.
+      Núcleo Filatélico e de Coleccionismo de Braga e descubra o mundo dos
+      selos.
   menus:
     main:
       - identifier: home
@@ -22,13 +23,9 @@ pt:
         pageRef: filatelia
         weight: 3
       - identifier: news
-        name: Notícias
+        name: Notícias e Artigos
         pageRef: noticias
         weight: 4
-      - identifier: blog
-        name: Blogue
-        pageRef: blogue
-        weight: 5
       - identifier: activities
         name: Atividades
         pageRef: atividades
@@ -56,7 +53,8 @@ en:
       - images/brand/nfb-social-en.png
     description:
       Philately, stamp collecting and postal history in Braga, Portugal.
-      Discover Núcleo Filatélico e de Coleccionismo de Braga and the world of stamps.
+      Discover Núcleo Filatélico e de Coleccionismo de Braga and the world of
+      stamps.
   menus:
     main:
       - identifier: home
@@ -72,13 +70,9 @@ en:
         pageRef: philately
         weight: 3
       - identifier: news
-        name: News
+        name: News and Articles
         pageRef: news
         weight: 4
-      - identifier: blog
-        name: Blog
-        pageRef: blog
-        weight: 5
       - identifier: activities
         name: Activities
         pageRef: activities

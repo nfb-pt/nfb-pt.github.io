@@ -1,8 +1,11 @@
 ---
-title: Blog
+title: News and Articles
 translationKey: blog
-description: Members’ perspectives, discoveries and articles from the world of stamps.
+description: Association updates, discoveries and articles about philately and collecting.
 type: blog
 cascade:
   type: blog
+outputs:
+  - RSS
+noindex: true
 ---

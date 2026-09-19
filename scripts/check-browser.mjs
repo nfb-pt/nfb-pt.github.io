@@ -48,7 +48,7 @@ const navigate = async (url) => {
   for (let attempt = 0; attempt < 50; attempt++) {
     if (
       await evaluate(
-        `document.readyState === 'complete' && document.fonts.status === 'loaded' && [...document.images].every(i => i.complete)`,
+        `!document.querySelector('meta[http-equiv="refresh"]') && document.readyState === 'complete' && document.fonts.status === 'loaded' && [...document.images].every(i => i.complete)`,
       )
     )
       return;
@@ -82,20 +82,20 @@ try {
       const activityCards = await evaluate(
         `document.querySelectorAll('.agenda-section .nfb-card').length`,
       );
-      assert.equal(metrics.cards, 8 + activityCards);
+      assert.equal(metrics.cards, 7 + activityCards);
       assert(
         await evaluate(
-          `document.querySelector('#latest-blog').previousElementSibling.querySelector('h2').textContent.trim() === ${JSON.stringify(lang === "pt" ? "Notícias" : "News")}`,
+          `document.querySelector('#latest-editorial h2').textContent.trim() === ${JSON.stringify(lang === "pt" ? "Notícias e Artigos" : "News and Articles")}`,
         ),
       );
       assert(
         await evaluate(
-          `document.querySelector('#latest-blog').nextElementSibling.classList.contains('agenda-section')`,
+          `document.querySelector('#latest-editorial').nextElementSibling.classList.contains('agenda-section')`,
         ),
       );
       assert(
         await evaluate(
-          `!!document.querySelector('.nfb-nav a[href="${lang === "pt" ? "/blogue/" : "/en/blog/"}"]')`,
+          `!!document.querySelector('.nfb-nav a[href="${lang === "pt" ? "/noticias/" : "/en/news/"}"]')`,
         ),
       );
       report.push({ width, lang, ...metrics });
@@ -319,9 +319,10 @@ try {
     2,
   );
   await navigate("/en/blog/");
+  assert.equal(await evaluate("location.pathname"), "/en/news/");
   assert.equal(
     await evaluate(`document.querySelectorAll('.nfb-card').length`),
-    2,
+    4,
   );
   for (const [url, query, prefix] of [
     ["/pesquisa/", "coleção", "/"],

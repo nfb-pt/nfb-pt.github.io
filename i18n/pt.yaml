@@ -15,7 +15,7 @@ discover:
 explore:
   other: Explorar a filatelia
 all_news:
-  other: Todas as notícias
+  other: Todas as notícias e artigos
 all_activities:
   other: Ver atividades
 all_exhibitions:
@@ -50,7 +50,7 @@ association:
 collecting:
   other: A arte de colecionar
 news_label:
-  other: Do Núcleo e da filatelia
+  other: Do Núcleo e dos colecionadores
 exhibitions_label:
   other: Coleções em destaque
 publications_label:
@@ -82,7 +82,7 @@ footer_nav:
 footer_location:
   other: Braga, Portugal
 rss:
-  other: Subscrever notícias por RSS
+  other: Subscrever notícias e artigos por RSS
 back:
   other: Voltar à secção
 by:
@@ -125,12 +125,8 @@ categories:
   other: Categorias
 section_contents:
   other: Conteúdos desta secção
-all_blog:
-  other: Todos os artigos
-blog_label:
-  other: Olhares dos associados
 blog_authors:
-  other: Autores do blogue
+  other: Autores
 author_articles:
   other: Artigos deste autor
 blog_demo_notice:
@@ -233,10 +229,11 @@ mag_section_braga:
   other: Braga
 mag_section_poem:
   other: Poesia
-
 activity_confirmed:
   other: Confirmada
 activity_confirmed_demo:
   other: Confirmada · exemplo
 activity_examples_notice:
-  other: DEMO — Atividades ilustrativas com datas definidas. Não são eventos reais anunciados pelo Núcleo.
+  other:
+    DEMO — Atividades ilustrativas com datas definidas. Não são eventos reais
+    anunciados pelo Núcleo.

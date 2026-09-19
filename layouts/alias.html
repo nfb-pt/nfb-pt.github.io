@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="{{ .Page.Language.Locale }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{ .Page.Title }}</title>
+    <link rel="canonical" href="{{ .Permalink }}" />
+    <meta http-equiv="refresh" content="0; url={{ .Permalink | relURL }}" />
+  </head>
+  <body>
+    <a href="{{ .Permalink | relURL }}">{{ .Page.Title }}</a>
+  </body>
+</html>

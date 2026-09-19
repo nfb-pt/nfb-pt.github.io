@@ -51,7 +51,7 @@
           <li>
             <a
               href="{{ .URL }}"
-              {{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) }}
+              {{ if or ($.IsMenuCurrent "main" .) ($.HasMenuCurrent "main" .) (and (eq .Identifier "news") (in (slice "news" "blog") $.Type)) }}
                 aria-current="{{ if $.IsMenuCurrent "main" . }}
                   page
                 {{ else }}

@@ -44,14 +44,14 @@ try {
     fixture("noticias", `test-${i}`, {
       title: `TEST NEWS ${i}`,
       translationKey: `test-news-${i}`,
-      date: past,
+      date: new Date(Date.parse(past) + i * 1000).toISOString(),
     });
   for (let i = 0; i < 10; i++)
     fixture("blogue", `test-blog-${i}`, {
       title: `TEST BLOG ${i}`,
       translationKey: `test-blog-${i}`,
       type: "blog",
-      date: past,
+      date: new Date(Date.parse(past) + i * 1000 + 500).toISOString(),
       authors: ["exemplo-a"],
     });
   const imageFolder = fixture("exposicoes", "test-image", {
@@ -144,7 +144,17 @@ try {
   assert(agenda.includes("Confirmada · exemplo"));
   assert(!home.includes("TEST PAST"));
   assert(!home.includes("TEST UNDATED"));
-  assert(html("noticias/page/2").includes("TEST NEWS"));
+  const editorialArchive = ["noticias", "noticias/page/2", "noticias/page/3"]
+    .map(html)
+    .join("");
+  for (let i = 0; i < 10; i++) {
+    assert(editorialArchive.includes(`TEST NEWS ${i}`));
+    assert(editorialArchive.includes(`TEST BLOG ${i}`));
+  }
+  assert(
+    html("en/blog").includes("/en/news/"),
+    "English legacy blog index redirects within English",
+  );
   const single = html("atividades/test-upcoming");
   assert.match(single, /<a[^>]+href=\/?en\/?[\s"'][^>]*lang=en/);
   const raster = html("exposicoes/test-image");
@@ -152,8 +162,8 @@ try {
   assert(raster.includes(".webp"));
   assert(html("publicacoes/test-download").includes("/documents/approved.pdf"));
   assert(
-    html("blogue/page/2").includes("TEST BLOG"),
-    "Blog pagination must work independently",
+    html("blogue").includes("/noticias/"),
+    "Legacy blog index redirects to the combined archive",
   );
   assert(
     html("blogue/test-blog-0").includes("rel=author"),
@@ -161,18 +171,28 @@ try {
   );
   assert(html("autores/exemplo-a").includes("TEST BLOG"));
   assert(
-    !html("noticias").includes("TEST BLOG"),
-    "Blog articles must not become news",
+    html("noticias").includes("TEST BLOG") &&
+      html("noticias").includes("TEST NEWS"),
+    "The archive must mix news and articles",
   );
   assert(
-    !html("en/blog").includes("TEST BLOG"),
+    !html("en/news").includes("TEST BLOG"),
     "English must not list untranslated Portuguese articles",
   );
   const blogFeed = fs.readFileSync(
     path.join(temp, "public/blogue/index.xml"),
     "utf8",
   );
-  assert(blogFeed.includes("TEST BLOG"));
+  assert(blogFeed.includes("TEST BLOG") && blogFeed.includes("TEST NEWS"));
+  const newsFeed = fs.readFileSync(
+    path.join(temp, "public/noticias/index.xml"),
+    "utf8",
+  );
+  assert.deepEqual(
+    blogFeed.match(/<item>[\s\S]*?<\/item>/g),
+    newsFeed.match(/<item>[\s\S]*?<\/item>/g),
+  );
+  assert(html("blogue/test-blog-0").includes("/noticias/"));
   assert(
     !blogFeed.includes("Um caderno para acompanhar"),
     "DEMO articles stay out of RSS",
@@ -242,7 +262,7 @@ try {
     "Missing author profiles must fail validation",
   );
   console.log(
-    "Feature fixtures passed: upcoming/past/undated events, homepage filtering, news pagination, missing-translation fallback, raster srcset, PDF links, blog pagination/authors/RSS, and optional blog translations.",
+    "Feature fixtures passed: upcoming/past/undated events, homepage filtering, news pagination, missing-translation fallback, raster srcset, PDF links, combined news/articles pagination, authors and legacy RSS, and optional blog translations.",
   );
 } finally {
   fs.rmSync(temp, { recursive: true, force: true });

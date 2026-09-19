@@ -58,7 +58,7 @@ Alternativamente, com Docker e o submódulo já inicializado, execute `./run-hug
 | `themes/dot-org-hugo-theme/`     | Tema importado; não editar diretamente                       |
 | `scripts/`                       | Compilação e verificações                                    |
 
-O tema é importado uma única vez através de `module.imports`, a partir do submódulo local. Importam-se os templates, os assets e as fontes; os logótipos, ícones e imagens genéricas do tema ficam fora da publicação. Os overrides locais mantêm a base tipográfica e os padrões de cartões, secções e rodapé. A navegação usa JavaScript local pequeno para controlar estado e foco de forma acessível. O blogue usa os mesmos cartões e o mesmo template de artigo que as notícias, com autoria ligada aos perfis e uma listagem própria em `layouts/blog/list.html`.
+O tema é importado uma única vez através de `module.imports`, a partir do submódulo local. Importam-se os templates, os assets e as fontes; os logótipos, ícones e imagens genéricas do tema ficam fora da publicação. Os overrides locais mantêm a base tipográfica e os padrões de cartões, secções e rodapé. A navegação usa JavaScript local pequeno para controlar estado e foco de forma acessível. Notícias e artigos partilham cartões, template de artigo e a listagem paginada em `layouts/news/list.html`. Os artigos assinados mantêm a autoria ligada aos perfis.
 
 ## Português e inglês
 
@@ -77,14 +77,14 @@ Para adicionar uma tradução, copie a página para a secção correspondente da
 npm run check:translations
 ```
 
-Este comando identifica traduções obrigatórias ausentes e falha se encontrar alguma. **Os artigos do blogue podem ser publicados apenas numa língua**: a tradução é opcional em `content/pt/blogue/` e `content/en/blog/`, exceto nos índices `_index.md`. As edições de A Página do NFB e as suas entradas também podem existir apenas numa língua. As restantes páginas publicadas, incluindo perfis de autor e secções, continuam a exigir PT/EN no CI. `npm run check` assinala as traduções obrigatórias ausentes sem bloquear o trabalho editorial. Rascunhos (`draft: true`) não entram nesta verificação estrita. Os ficheiros `_index.md` das secções definem `cascade.type`: novos conteúdos herdam o tipo correto em ambas as línguas.
+Este comando identifica traduções obrigatórias ausentes e falha se encontrar alguma. **Os artigos assinados (tipo `blog`) podem ser publicados apenas numa língua**: a tradução é opcional em `content/pt/blogue/` e `content/en/blog/`, exceto nos índices `_index.md`. As edições de A Página do NFB e as suas entradas também podem existir apenas numa língua. As restantes páginas publicadas, incluindo perfis de autor e secções, continuam a exigir PT/EN no CI. `npm run check` assinala as traduções obrigatórias ausentes sem bloquear o trabalho editorial. Rascunhos (`draft: true`) não entram nesta verificação estrita. Os ficheiros `_index.md` das secções definem `cascade.type`: novos conteúdos herdam o tipo correto em ambas as línguas.
 
 | Tipo        | Secção PT     | Secção EN      |
 | ----------- | ------------- | -------------- |
 | Associação  | `sobre`       | `about`        |
 | Recursos    | `filatelia`   | `philately`    |
 | Notícias    | `noticias`    | `news`         |
-| Blogue      | `blogue`      | `blog`         |
+| Artigos     | `blogue`      | `blog`         |
 | Autores     | `autores`     | `authors`      |
 | Atividades  | `atividades`  | `activities`   |
 | Exposições  | `exposicoes`  | `exhibitions`  |
@@ -120,11 +120,13 @@ tags: []
 Texto da notícia em Markdown.
 ```
 
-A data é a data de publicação. Datas futuras não são publicadas por defeito. O nome do autor só aparece se `author` estiver preenchido. As listas têm paginação; a homepage mostra as duas notícias mais recentes. Não precisa de acrescentar cada notícia ao menu.
+A data é a data de publicação. Datas futuras não são publicadas por defeito. O nome do autor só aparece se `author` estiver preenchido. As listas têm paginação; a homepage mostra as três notícias ou artigos mais recentes, numa única secção. Não precisa de acrescentar cada notícia ao menu.
 
-### Artigo do blogue e autoria
+### Artigos e autoria
 
-O menu conserva **Notícias / News** e acrescenta **Blogue / Blog**. Use notícias para informação institucional e o blogue para artigos assinados pelos associados. Na homepage, os dois artigos mais recentes do idioma atual aparecem entre Notícias e Atividades, com os mesmos cartões das notícias. A listagem completa tem paginação e RSS próprio em `/blogue/index.xml` e `/en/blog/index.xml`.
+O menu apresenta uma única secção **Notícias e Artigos / News and Articles**, em `/noticias/` e `/en/news/`. A listagem reúne informação institucional e artigos assinados, por data de publicação, com paginação. A homepage mostra as três entradas mais recentes do idioma atual antes das Atividades.
+
+Os ficheiros continuam separados nas pastas de notícias e de artigos (`blogue` / `blog`, com tipo interno `blog`) para preservar os URL e o mecanismo de autoria. Não é necessário mover artigos existentes. Os antigos índices `/blogue/` e `/en/blog/` redirecionam para a secção conjunta. O RSS conjunto está em `/noticias/index.xml` e `/en/news/index.xml`; os antigos endereços RSS do blogue continuam disponíveis com o mesmo conteúdo. Entradas DEMO são excluídas dos feeds.
 
 Existem três artigos de exemplo, todos identificados como DEMO:
 
@@ -205,7 +207,7 @@ Para criar um número, como rascunho (dados ilustrativos):
 npm run issue:new -- --year 2027 --volume 6 --number 1 --date 2027-03-01
 ```
 
-O URL fica `/a-pagina/2027/1/`; o PDF automático, `/a-pagina/2027/1/a-pagina.pdf`. Cada entrada é um ficheiro Markdown, com autores dos mesmos perfis do blogue. O índice e as ligações nos perfis são gerados automaticamente. Existe uma edição completa DEMO, com tradução inglesa, em `content/pt/edicoes/2026-1/` e `content/en/issues/2026-1/`.
+O URL fica `/a-pagina/2027/1/`; o PDF automático, `/a-pagina/2027/1/a-pagina.pdf`. Cada entrada é um ficheiro Markdown, com autores dos mesmos perfis de autor. O índice e as ligações nos perfis são gerados automaticamente. Existe uma edição completa DEMO, com tradução inglesa, em `content/pt/edicoes/2026-1/` e `content/en/issues/2026-1/`.
 
 Veja **[o guia editorial de A Página do NFB](docs/a-pagina.md)** para criar edições, acrescentar artigos, publicar digitalizações, preparar texto para pesquisa, traduzir e gerar/imprimir PDFs.
 
@@ -226,7 +228,7 @@ Sem `download`, o site mostra uma mensagem de indisponibilidade em vez de um bot
 
 ### Homepage, associação e contactos
 
-Os textos da homepage estão no front matter de `content/pt/_index.md` e `content/en/_index.md`. Notícias, artigos do blogue, atividades, exposições e publicações são recolhidas automaticamente das respetivas secções.
+Os textos da homepage estão no front matter de `content/pt/_index.md` e `content/en/_index.md`. Notícias e artigos são reunidos automaticamente numa única lista, por data. Atividades, exposições e publicações são recolhidas das respetivas secções.
 
 Os textos institucionais ficam em `sobre/` e `about/`. As notas `editorial_notes` não são apresentadas no site. Nos contactos, preencha o mapa `contact` de cada língua com morada, email, telefone, local/horário e redes sociais confirmados. Valores `[A COMPLETAR]` são apresentados como «Por confirmar». O email torna-se uma ligação; os outros campos aceitam texto e ligações Markdown. O rodapé remete para esta página, sem duplicar valores desconhecidos.
 

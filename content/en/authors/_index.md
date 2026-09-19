@@ -1,5 +1,5 @@
 ---
-title: Blog authors
+title: Authors
 translationKey: blog-authors
 description: Meet the contributors and explore their articles.
 type: authors

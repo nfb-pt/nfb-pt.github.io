@@ -1,7 +1,7 @@
 {{ define "main" }}
-  {{ $about := "sobre" }}{{ $philately := "filatelia" }}{{ $news := "noticias" }}{{ $blog := "blogue" }}{{ $activities := "atividades" }}{{ $exhibitions := "exposicoes" }}{{ $publications := "publicacoes" }}{{ $membership := "sobre/ser-socio" }}
+  {{ $about := "sobre" }}{{ $philately := "filatelia" }}{{ $news := "noticias" }}{{ $activities := "atividades" }}{{ $exhibitions := "exposicoes" }}{{ $publications := "publicacoes" }}{{ $membership := "sobre/ser-socio" }}
   {{ if eq .Language.Lang "en" }}
-    {{ $about = "about" }}{{ $philately = "philately" }}{{ $news = "news" }}{{ $blog = "blog" }}{{ $activities = "activities" }}{{ $exhibitions = "exhibitions" }}{{ $publications = "publications" }}{{ $membership = "about/membership" }}
+    {{ $about = "about" }}{{ $philately = "philately" }}{{ $news = "news" }}{{ $activities = "activities" }}{{ $exhibitions = "exhibitions" }}{{ $publications = "publications" }}{{ $membership = "about/membership" }}
   {{ end }}
   <section class="hero container wrap" aria-labelledby="hero-title">
     <div class="hero-grid">
@@ -37,7 +37,7 @@
       <p>{{ .Params.intro_text }}</p>
     </div>
   </section>
-  <section class="section container wrap">
+  <section id="latest-editorial" class="section container wrap">
     <div class="section-heading">
       <div>
         <span class="eyebrow">{{ i18n "news_label" }}</span>
@@ -47,30 +47,8 @@
         >{{ i18n "all_news" }} <span aria-hidden="true">↗</span></a
       >
     </div>
-    <div class="cards nfb-grid two">
-      {{ range first 2 (where .Site.RegularPages "Type" "news").ByDate.Reverse }}
-        {{ partial "card.html" . }}
-      {{ else }}
-        <p>{{ i18n "empty" }}</p>
-      {{ end }}
-    </div>
-  </section>
-  <section
-    id="latest-blog"
-    class="section blog-section container wrap"
-    aria-labelledby="blog-heading"
-  >
-    <div class="section-heading">
-      <div>
-        <span class="eyebrow">{{ i18n "blog_label" }}</span>
-        <h2 id="blog-heading">{{ (.Site.GetPage $blog).Title }}</h2>
-      </div>
-      <a class="text-link" href="{{ (.Site.GetPage $blog).RelPermalink }}"
-        >{{ i18n "all_blog" }} <span aria-hidden="true">↗</span></a
-      >
-    </div>
-    <div class="cards nfb-grid two">
-      {{ range first 2 (where .Site.RegularPages "Type" "blog").ByDate.Reverse }}
+    <div class="cards nfb-grid">
+      {{ range first 3 (partial "editorial-pages.html" .) }}
         {{ partial "card.html" . }}
       {{ else }}
         <p>{{ i18n "empty" }}</p>

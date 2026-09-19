@@ -1,8 +1,11 @@
 ---
-title: Blogue
+title: Notícias e Artigos
 translationKey: blog
-description: Olhares, descobertas e artigos dos associados sobre o mundo dos selos.
+description: Novidades do Núcleo, descobertas e artigos sobre filatelia e colecionismo.
 type: blog
 cascade:
   type: blog
+outputs:
+  - RSS
+noindex: true
 ---

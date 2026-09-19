@@ -15,7 +15,7 @@ discover:
 explore:
   other: Explore philately
 all_news:
-  other: All news
+  other: All news and articles
 all_activities:
   other: View activities
 all_exhibitions:
@@ -50,7 +50,7 @@ association:
 collecting:
   other: The art of collecting
 news_label:
-  other: From the association and philately
+  other: From the association and collectors
 exhibitions_label:
   other: Collections in focus
 publications_label:
@@ -82,7 +82,7 @@ footer_nav:
 footer_location:
   other: Braga, Portugal
 rss:
-  other: Subscribe to news via RSS
+  other: Subscribe to news and articles via RSS
 back:
   other: Back to section
 by:
@@ -124,12 +124,8 @@ categories:
   other: Categories
 section_contents:
   other: In this section
-all_blog:
-  other: All articles
-blog_label:
-  other: Members’ perspectives
 blog_authors:
-  other: Blog authors
+  other: Authors
 author_articles:
   other: Articles by this author
 blog_demo_notice:
@@ -227,10 +223,10 @@ mag_section_braga:
   other: Braga
 mag_section_poem:
   other: Poetry
-
 activity_confirmed:
   other: Confirmed
 activity_confirmed_demo:
   other: Confirmed · example
 activity_examples_notice:
-  other: DEMO — Illustrative activities with dates set. These are not actual events announced by the association.
+  other: DEMO — Illustrative activities with dates set. These are not actual
+    events announced by the association.
