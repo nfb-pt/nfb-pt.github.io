@@ -1,5 +1,6 @@
 ---
 title: Inteiros postais
+draft: true
 translationKey: postal-stationery
 description: Um espaço para descobrir peças postais com o porte impresso.
 weight: 6

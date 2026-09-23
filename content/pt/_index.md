@@ -11,7 +11,7 @@ hero_alt:
   Composição ilustrada com selos imaginários, um arco e marcas postais; não representa uma
   emissão postal real.
 collect_alt: Composição ilustrativa de dois selos imaginários sobre.
-hero_caption: 
+hero_caption:
 intro_title: Uma paixão que se partilha.
 intro_text:
   O Núcleo Filatélico e de Coleccionismo de Braga é uma associação de filatelia e colecionismo sediada em

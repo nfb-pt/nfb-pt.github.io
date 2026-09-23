@@ -1,8 +1,9 @@
 ---
 title: Selos de Portugal
+draft: true
 translationKey: portuguese-stamps
 description: Um convite a explorar Portugal através das imagens e dos temas dos seus selos.
-weight: 2
+weight: 4
 editorial_notes: "[A COMPLETAR] Desenvolver e rever o artigo; acrescentar fontes
   e imagens autorizadas."
 image: images/cards/portuguese-stamps.png

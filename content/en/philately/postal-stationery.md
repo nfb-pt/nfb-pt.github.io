@@ -1,5 +1,6 @@
 ---
 title: Postal stationery
+draft: true
 translationKey: postal-stationery
 description: A space to discover postal items with an imprinted postage indicium.
 weight: 6

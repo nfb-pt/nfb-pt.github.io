@@ -99,6 +99,10 @@ A forma mais simples é copiar uma pasta de exemplo dentro da secção pretendid
 
 Comece sempre com `draft: true`. Altere a chave de tradução nas duas cópias e confirme os dados antes de publicar. Para converter um exemplo DEMO em conteúdo real, substitua todo o texto de demonstração, retire `demo: true` e `noindex: true`, remova os temas de demonstração e retire `draft: true` apenas quando estiver aprovado. Entradas DEMO são visíveis para demonstrar o desenho, mas ficam fora de RSS, sitemap e pesquisa.
 
+### Artigos de Filatelia e diretório português
+
+Os guias introdutórios estão em `content/pt/filatelia/` e `content/en/philately/`. A página Literatura Filatélica reúne leituras comentadas; Filatelia em Portugal reúne ligações por categoria. Edite diretamente o Markdown nas duas línguas e conserve o mesmo `translationKey`. Consulte [o guia editorial](docs/philately-content.md) para fontes, critérios e atualização. Selos de Portugal e Inteiros Postais estão temporariamente ocultos com `draft: true`; os conteúdos e imagens foram conservados para futura recuperação.
+
 ### Notícia
 
 Exemplos: `content/pt/noticias/olhar-para-um-selo/index.md` e `content/en/news/a-closer-look/index.md`. Modelo: `archetypes/news.md`.

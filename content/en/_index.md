@@ -9,7 +9,7 @@ hero_intro: Promoting philately and stamp collecting in Braga since 1981.
 hero_image: images/stamps/braga-postal-composition.svg
 hero_alt: Illustrated composition of imaginary stamps, an arch and postmarks; not an actual postal issue.
 collect_alt: Illustrated composition of two imaginary stamps.
-hero_caption: 
+hero_caption:
 intro_title: A passion to share.
 intro_text:
   Núcleo Filatélico e de Coleccionismo de Braga is a philatelic and stamp collecting association based in
