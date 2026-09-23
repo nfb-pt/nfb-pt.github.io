@@ -10,8 +10,8 @@ hero_image: images/stamps/braga-postal-composition.svg
 hero_alt:
   Composição ilustrada com selos imaginários, um arco e marcas postais; não representa uma
   emissão postal real.
-collect_alt: Composição ilustrativa de dois selos imaginários sobre natureza e património.
-hero_caption: Uma homenagem gráfica à arte de colecionar.
+collect_alt: Composição ilustrativa de dois selos imaginários sobre.
+hero_caption: 
 intro_title: Uma paixão que se partilha.
 intro_text:
   O Núcleo Filatélico e de Coleccionismo de Braga é uma associação de filatelia e colecionismo sediada em
