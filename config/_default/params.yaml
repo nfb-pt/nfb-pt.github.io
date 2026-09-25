@@ -5,3 +5,6 @@ logo_footer: "images/brand/nfb-logo-footer.png"
 images: [images/brand/nfb-social.png]
 sticky_header: true
 show_search: true
+# Public hosted signup URL. Adds a button below the homepage introduction when set.
+# A language-specific newsletter_url in content/pt/_index.md or content/en/_index.md overrides this.
+newsletter_url: ""

@@ -314,6 +314,45 @@ img {
   margin: 0;
   max-width: 620px;
 }
+.newsletter-invitation.button {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 1fr) 20px;
+  align-items: center;
+  gap: 16px;
+  margin-top: 26px;
+  width: 100%;
+  padding: 22px;
+  border: 1px solid var(--ink);
+  border-radius: 12px;
+  background: var(--ink);
+  color: #fff;
+  text-align: left;
+  text-decoration: none;
+  white-space: normal;
+  box-shadow: 0 5px 16px #173e4514;
+}
+.newsletter-invitation.button:hover {
+  background: #244f54;
+  border-color: #244f54;
+  box-shadow: 0 7px 20px #173e4526;
+}
+.newsletter-copy strong,
+.newsletter-copy > span {
+  display: block;
+}
+.newsletter-copy strong {
+  font-size: 18px;
+  line-height: 1.35;
+}
+.newsletter-copy > span {
+  margin-top: 7px;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+.newsletter-arrow {
+  font-size: 24px;
+}
 .section {
   padding-top: 76px;
   padding-bottom: 76px;

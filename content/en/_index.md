@@ -11,6 +11,8 @@ hero_alt: Illustrated composition of imaginary stamps, an arch and postmarks; no
 collect_alt: Illustrated composition of two imaginary stamps.
 hero_caption:
 intro_title: A passion to share.
+newsletter_text: Be first to hear the latest NFB news and discover more about philately and collecting.
+newsletter_button: Subscribe to our newsletter
 intro_text:
   Núcleo Filatélico e de Coleccionismo de Braga is a philatelic and stamp collecting association based in
   Braga, Portugal. A place for newcomers and collectors to share perspectives and discover the

@@ -13,6 +13,8 @@ hero_alt:
 collect_alt: Composição ilustrativa de dois selos imaginários sobre.
 hero_caption:
 intro_title: Uma paixão que se partilha.
+newsletter_text: Receba em primeira mão as novidades do NFB e descubra mais sobre filatelia e colecionismo.
+newsletter_button: Subscreva a nossa newsletter
 intro_text:
   O Núcleo Filatélico e de Coleccionismo de Braga é uma associação de filatelia e colecionismo sediada em
   Braga. Um lugar para aproximar curiosos e colecionadores, partilhar olhares e descobrir as

@@ -34,7 +34,32 @@
         <span class="eyebrow">{{ i18n "association" }}</span>
         <h2>{{ .Params.intro_title }}</h2>
       </div>
-      <p>{{ .Params.intro_text }}</p>
+      <div>
+        <p>{{ .Params.intro_text }}</p>
+        {{ $newsletterURL := .Params.newsletter_url | default .Site.Params.newsletter_url }}
+        {{ with $newsletterURL }}
+          <a class="button newsletter-invitation" href="{{ . }}">
+            <svg
+              class="newsletter-icon"
+              aria-hidden="true"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+            >
+              <rect x="3" y="5" width="18" height="14" rx="2" />
+              <path d="m3 6 9 7 9-7" />
+            </svg>
+            <span class="newsletter-copy">
+              <strong>{{ $.Params.newsletter_button }}</strong>
+              <span>{{ $.Params.newsletter_text }}</span>
+            </span>
+            <span class="newsletter-arrow" aria-hidden="true">→</span>
+          </a>
+        {{ end }}
+      </div>
     </div>
   </section>
   <section id="latest-editorial" class="section container wrap">

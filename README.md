@@ -267,6 +267,25 @@ O logótipo aparece ao lado do nome completo da associação, no cabeçalho e no
 
 As cores e medidas estão em `assets/scss/_nfb.scss`: `--ink`, `--accent`, `--paper`, `--muted` e `--line`. As famílias Nunito e Oswald são servidas localmente pelo tema. Mantenha contraste adequado e estados de foco visíveis ao alterar cores.
 
+## Newsletter
+
+A homepage está preparada para um botão **Subscreva a nossa newsletter / Subscribe to our newsletter** por baixo do parágrafo de apresentação, junto de «Uma paixão que se partilha». O parágrafo mantém-se sempre visível. O botão inclui uma breve chamada para receber as novidades do NFB e descobrir mais sobre filatelia e colecionismo. O formulário e os envios são geridos pelo serviço de newsletter; o site continua inteiramente estático em GitHub Pages, sem JavaScript adicional, chaves de API ou dados de subscritores no repositório.
+
+1. Crie uma conta no serviço escolhido e publique uma página ou formulário de inscrição alojado nesse serviço. Por exemplo, [Sender permite publicar uma página com formulário](https://www.sender.net/help/landing-pages/creating-landing-pages/) e [MailerLite disponibiliza um Share URL para os formulários](https://www.mailerlite.com/help/how-to-create-an-embedded-form).
+2. Copie o **URL público HTTPS de inscrição** para `newsletter_url` em `config/_default/params.yaml`. Não use o endereço privado do painel de administração.
+3. Se criar formulários em português e inglês, defina `newsletter_url` no front matter de `content/pt/_index.md` e `content/en/_index.md`. Cada valor substitui o endereço comum nesse idioma. Os textos do convite e do botão também estão nestes ficheiros, em `newsletter_text` e `newsletter_button`.
+4. Confirme a inscrição e a mensagem de confirmação no serviço antes de publicar. A [confirmação por email (double opt-in)](https://www.sender.net/help/lead-capture/double-opt-in-for-forms/) permite verificar o endereço de quem pede a subscrição. Prepare também a identificação do remetente, a informação de privacidade e a opção de anular a subscrição no serviço escolhido.
+
+Enquanto `newsletter_url` estiver vazio na configuração e na página, apenas o botão fica oculto. O parágrafo de apresentação não depende desta configuração. Não é mostrado um botão sem destino. As newsletters são redigidas e enviadas no serviço; publicar notícias no Hugo não desencadeia envios automaticamente.
+
+### Idioma escolhido pelo subscritor
+
+Mantenha uma única base de subscritores no serviço, com um campo obrigatório **Idioma / Language**, com as opções **Português** e **English**. A escolha é feita pela pessoa no formulário: o idioma do site pode sugerir uma opção inicial, mas não deve determinar os envios. Os dois formulários, se existirem, devem guardar a preferência no mesmo campo e permitir ambas as escolhas.
+
+Crie dois segmentos de subscritores confirmados, filtrados pelo valor desse campo. Prepare cada newsletter em português e inglês e envie cada versão apenas ao segmento correspondente, incluindo assunto, botões e mensagens de serviço no idioma adequado. Assim, cada pessoa recebe uma só versão. O site não traduz nem envia newsletters.
+
+Preveja uma forma de alterar o idioma, através da gestão de preferências do serviço ou de um formulário que atualize o mesmo registo. No Sender, consulte os guias de [campos de formulário](https://www.sender.net/help/lead-capture/form-field-types-and-configuration/), [segmentação](https://www.sender.net/help/subscribers-and-segmentation/dynamic-segmentation/) e [atualização de subscritores existentes](https://www.sender.net/help/lead-capture/connecting-forms-to-lists/). Antes do primeiro envio, teste as duas opções, a alteração de preferência e a anulação da subscrição. Estas definições ficam no serviço de newsletter; os URL na configuração Hugo apenas encaminham para os formulários públicos.
+
 ## Pesquisa e metadados
 
 Pagefind é executado depois de Hugo e gera índices independentes para `pt-PT` e `en`. O idioma do HTML determina a pesquisa; as entradas DEMO ficam de fora. A interface está traduzida e não requer serviço externo. O aviso informativo de Pagefind sobre a nova Component UI é esperado: mantemos a Default UI já usada pelo projeto, que continua suportada.
