@@ -12,7 +12,7 @@ aliases:
 summary: "A publicação do Núcleo: edições, artigos e memórias para ler e guardar."
 description: Consulte as edições de A Página do NFB por data, ano editorial e número.
 image: images/publications/a-pagina-cover.svg
-image_alt: Composição tipográfica com o título A Página do NFB; capa provisória.
+image_alt: Capa de A Página do NFB com o arco do logótipo num selo verde e motivos de colecionismo em terracota.
 magazine_id: a-pagina
 ---
 

@@ -124,4 +124,6 @@ Para fornecer um PDF paginado manualmente, retire `generate_pdf` e use `pdf: doc
 
 `npm start` permite trabalhar sem Chrome, mas não gera PDFs nem Pagefind. Use `npm run preview` para experimentar os downloads e a pesquisa geral. Nunca edite os PDFs em `public/`: são resultados de compilação e serão substituídos.
 
-Os estilos próprios da revista estão em `assets/scss/magazine.scss`; os componentes Hugo em `layouts/magazine/`, `layouts/publications/` e `layouts/partials/magazine/`. A capa gráfica temporária está em `assets/images/publications/a-pagina-cover.svg`.
+Os estilos próprios da revista estão em `assets/scss/magazine.scss`; os componentes Hugo em `layouts/magazine/`, `layouts/publications/` e `layouts/partials/magazine/`. A capa gráfica do arquivo está em `assets/images/publications/a-pagina-cover.svg`: adapta o arco vetorial e os motivos filatélicos de `assets/images/stamps/braga-postal-composition.svg`, com as cores da identidade atual. É uma ilustração editorial, não a reprodução de uma edição histórica. Se alterar o desenho do arco na imagem principal, atualize também esta capa.
+
+O cabeçalho das edições HTML e dos PDFs gerados usa o logótipo definido em `config/_default/params.yaml` (`logo`), junto ao título tipográfico «A Página do NFB». A imagem conserva as proporções; se não houver logótipo configurado, o título mantém-se. As capas digitalizadas e os PDFs históricos fornecidos não são alterados.

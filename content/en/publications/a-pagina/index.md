@@ -13,7 +13,7 @@ summary: "The association’s publication: issues, articles and memories to read
   and keep."
 description: Browse issues of A Página do NFB by date, volume and issue number.
 image: images/publications/a-pagina-cover.svg
-image_alt: Typographic composition titled A Página do NFB; temporary cover.
+image_alt: A Página do NFB cover featuring the logo’s arch on a teal stamp and terracotta collecting motifs.
 magazine_id: a-pagina
 ---
 

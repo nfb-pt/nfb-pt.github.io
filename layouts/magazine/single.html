@@ -16,13 +16,24 @@
   <article class="magazine-paper">
     <header class="magazine-cover">
       <div class="magazine-masthead">
-        <p>{{ .Site.Title | upper }}</p>
-        <h1 data-pagefind-meta="title">
-          A Página <span>do NFB</span
-          ><span class="visually-hidden">
-            — {{ .Params.number }}/{{ .Params.edition_year }}</span
-          >
-        </h1>
+        <div class="magazine-wordmark">
+          <p>{{ .Site.Title }}</p>
+          <h1 data-pagefind-meta="title">
+            A Página <span>do NFB</span
+            ><span class="visually-hidden">
+              — {{ .Params.number }}/{{ .Params.edition_year }}</span
+            >
+          </h1>
+        </div>
+        {{ with .Site.Params.logo }}
+          <img
+            class="magazine-logo"
+            src="{{ . | relURL }}"
+            width="76"
+            height="110"
+            alt=""
+          />
+        {{ end }}
       </div>
       <div class="magazine-cover-meta">
         <time datetime="{{ .Params.issue_date }}"

@@ -131,15 +131,29 @@ body.type-magazine {
 }
 .magazine-cover {
   padding: 52px 64px 30px;
-  border-top: 8px solid var(--accent);
+  border-top: 8px solid var(--ink);
 }
 .magazine-masthead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
   border-bottom: 2px solid var(--ink);
   padding-bottom: 18px;
 }
+.magazine-wordmark {
+  min-width: 0;
+}
+.magazine-logo {
+  flex: 0 0 auto;
+  width: 76px;
+  height: 110px;
+  object-fit: contain;
+}
 .magazine-masthead p {
   font: 700 11px/1.5 var(--rounded-font-family);
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   margin-bottom: 15px;
 }
 .magazine-masthead h1 {
@@ -156,8 +170,8 @@ body.type-magazine {
   font-size: 23px;
   font-weight: 800;
   letter-spacing: 0.04em;
-  display: inline-block;
-  margin-left: 12px;
+  display: block;
+  margin-top: 12px;
 }
 .magazine-cover-meta {
   display: flex;
@@ -390,6 +404,21 @@ body.type-magazine {
   .magazine-cover {
     padding: 30px 24px 22px;
   }
+  .magazine-masthead {
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .magazine-logo {
+    width: 42px;
+    height: 61px;
+  }
+  .magazine-masthead h1 {
+    font-size: clamp(46px, 10vw, 72px);
+  }
+  .magazine-masthead p {
+    font-size: 9px;
+    letter-spacing: 0.1em;
+  }
   .magazine-masthead h1 span {
     display: block;
     font-size: 17px;
@@ -495,7 +524,11 @@ body.type-magazine {
     border-top-width: 2mm;
   }
   .magazine-masthead h1 {
-    font-size: 74pt;
+    font-size: 64pt;
+  }
+  .magazine-logo {
+    width: 18mm;
+    height: 26mm;
   }
   .magazine-masthead h1 span {
     display: block;
