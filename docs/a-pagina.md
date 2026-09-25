@@ -98,6 +98,8 @@ pdf: documents/a-pagina/2021/1/original.pdf
 
 O PDF é disponibilizado sem alterações. Acrescente a descrição e uma **transcrição revista** no corpo de `index.md`, ou divida a transcrição por entradas Markdown com autoria e âncoras. Uma digitalização que apenas contém imagens não permite pesquisar as palavras impressas no site. Faça OCR, corrija os erros e inclua o texto em Markdown; não basta incorporar uma camada OCR no PDF, porque este arquivo pesquisa o conteúdo HTML. Pode incluir a capa como imagem para facilitar a identificação.
 
+A edição de **março de 1999, Ano 4, número 1**, é um exemplo real em `content/pt/edicoes/1999-1/index.md`, com ficha inglesa em `content/en/issues/1999-1/index.md`. O PDF original está em `static/documents/a-pagina/1999/1/APagina-Ano-4-Num-1.pdf`, sem alterações; a capa em `assets/images/publications/a-pagina-1999-1-cover.jpg` foi extraída da primeira página. As duas fichas incluem um índice comentado, preparado com OCR e revisto contra as oito páginas, pesquisável no arquivo e na pesquisa geral. Não é uma transcrição integral nem uma tradução do PDF. Como o original indica apenas mês e ano, `issue_date: 1999-03-01` usa o primeiro dia apenas para ordenação e filtros mensais, conforme registado em `editorial_notes`.
+
 ## Pesquisa e ordenação
 
 O arquivo gera `archive.json` durante a compilação. A pesquisa local abrange título, descrição, apresentação, texto das entradas e nomes dos autores. Não distingue maiúsculas nem acentos e combina todas as palavras introduzidas. Os filtros combinam intervalo de meses, ano civil, ano editorial, número e formato. A ordenação oferece data crescente/decrescente, ano editorial/número ou número/data. Não é um motor de pesquisa aproximada nem pesquisa o interior de ficheiros PDF.

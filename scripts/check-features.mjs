@@ -112,9 +112,21 @@ try {
   );
   assert.deepEqual(
     archive.issues.map((i) => i.date),
-    ["2026-09-01", "2021-03-01"],
+    archive.issues
+      .map((i) => i.date)
+      .sort()
+      .reverse(),
+    "The archive must list all issues from newest to oldest",
   );
-  assert(archive.issues[0].text.includes("No silêncio de um pequeno selo"));
+  assert.equal(
+    archive.issues.find((i) => i.url === "/a-pagina/2021/1/")?.date,
+    "2021-03-01",
+  );
+  assert(
+    archive.issues
+      .find((i) => i.url === "/a-pagina/2026/1/")
+      ?.text.includes("No silêncio de um pequeno selo"),
+  );
   const englishArchive = JSON.parse(
     fs.readFileSync(
       path.join(temp, "public/en/publications/a-pagina/archive.json"),
@@ -122,8 +134,8 @@ try {
     ),
   );
   assert.equal(
-    englishArchive.issues.filter((i) => i.language === "pt").length,
-    1,
+    englishArchive.issues.find((i) => i.url === "/a-pagina/2021/1/")?.language,
+    "pt",
     "Untranslated scan must remain discoverable with language label",
   );
   assert(html("a-pagina/2021/1").includes("/documents/approved.pdf"));
